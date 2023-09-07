@@ -22,5 +22,5 @@ Suggests: knitr, testthat, BiocStyle
 VignetteBuilder: knitr
 biocViews: Infrastructure
 RoxygenNote: 7.2.3
-URL:
-BugReports:
+URL: https://github.com/vjcitn/ontoProc2
+BugReports: https://github.com/vjcitn/ontoProc2/issues

@@ -1,10 +1,10 @@
 ---
-title: "uberonpeek -- a look at UBERON ontology with ontoProc2"
+title: "uberonpeek -- a look at UBERON ontology, etc., with ontoProc2"
 author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{uberonpeek -- a look at UBERON ontology with ontoProc2}
+  %\VignetteIndexEntry{uberonpeek -- a look at UBERON ontology, etc., with ontoProc2}
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:
@@ -58,4 +58,42 @@ terminal tags the tags for heart, kidney, and cortex of kidney.
 onto_plot2(uboi, 
   unlist(uboi$ancestors[c("UBERON:0002189", 
      "UBERON:0002113", "UBERON:0000948")]))
+```
+
+# EFO and NCI thesaurus
+
+On cursory inspection, the EFO ontology has
+considerable information about anatomic locations of diseases.
+
+We'll use the entailed edges table in EFO to find all statements
+that have 'heart' (UBERON:0000948) as object.
+
+```{r lkncit}
+eforef = retrieve_semsql_conn("efo")
+nciref = retrieve_semsql_conn("ncit")
+htab = tbl(eforef, "entailed_edge") |> 
+  filter(object == "UBERON:0000948") |> as.data.frame() 
+head(htab)
+```
+
+It is tedious to see these formal tags.  We have
+assembled a simple character vector map that covers
+many tags.
+```{r lkmap}
+data(ncit_map)
+head(ncit_map)
+```
+
+What are the predicates of the heart table above?
+```{r lkpred}
+ncit_map[unique(htab$predicate)]
+```
+To enumerate and decode the terms with disease location (EFO:0000784)
+in heart, we have
+
+```{r lkdec}
+library(DT)
+hdis = ncit_map[ unlist(htab |> filter(predicate == "EFO:0000784") 
+   |> select(subject)) ]
+datatable(data.frame(tag=names(hdis), value=as.character(hdis)))
 ```
