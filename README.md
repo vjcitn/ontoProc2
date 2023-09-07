@@ -1,7 +1,7 @@
 # ontoProc2
 Revise ontoProc methods to take advantage of INCAtools SemanticSQL representations of ontologies
 
-The INCAtools Semantic SQL project identifies an AWS S3 bucket where a large number of ontologies
+The [INCAtools Semantic SQL project](https://github.com/INCATools/semantic-sql) ([tutorial notebook](https://github.com/INCATools/semantic-sql/blob/main/notebooks/SemanticSQL-Tutorial.ipynb)) identifies an AWS S3 bucket where a large number of ontologies
 are available.
 
 ```
