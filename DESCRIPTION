@@ -1,7 +1,7 @@
 Package: ontoProc2
 Date: 2023-09-07
 Title: ontology facilities based on INCAtools Semantic SQL
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),
@@ -17,7 +17,7 @@ License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports: RSQLite, DBI, BiocFileCache, R.utils, dplyr,
-	ontologyIndex
+	ontologyIndex, ontologyPlot, graph, Rgraphviz
 Suggests: knitr, testthat, BiocStyle
 VignetteBuilder: knitr
 biocViews: Infrastructure

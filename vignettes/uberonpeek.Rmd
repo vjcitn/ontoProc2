@@ -1,0 +1,61 @@
+---
+title: "uberonpeek -- a look at UBERON ontology with ontoProc2"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{uberonpeek -- a look at UBERON ontology with ontoProc2}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+The ontoProc2 package is designed to give convenient
+access to the ontologies that are transformed to "semantic
+SQL" in the INCAtools project.
+
+We'll start by retrieving the current UBERON ontology and examining
+some tables and "statements".
+
+```{r setup,message=FALSE}
+library(ontoProc2)
+library(DBI)
+library(dplyr)
+ubcon = retrieve_semsql_conn("uberon")
+head(dbListTables(ubcon))
+tbl(ubcon, "statements")
+```
+
+# Parent-child relations
+
+CRAN's ontologyIndex package provides a familiar representation that
+simplifies visualization.
+
+```{r doconv, cache=FALSE}
+uboi = semsql_to_oi(ubcon)
+uboi
+uboi$name[10364:10370]
+```
+
+A sense of the variety of ontological cross-references
+present can be given by tabling the tag prefixes.
+```{r lktags}
+prefs = gsub(":.*", "", names(uboi$name))
+table(prefs)
+```
+
+By using the ancestors component we can obtain
+a view of is-a relations (presumably developed from
+rdfs:subClassOf predicates).  We've chosen as
+terminal tags the tags for heart, kidney, and cortex of kidney.
+```{r doplot, fig.width=10}
+onto_plot2(uboi, 
+  unlist(uboi$ancestors[c("UBERON:0002189", 
+     "UBERON:0002113", "UBERON:0000948")]))
+```

@@ -1,5 +1,5 @@
 #' produce an ontology_index instance from semantic sql sqlite connection
-#' @import dplyr
+#' @rawNamespace import("dplyr", except="union")
 #' @importFrom ontologyIndex ontology_index
 #' @param con DBI::dbConnect value for sqlite table
 #' @return result of ontologyIndex::ontology_index evaluated for the labels and 
