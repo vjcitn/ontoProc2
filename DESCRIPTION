@@ -1,7 +1,7 @@
 Package: ontoProc2
 Date: 2023-09-07
 Title: ontology facilities based on INCAtools Semantic SQL
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),

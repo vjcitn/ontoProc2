@@ -37,6 +37,6 @@ retrieve_semsql_conn = function(ontology = "efo",
     gunzip(ztmploc) # file now at tmploc
     BiocFileCache::bfcadd(cache, rname=rname,
      rtype="local", fpath=tmploc, action="move")
-    Recall()
+    Recall(ontology=ontology, cache=cache)
     }
   }
