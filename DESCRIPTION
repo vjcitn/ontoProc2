@@ -13,6 +13,8 @@ Description: This package provides ontology facilities based on
 	INCAtools Semantic SQL.  Tooling is provided to retrieve
 	and cache SQLite databases representing curated ontologies.
 	ontologyIndex ontology_index instances can be produced.
+	This package also uses reticulate to provided facilities
+	from owlready2.
 License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 4.1)
