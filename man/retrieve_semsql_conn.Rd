@@ -18,4 +18,5 @@ return a SQLite connection (read only) to an INCAtools Semantic SQL ontology
 # first time will involve a download and decompression
 aionto = retrieve_semsql_conn("aio")
 head(DBI::dbListTables(aionto))
+dplyr::tbl(aionto, "class_node") |> head() |> collect()
 }

@@ -1,0 +1,85 @@
+---
+title: "ontoProc2 -- leveraging semantic SQL and owlready2 for ontology analysis in Bioconductor"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{ontoProc2 -- leveraging INCAtools semantic SQL for ontology analysis in Bioconductor}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+The ontoProc2 package has three aims:
+
+- to give convenient
+access to the ontologies that are transformed to "semantic
+SQL" in the INCAtools project;
+- to provide an interface to OWL processing via python owlready2;
+- to simplify operations that have been available in ontoProc.
+
+# Acquiring ontologies
+
+`retrieve_semsql_conn` produces a connection to a SQLite table representing
+the ontology.  The arguments are
+
+- `ontology`, a short string that matches the "ID" from the [OBO collection](https://obofoundry.org/)
+- `cache`, a cache object inheriting from the main class defined for the [BiocFileCache package](https://www.bioconductor.org/packages/BiocFileCache)
+
+The function will retrieve a SQLite database produced in the semsql project, store it
+in the specified cache, and returns a DBI connection based on RSQLite.
+
+For the example of [Cell Ontology](https://obofoundry.org/ontology/cl.html) we use
+
+```{r do1, message=FALSE}
+library(ontoProc2)
+cellont = retrieve_semsql_conn("^cl") # will grep on rname in bfcinfo
+cellont
+```
+
+Relevant metadata (should be worked into the retrieval process):
+
+```{r lkmeta}
+tbl(cellont, "statements") |> filter(predicate == "owl:versionInfo") |>
+   select(value) |> pull()
+tbl(cellont, "statements") |> filter(subject== "obo:cl.owl", predicate=="rdfs:comment") |>
+   select(value) |> pull() |> strsplit("Contact")
+```
+
+
+To investigate the ontology, it is natural to use dplyr and stringr.
+
+```{r do2, message=FALSE}
+library(dplyr)
+library(stringr)
+library(DBI)
+head(dbListTables(cellont))
+celldf = tbl(cellont, "statements") |> 
+   select(subject, predicate, object, value) |> 
+   filter(predicate == "rdfs:label", str_like(subject, "CL:%")) |> as.data.frame() 
+library(DT)
+datatable(celldf)
+```
+
+# Transformation to ontology_index instances
+
+The [ontologyX suite](https://academic.oup.com/bioinformatics/article/33/7/1104/2843897) of
+Daniel Greene and colleagues provides very convenient ontology handling functions.
+We can transform the SQLite data to this format:
+
+```{r lkoi}
+cloi = semsql_to_oi(cellont)
+cloi
+```
+
+A convenience function assists with visualizations:
+
+```{r dopl}
+onto_plot2(cloi, c("CL:0000624", "CL:0000492", "CL:0000793", "CL:0000803"))
+```

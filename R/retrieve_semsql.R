@@ -10,6 +10,7 @@
 #' # first time will involve a download and decompression
 #' aionto = retrieve_semsql_conn("aio")
 #' head(DBI::dbListTables(aionto))
+#' dplyr::tbl(aionto, "class_node") |> head() 
 #' @export
 retrieve_semsql_conn = function(ontology = "efo", 
      cache=BiocFileCache::BiocFileCache()) {
