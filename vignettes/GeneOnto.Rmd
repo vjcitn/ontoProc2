@@ -1,0 +1,76 @@
+---
+title: "Using ontoProc2 with Gene Ontology"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Using ontoProc2 with Gene Ontology}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+Bioconductor's main interface to Gene Ontology is the GO.db package,
+which leverages AnnotationDbi.  These are very bespoke facilities.
+In this vignette we consider some of the additional details that
+can be accessed while working with semantic SQL.
+
+The `statements` table is fundamental.
+```{r dosem, message=FALSE}
+library(ontoProc2)
+library(DT)
+library(GO.db)
+library(dplyr)
+gg = retrieve_semsql_conn("go")
+chk1 = tbl(gg, "statements") |> head() |> as.data.frame()
+datatable(chk1)
+```
+
+For a single GO id, the statements available are:
+```{r lkone}
+lk1 = tbl(gg, "statements") |> filter(subject == "GO:0018942") |> as.data.frame()
+datatable(lk1)
+```
+
+# Basic comparison of semantic SQL resource to GO.db
+
+We begin by filtering the semantic SQL representation of
+GO to remove explicitly deprecated terms.
+```{r lkdep}
+godep = tbl(gg, "statements") |> filter(str_like(subject, "GO:%"), (predicate == "owl:deprecated")) |> 
+    select(subject) |> distinct() |> pull() 
+semgo = tbl(gg, "statements") |> filter(str_like(subject, "GO:%")) |> select(subject) |>
+    distinct() |> pull()
+gok = setdiff(semgo, godep)  # non-deprecated ids in semantic SQL
+```
+
+Now we isolate the IDs presented in GO.db but not in non-deprecated
+IDs in semantic SQL.
+```{r c3}
+inbioconly = setdiff(keys(GO.db), gok)
+ibco = AnnotationDbi::select(GO.db, keys=inbioconly, columns=c("GOID", "TERM"))
+dim(ibco)
+datatable(head(ibco))
+```
+
+Here's one example:
+```{r c4}
+tmp = ibco[1,"GOID"]
+tbl(gg, "statements") |> select(subject, predicate, object, value) |>
+    filter(subject == tmp) |> as.data.frame() |> datatable()
+```
+
+Here's an example of a term in semantic SQL but not in GO.db:
+```{r c5}
+insemonly = setdiff(gok, keys(GO.db))
+tmp = insemonly[1]
+tbl(gg, "statements") |> select(subject, predicate, object, value) |>
+    filter(subject == tmp) |> as.data.frame() |> datatable()
+```
+
