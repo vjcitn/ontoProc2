@@ -4,12 +4,18 @@
 \alias{retrieve_semsql_conn}
 \title{return a SQLite connection (read only) to an INCAtools Semantic SQL ontology}
 \usage{
-retrieve_semsql_conn(ontology = "efo", cache = BiocFileCache::BiocFileCache())
+retrieve_semsql_conn(
+  ontology = "efo",
+  cache = BiocFileCache::BiocFileCache(),
+  cacheid = NULL
+)
 }
 \arguments{
 \item{ontology}{character(1) short string prefixing .db.gz in the INCAtools collection}
 
 \item{cache}{a BiocFileCache instance, defaulting to BiocFileCache::BiocFileCache()}
+
+\item{cacheid}{character(1) or NULL; if non-null, the associated SQLite resource will be used from cache}
 }
 \description{
 return a SQLite connection (read only) to an INCAtools Semantic SQL ontology
@@ -18,5 +24,5 @@ return a SQLite connection (read only) to an INCAtools Semantic SQL ontology
 # first time will involve a download and decompression
 aionto = retrieve_semsql_conn("aio")
 head(DBI::dbListTables(aionto))
-dplyr::tbl(aionto, "class_node") |> head() |> collect()
+dplyr::tbl(aionto, "class_node") |> head() 
 }
