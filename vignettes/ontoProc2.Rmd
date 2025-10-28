@@ -45,7 +45,8 @@ cellont
 
 Relevant metadata (should be worked into the retrieval process):
 
-```{r lkmeta}
+```{r lkmeta, message=FALSE}
+library(dplyr)
 tbl(cellont, "statements") |> filter(predicate == "owl:versionInfo") |>
    select(value) |> pull()
 tbl(cellont, "statements") |> filter(subject== "obo:cl.owl", predicate=="rdfs:comment") |>
@@ -56,7 +57,6 @@ tbl(cellont, "statements") |> filter(subject== "obo:cl.owl", predicate=="rdfs:co
 To investigate the ontology, it is natural to use dplyr and stringr.
 
 ```{r do2, message=FALSE}
-library(dplyr)
 library(stringr)
 library(DBI)
 head(dbListTables(cellont))
