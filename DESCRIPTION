@@ -20,7 +20,7 @@ Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports: RSQLite, DBI, BiocFileCache, R.utils, dplyr,
 	ontologyIndex, ontologyPlot, graph, Rgraphviz
-Suggests: knitr, testthat, BiocStyle
+Suggests: knitr, testthat, BiocStyle, DT, GO.db
 VignetteBuilder: knitr
 biocViews: Infrastructure
 RoxygenNote: 7.3.3

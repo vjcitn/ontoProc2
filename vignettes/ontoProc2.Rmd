@@ -39,7 +39,7 @@ For the example of [Cell Ontology](https://obofoundry.org/ontology/cl.html) we u
 
 ```{r do1, message=FALSE}
 library(ontoProc2)
-cellont = retrieve_semsql_conn("^cl") # will grep on rname in bfcinfo
+cellont = retrieve_semsql_conn("cl") # will grep on rname in bfcinfo
 cellont
 ```
 

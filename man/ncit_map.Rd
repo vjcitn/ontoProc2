@@ -14,7 +14,7 @@ ncit_map
 a named vector with values rdfs labels in NCI thesaurus, and names the corresponding formal ontology tags
 }
 \examples{
-data("nci_map", package="ontoProc2")
+data("ncit_map", package="ontoProc2")
 ncit_map["EFO:1000899"]
 }
 \keyword{datasets}
