@@ -74,3 +74,5 @@ tbl(gg, "statements") |> select(subject, predicate, object, value) |>
     filter(subject == tmp) |> as.data.frame() |> datatable()
 ```
 
+The discussion of 'obsoleting' GO:0018942 at [https://github.com/geneontology/go-ontology/issues/27153](https://github.com/geneontology/go-ontology/issues/27153) illuminates some of the negotiations needed for term
+exclusion/inclusion.
