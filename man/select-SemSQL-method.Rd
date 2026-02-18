@@ -6,6 +6,17 @@
 \usage{
 \S4method{select}{SemSQL}(x, keys, columns, keytype = "GOID", ...)
 }
+\arguments{
+\item{x}{instance of SemSQL}
+
+\item{keys}{vector of elements of the appropriate type}
+
+\item{columns}{vector of desired output columns}
+
+\item{keytype}{character(1) defaults to 'GOID'}
+
+\item{\dots}{not used}
+}
 \description{
 emulate AnnotationDbi
 }

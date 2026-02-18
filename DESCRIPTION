@@ -19,7 +19,8 @@ License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports: RSQLite, DBI, BiocFileCache, R.utils, dplyr,
-	ontologyIndex, ontologyPlot, graph, Rgraphviz
+	ontologyIndex, ontologyPlot, graph, Rgraphviz,
+	methods
 Suggests: knitr, testthat, BiocStyle, DT, GO.db
 VignetteBuilder: knitr
 biocViews: Infrastructure

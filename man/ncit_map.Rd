@@ -8,7 +8,7 @@
 named character vector
 }
 \usage{
-ncit_map
+data(ncit_map)
 }
 \description{
 a named vector with values rdfs labels in NCI thesaurus, and names the corresponding formal ontology tags

@@ -14,6 +14,8 @@ select(x, keys, columns, keytype = "GOID", ...)
 \item{columns}{vector of desired output columns}
 
 \item{keytype}{character(1) defaults to 'GOID'}
+
+\item{\dots}{not used}
 }
 \description{
 emulate the AnnotationDbi select method

@@ -6,6 +6,9 @@
 \usage{
 \S4method{show}{SemSQL}(object)
 }
+\arguments{
+\item{object}{instance of SemSQL}
+}
 \description{
 present information about a SemSQL object
 }

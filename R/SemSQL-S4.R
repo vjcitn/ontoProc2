@@ -1,7 +1,10 @@
+
 # this code is an effort to replace the GO.db API with methods based on Semantic SQL
 # representations from INCA project
 
 #' define a wrapper for the SQLite connection
+#' @rawNamespace importFrom("methods", "as", "new", "slot")
+#' @rawNamespace importFrom("utils", "download.file")
 #' @slot conn an instance of SQLiteConnection
 #' @slot resource character(1) a descriptive string
 #' @slot nstats numeric(1) holder for count of number of statements
@@ -18,6 +21,7 @@ SemSQL = function(conn, resource) {
 }
 
 #' present information about a SemSQL object
+#' @param object instance of SemSQL
 #' @export
 setMethod("show", "SemSQL", function(object) {
    cat(sprintf("SemanticSQL interface for %s\n", slot(object, "resource")))
@@ -37,10 +41,16 @@ setValidity(Class="SemSQL", method=function(object) {
 #' @param keys vector of elements of the appropriate type
 #' @param columns vector of desired output columns
 #' @param keytype character(1) defaults to 'GOID'
+#' @param \dots not used
 #' @export
 setGeneric("select", function(x, keys, columns, keytype="GOID", ...) standardGeneric("select"))
 
 #' emulate AnnotationDbi
+#' @param x instance of SemSQL
+#' @param keys vector of elements of the appropriate type
+#' @param columns vector of desired output columns
+#' @param keytype character(1) defaults to 'GOID'
+#' @param \dots not used
 #' @examples
 #' gg = retrieve_semsql_conn("go")
 #' ngo = SemSQL(gg, "GO")
