@@ -1,7 +1,7 @@
 Package: ontoProc2
-Date: 2025-10-28
+Date: 2026-02-18
 Title: ontology facilities based on INCAtools Semantic SQL
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),
@@ -21,7 +21,8 @@ Depends: R (>= 4.1)
 Imports: RSQLite, DBI, BiocFileCache, R.utils, dplyr,
 	ontologyIndex, ontologyPlot, graph, Rgraphviz,
 	methods
-Suggests: knitr, testthat, BiocStyle, DT, GO.db
+Suggests: knitr, testthat, BiocStyle, DT, GO.db,
+	AnnotationDbi, stringr
 VignetteBuilder: knitr
 biocViews: Infrastructure
 RoxygenNote: 7.3.3

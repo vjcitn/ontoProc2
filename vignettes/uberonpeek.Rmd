@@ -69,8 +69,8 @@ We'll use the entailed edges table in EFO to find all statements
 that have 'heart' (UBERON:0000948) as object.
 
 ```{r lkncit}
-eforef = retrieve_semsql_conn("efo")
-nciref = retrieve_semsql_conn("ncit")
+eforef = retrieve_semsql_conn("efo")  # 240 MB
+#nciref = retrieve_semsql_conn("ncit")  # > 500MB, block
 htab = tbl(eforef, "entailed_edge") |> 
   filter(object == "UBERON:0000948") |> as.data.frame() 
 head(htab)

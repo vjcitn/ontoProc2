@@ -24,7 +24,8 @@ retrieve_semsql_conn = function(ontology = "efo",
    cached_path = bfcinfo(cache,cacheid)$rpath
    return(dbConnect(SQLite(), cached_path, SQLITE_RO))
    }
-  rname = paste0("^", ontology, "_bbop_ontoproc2")
+  #rname = paste0("^", ontology, "_bbop_ontoproc2")  # ?
+  rname = paste0(ontology, "_bbop_ontoproc2")
   bbop_info = BiocFileCache::bfcquery(cache, rname)
   ind = grep(rname, bbop_info$rname) 
   if (length(ind)>0) {
@@ -41,15 +42,18 @@ retrieve_semsql_conn = function(ontology = "efo",
     addr = semsql_url(ontology)
     zdbname = basename(addr)
     dbname = sub(".gz$", "", zdbname)
-    td = file.path("~", tempfile())
+    tf = basename(tempfile())
+    td = file.path("~", tf)
     dir.create(td)
     ztmploc = paste0(td, "/", zdbname)
     tmploc = paste0(td, "/", dbname)
     on.exit(unlink(td, recursive=TRUE))
     download.file(addr, file.path(td, zdbname))
     gunzip(ztmploc) # file now at tmploc
-    BiocFileCache::bfcadd(cache, rname=rname,
+    addv = BiocFileCache::bfcadd(cache, rname=rname,
      rtype="local", fpath=tmploc, action="move")
-    Recall(ontology=ontology, cache=cache)
+    id = bfcquery(cache, basename(addv))$rid
+    if (!isTRUE(substr(id,1,3)=="BFC")) stop("cache action failed") # avoid possibly infinite Recall
+    Recall(ontology=ontology, cache=cache, cacheid=id)
     }
   }
