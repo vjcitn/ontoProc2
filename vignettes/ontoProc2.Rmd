@@ -83,3 +83,10 @@ A convenience function assists with visualizations:
 ```{r dopl}
 onto_plot2(cloi, c("CL:0000624", "CL:0000492", "CL:0000793", "CL:0000803"))
 ```
+
+# Session information
+
+```{r lksess}
+sessionInfo()
+```
+

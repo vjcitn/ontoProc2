@@ -97,3 +97,10 @@ hdis = ncit_map[ unlist(htab |> filter(predicate == "EFO:0000784")
    |> select(subject)) ]
 datatable(data.frame(tag=names(hdis), value=as.character(hdis)))
 ```
+
+# Session information
+
+```{r lksess}
+sessionInfo()
+```
+

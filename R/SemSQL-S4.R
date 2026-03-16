@@ -14,6 +14,10 @@ setClass("SemSQL", slots=c(conn="SQLiteConnection", resource="character", nstats
 #' constructor for SemSQL instance
 #' @param conn SQLiteConnection
 #' @param resource character tag
+#' @examples
+#' gg = retrieve_semsql_conn("go")
+#' ngo = SemSQL(gg, "GO")
+#' ngo
 #' @export
 SemSQL = function(conn, resource) {
   nstats = dplyr::tbl(conn, "statements") |> dplyr::count() |> dplyr::pull()
@@ -80,7 +84,8 @@ setMethod("select", "SemSQL", function(x, keys, columns, keytype = "GOID", ...) 
  if (!is.null(def)) ans = def
  
  ans = list(def=def, term=term, onto=onto)
- todo = which(sapply(ans, function(x) !is.null(x)))
+ todo = which(vapply(ans, function(x) !is.null(x), logical(1)))
+ if (length(todo)==0) stop("No valid columns found.")
  fin = ans[[todo[1]]]  # start
  if (length(todo)==1) return(fin)
  for (i in todo[-1]) fin = left_join(fin, ans[[i]], by="GOID")

@@ -7,6 +7,7 @@
 #' @param ontology character(1) short string prefixing .db.gz in the INCAtools collection
 #' @param cache a BiocFileCache instance, defaulting to BiocFileCache::BiocFileCache()
 #' @param cacheid character(1) or NULL; if non-null, the associated SQLite resource will be used from cache
+#' @param \dots passed to download.file
 #' @examples
 #' # first time will involve a download and decompression
 #' aionto = retrieve_semsql_conn("aio")
@@ -14,7 +15,7 @@
 #' dplyr::tbl(aionto, "class_node") |> head() 
 #' @export
 retrieve_semsql_conn = function(ontology = "efo", 
-     cache=BiocFileCache::BiocFileCache(), cacheid=NULL) {
+     cache=BiocFileCache::BiocFileCache(), cacheid=NULL, ...) {
 #
 # this function checks for cached version of ontology database
 # and if present, returns SQLite connection to it.  otherwise
@@ -32,7 +33,7 @@ retrieve_semsql_conn = function(ontology = "efo",
     if (length(ind)>1) {
        message(sprintf("multiple cache entries found matching request %s", rname))
        message("please be more specific, by supplying cache id as 'BFCnnn'.")
-       print(bbop_info)
+       message("see ", sprintf("%s in cache\n", paste(bbop_info$rid, collapse=", ")))
        stop("cannot proceed with ambiguous ontology spec")
        }
     cached_path = bbop_info[ind, "rpath"]$rpath  # ind is length 1
@@ -48,7 +49,7 @@ retrieve_semsql_conn = function(ontology = "efo",
     ztmploc = paste0(td, "/", zdbname)
     tmploc = paste0(td, "/", dbname)
     on.exit(unlink(td, recursive=TRUE))
-    download.file(addr, file.path(td, zdbname))
+    download.file(addr, file.path(td, zdbname), ...)
     gunzip(ztmploc) # file now at tmploc
     addv = BiocFileCache::bfcadd(cache, rname=rname,
      rtype="local", fpath=tmploc, action="move")

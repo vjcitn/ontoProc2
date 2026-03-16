@@ -16,3 +16,16 @@ improveNodes(g, ont)
 inject linefeeds for node names for graph, with textual
 annotation from ontology
 }
+\examples{
+requireNamespace("Rgraphviz")
+requireNamespace("graph")
+clcon = retrieve_semsql_conn("cl")
+cl = semsql_to_oi(clcon)
+cl3k = c("CL:0000492", "CL:0001054", "CL:0000236", "CL:0000625",
+   "CL:0000576", "CL:0000623", "CL:0000451", "CL:0000556")
+p3k = ontologyPlot::onto_plot(cl, cl3k)
+gnel = make_graphNEL_from_ontology_plot(p3k)
+head(graph::nodes(gnel)) # before improving
+gnel = improveNodes(gnel, cl)
+head(graph::nodes(gnel))
+}

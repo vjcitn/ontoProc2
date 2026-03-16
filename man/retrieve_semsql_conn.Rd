@@ -7,7 +7,8 @@
 retrieve_semsql_conn(
   ontology = "efo",
   cache = BiocFileCache::BiocFileCache(),
-  cacheid = NULL
+  cacheid = NULL,
+  ...
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ retrieve_semsql_conn(
 \item{cache}{a BiocFileCache instance, defaulting to BiocFileCache::BiocFileCache()}
 
 \item{cacheid}{character(1) or NULL; if non-null, the associated SQLite resource will be used from cache}
+
+\item{\dots}{passed to download.file}
 }
 \description{
 return a SQLite connection (read only) to an INCAtools Semantic SQL ontology

@@ -76,3 +76,9 @@ tbl(gg, "statements") |> select(subject, predicate, object, value) |>
 
 The discussion of 'obsoleting' GO:0018942 at [https://github.com/geneontology/go-ontology/issues/27153](https://github.com/geneontology/go-ontology/issues/27153) illuminates some of the negotiations needed for term
 exclusion/inclusion.
+
+# Session information
+
+```{r lksess}
+sessionInfo()
+```

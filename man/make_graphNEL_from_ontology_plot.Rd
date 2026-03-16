@@ -16,7 +16,7 @@ instance of S4 graphNEL class
 obtain graphNEL from ontology_plot instance of ontologyPlot
 }
 \examples{
-\dontrun{
+\donttest{
 requireNamespace("Rgraphviz")
 requireNamespace("graph")
 clcon = retrieve_semsql_conn("cl")

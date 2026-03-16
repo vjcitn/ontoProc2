@@ -16,3 +16,8 @@ constructor for SemSQL instance
 
 check aspects of SemSQL object
 }
+\examples{
+gg = retrieve_semsql_conn("go")
+ngo = SemSQL(gg, "GO")
+ngo
+}

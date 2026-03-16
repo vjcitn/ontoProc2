@@ -7,7 +7,7 @@
 #' @param x instance of S3 class ontology_plot
 #' @return instance of S4 graphNEL class
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' requireNamespace("Rgraphviz")
 #' requireNamespace("graph")
 #' clcon = retrieve_semsql_conn("cl")
@@ -35,6 +35,18 @@ make_graphNEL_from_ontology_plot <- function(x) {
 #' annotation from ontology 
 #' @param g graphNEL instance
 #' @param ont instance of ontology from ontologyIndex
+#' @examples
+#' requireNamespace("Rgraphviz")
+#' requireNamespace("graph")
+#' clcon = retrieve_semsql_conn("cl")
+#' cl = semsql_to_oi(clcon)
+#' cl3k = c("CL:0000492", "CL:0001054", "CL:0000236", "CL:0000625",
+#'    "CL:0000576", "CL:0000623", "CL:0000451", "CL:0000556")
+#' p3k = ontologyPlot::onto_plot(cl, cl3k)
+#' gnel = make_graphNEL_from_ontology_plot(p3k)
+#' head(graph::nodes(gnel)) # before improving
+#' gnel = improveNodes(gnel, cl)
+#' head(graph::nodes(gnel))
 #' @export
 improveNodes = function(g,ont) {
  nn = paste(sub(" ", "\n", ont$name[nodes(g)]), "\n", nodes(g), sep="")
