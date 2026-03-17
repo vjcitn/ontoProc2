@@ -20,6 +20,9 @@ retrieve_semsql_conn(
 
 \item{\dots}{passed to download.file}
 }
+\value{
+an RSQLite DBI connection instance
+}
 \description{
 return a SQLite connection (read only) to an INCAtools Semantic SQL ontology
 }

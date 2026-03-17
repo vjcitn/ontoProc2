@@ -35,6 +35,7 @@ make_graphNEL_from_ontology_plot <- function(x) {
 #' annotation from ontology 
 #' @param g graphNEL instance
 #' @param ont instance of ontology from ontologyIndex
+#' @return graphNEL instance
 #' @examples
 #' requireNamespace("Rgraphviz")
 #' requireNamespace("graph")

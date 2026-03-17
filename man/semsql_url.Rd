@@ -9,6 +9,9 @@ semsql_url(ontology = "efo")
 \arguments{
 \item{ontology}{short string that is the prefix to .db.gz in the bbop-sqlite collection}
 }
+\value{
+a string with URL for INCAtools resource
+}
 \description{
 produce INCAtools distribution URL
 }

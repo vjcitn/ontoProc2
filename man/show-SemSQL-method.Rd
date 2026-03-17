@@ -9,6 +9,9 @@
 \arguments{
 \item{object}{instance of SemSQL}
 }
+\value{
+textual report
+}
 \description{
 present information about a SemSQL object
 }

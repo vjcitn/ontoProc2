@@ -1,5 +1,6 @@
 #' produce INCAtools distribution URL
 #' @param ontology short string that is the prefix to .db.gz in the bbop-sqlite collection
+#' @return a string with URL for INCAtools resource
 #' @examples
 #' semsql_url("cl")
 #' @export

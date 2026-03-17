@@ -8,6 +8,7 @@
 #' @param cache a BiocFileCache instance, defaulting to BiocFileCache::BiocFileCache()
 #' @param cacheid character(1) or NULL; if non-null, the associated SQLite resource will be used from cache
 #' @param \dots passed to download.file
+#' @return an RSQLite DBI connection instance
 #' @examples
 #' # first time will involve a download and decompression
 #' aionto = retrieve_semsql_conn("aio")

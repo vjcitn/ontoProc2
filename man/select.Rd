@@ -17,6 +17,12 @@ select(x, keys, columns, keytype = "GOID", ...)
 
 \item{\dots}{not used}
 }
+\value{
+standardGeneric
+}
 \description{
 emulate the AnnotationDbi select method
+}
+\examples{
+example("select,SemSQL-method")
 }

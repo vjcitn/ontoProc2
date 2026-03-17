@@ -17,6 +17,9 @@
 
 \item{\dots}{not used}
 }
+\value{
+a table
+}
 \description{
 emulate AnnotationDbi
 }

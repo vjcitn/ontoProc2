@@ -12,6 +12,9 @@ improveNodes(g, ont)
 
 \item{ont}{instance of ontology from ontologyIndex}
 }
+\value{
+graphNEL instance
+}
 \description{
 inject linefeeds for node names for graph, with textual
 annotation from ontology

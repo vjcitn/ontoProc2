@@ -11,6 +11,9 @@ SemSQL(conn, resource)
 
 \item{resource}{character tag}
 }
+\value{
+SemSQL instance
+}
 \description{
 constructor for SemSQL instance
 

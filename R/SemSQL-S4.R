@@ -14,6 +14,7 @@ setClass("SemSQL", slots=c(conn="SQLiteConnection", resource="character", nstats
 #' constructor for SemSQL instance
 #' @param conn SQLiteConnection
 #' @param resource character tag
+#' @return SemSQL instance
 #' @examples
 #' gg = retrieve_semsql_conn("go")
 #' ngo = SemSQL(gg, "GO")
@@ -26,6 +27,7 @@ SemSQL = function(conn, resource) {
 
 #' present information about a SemSQL object
 #' @param object instance of SemSQL
+#' @return textual report
 #' @export
 setMethod("show", "SemSQL", function(object) {
    cat(sprintf("SemanticSQL interface for %s\n", slot(object, "resource")))
@@ -46,6 +48,9 @@ setValidity(Class="SemSQL", method=function(object) {
 #' @param columns vector of desired output columns
 #' @param keytype character(1) defaults to 'GOID'
 #' @param \dots not used
+#' @return standardGeneric
+#' @examples
+#' example("select,SemSQL-method")
 #' @export
 setGeneric("select", function(x, keys, columns, keytype="GOID", ...) standardGeneric("select"))
 
@@ -55,6 +60,7 @@ setGeneric("select", function(x, keys, columns, keytype="GOID", ...) standardGen
 #' @param columns vector of desired output columns
 #' @param keytype character(1) defaults to 'GOID'
 #' @param \dots not used
+#' @return a table
 #' @examples
 #' gg = retrieve_semsql_conn("go")
 #' ngo = SemSQL(gg, "GO")

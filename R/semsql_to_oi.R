@@ -4,6 +4,13 @@
 #' @param con DBI::dbConnect value for sqlite table
 #' @return result of ontologyIndex::ontology_index evaluated for the labels and 
 #' parent-child relations in tables statements and edge of the semantic sql resource
+#' @examples
+#' #' @examples
+#' gg = retrieve_semsql_conn("aio")
+#' nai = SemSQL(gg, "AIO")
+#' nai
+#' oi = suppressWarnings(semsql_to_oi(slot(nai, "conn"))) # "Thing"
+#' names(oi)
 #' @export
 semsql_to_oi = function(con) {
 # sqlite> select * from statements where predicate = 'rdfs:label' limit 40;
