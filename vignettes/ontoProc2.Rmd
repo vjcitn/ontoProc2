@@ -1,5 +1,5 @@
 ---
-title: "ontoProc2 -- leveraging semantic SQL and owlready2 for ontology analysis in Bioconductor"
+title: "ontoProc2 -- leveraging semantic SQL for ontology analysis in Bioconductor"
 author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
@@ -16,12 +16,11 @@ output:
 
 # Introduction
 
-The ontoProc2 package has three aims:
+The ontoProc2 package has two aims:
 
 - to give convenient
 access to the ontologies that are transformed to "semantic
 SQL" in the INCAtools project;
-- to provide an interface to OWL processing via python owlready2;
 - to simplify operations that have been available in ontoProc.
 
 # Acquiring ontologies
