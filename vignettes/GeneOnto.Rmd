@@ -21,20 +21,16 @@ which leverages AnnotationDbi.  These are very bespoke facilities.
 In this vignette we consider some of the additional details that
 can be accessed while working with semantic SQL.
 
-The `statements` table is fundamental.
-```{r dosem, message=FALSE}
-library(ontoProc2)
-library(DT)
-library(GO.db)
-library(dplyr)
-gg = retrieve_semsql_conn("go")
-chk1 = tbl(gg, "statements") |> head() |> as.data.frame()
-datatable(chk1)
+# Illustration with Gene Ontology
+
+```{r first, message=FALSE}
+goref = semsql_connect(ontology="cl")
+goref
 ```
 
 For a single GO id, the statements available are:
 ```{r lkone}
-lk1 = tbl(gg, "statements") |> filter(subject == "GO:0018942") |> as.data.frame()
+lk1 = tbl(goref@con, "statements") |> filter(subject == "GO:0006921") |> as.data.frame()
 datatable(lk1)
 ```
 
@@ -43,42 +39,27 @@ datatable(lk1)
 We begin by filtering the semantic SQL representation of
 GO to remove explicitly deprecated terms.
 ```{r lkdep}
-godep = tbl(gg, "statements") |> filter(str_like(subject, "GO:%"), (predicate == "owl:deprecated")) |> 
-    select(subject) |> distinct() |> pull() 
-semgo = tbl(gg, "statements") |> filter(str_like(subject, "GO:%")) |> select(subject) |>
+library(dbplyr)
+godep = tbl(goref@con, "statements") |> dplyr::filter(str_like(subject, "GO:%"), (predicate == "owl:deprecated")) |> collect() |> 
+    dplyr::select(subject) |> distinct() |> pull() 
+semgo = tbl(goref@con, "statements") |> dplyr::filter(str_like(subject, "GO:%")) |> dplyr::select(subject) |>
     distinct() |> pull()
 gok = setdiff(semgo, godep)  # non-deprecated ids in semantic SQL
+length(gok)
 ```
 
 Now we isolate the IDs presented in GO.db but not in non-deprecated
 IDs in semantic SQL.
 ```{r c3}
-inbioconly = setdiff(keys(GO.db), gok)
+library(GO.db)  # Version?
+inbioconly = setdiff(AnnotationDbi::keys(GO.db), gok)
 ibco = AnnotationDbi::select(GO.db, keys=inbioconly, columns=c("GOID", "TERM"))
 dim(ibco)
 datatable(head(ibco))
 ```
 
-Here's one example:
-```{r c4}
-tmp = ibco[1,"GOID"]
-tbl(gg, "statements") |> select(subject, predicate, object, value) |>
-    filter(subject == tmp) |> as.data.frame() |> datatable()
-```
-
-Here's an example of a term in semantic SQL but not in GO.db:
-```{r c5}
-insemonly = setdiff(gok, keys(GO.db))
-tmp = insemonly[1]
-tbl(gg, "statements") |> select(subject, predicate, object, value) |>
-    filter(subject == tmp) |> as.data.frame() |> datatable()
-```
-
-The discussion of 'obsoleting' GO:0018942 at [https://github.com/geneontology/go-ontology/issues/27153](https://github.com/geneontology/go-ontology/issues/27153) illuminates some of the negotiations needed for term
-exclusion/inclusion.
-
 # Session information
 
-```{r lksess}
+```{r sinf}
 sessionInfo()
 ```
