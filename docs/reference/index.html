@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,8 +19,7 @@
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/GeneOnto.html">Using ontoProc2 with Gene Ontology</a></li>
-    <li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -41,64 +40,286 @@
 
 
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
 
       <dl><dt>
 
+          <code><a href="PREDICATES.html">PREDICATES</a></code>
+
+        </dt>
+        <dd>Standard predicate CURIEs used in OBO ontologies</dd>
+
+        <dt>
+
+          <code><a href="SemsqlConn.html">SemsqlConn()</a></code>
+
+        </dt>
+        <dd>SemsqlConn: S7 connection wrapper for SemanticSQL databases</dd>
+
+        <dt>
+
+          <code><a href="count_by_prefix.html">count_by_prefix()</a></code>
+
+        </dt>
+        <dd>Count labeled terms grouped by CURIE prefix</dd>
+
+        <dt>
+
+          <code><a href="count_descendants.html">count_descendants()</a></code>
+
+        </dt>
+        <dd>Count the number of descendants of a term</dd>
+
+        <dt>
+
+          <code><a href="describe_table.html">describe_table()</a></code>
+
+        </dt>
+        <dd>Describe the columns of a table in a SemsqlConn database</dd>
+
+        <dt>
+
+          <code><a href="disconnect.html">disconnect()</a></code>
+
+        </dt>
+        <dd>Disconnect a SemsqlConn from its database</dd>
+
+        <dt>
+
+          <code><a href="find_by_restriction.html">find_by_restriction()</a></code>
+
+        </dt>
+        <dd>Find terms that have a given OWL someValuesFrom restriction</dd>
+
+        <dt>
+
+          <code><a href="find_intersection.html">find_intersection()</a></code>
+
+        </dt>
+        <dd>Find terms that are descendants of a superclass and have a given restriction</dd>
+
+        <dt>
+
+          <code><a href="get_ancestors.html">get_ancestors()</a></code>
+
+        </dt>
+        <dd>Get all ancestors of a term via entailed edges</dd>
+
+        <dt>
+
+          <code><a href="get_ancestors_partonomy.html">get_ancestors_partonomy()</a></code>
+
+        </dt>
+        <dd>Get ancestors traversing both is-a and part-of relationships</dd>
+
+        <dt>
+
+          <code><a href="get_definition.html">get_definition()</a></code>
+
+        </dt>
+        <dd>Get the text definition for a term</dd>
+
+        <dt>
+
+          <code><a href="get_descendants.html">get_descendants()</a></code>
+
+        </dt>
+        <dd>Get all descendants of a term via entailed edges</dd>
+
+        <dt>
+
+          <code><a href="get_descendants_partonomy.html">get_descendants_partonomy()</a></code>
+
+        </dt>
+        <dd>Get descendants traversing both is-a and has-part relationships</dd>
+
+        <dt>
+
+          <code><a href="get_direct_edges.html">get_direct_edges()</a></code>
+
+        </dt>
+        <dd>Get direct edges in the ontology graph for a term</dd>
+
+        <dt>
+
+          <code><a href="get_direct_subclasses.html">get_direct_subclasses()</a></code>
+
+        </dt>
+        <dd>Get direct subclasses of a term</dd>
+
+        <dt>
+
+          <code><a href="get_direct_superclasses.html">get_direct_superclasses()</a></code>
+
+        </dt>
+        <dd>Get direct superclasses of a term</dd>
+
+        <dt>
+
+          <code><a href="get_label.html">get_label()</a></code>
+
+        </dt>
+        <dd>Get the rdfs:label for a term</dd>
+
+        <dt>
+
+          <code><a href="get_prefix.html">get_prefix()</a></code>
+
+        </dt>
+        <dd>Retrieve the ontology prefix from a SemsqlConn</dd>
+
+        <dt>
+
+          <code><a href="get_restrictions.html">get_restrictions()</a></code>
+
+        </dt>
+        <dd>Get OWL someValuesFrom restrictions for a term</dd>
+
+        <dt>
+
+          <code><a href="get_synonyms.html">get_synonyms()</a></code>
+
+        </dt>
+        <dd>Get synonyms for a term</dd>
+
+        <dt>
+
+          <code><a href="get_term_info.html">get_term_info()</a></code>
+
+        </dt>
+        <dd>Retrieve a summary of information about a term</dd>
+
+        <dt>
+
           <code><a href="improveNodes.html">improveNodes()</a></code>
 
         </dt>
         <dd>inject linefeeds for node names for graph, with textual annotation from ontology</dd>
-      </dl><dl><dt>
+
+        <dt>
+
+          <code><a href="is_connected.html">is_connected()</a></code>
+
+        </dt>
+        <dd>Test whether a SemsqlConn has a valid open connection</dd>
+
+        <dt>
+
+          <code><a href="list_tables.html">list_tables()</a></code>
+
+        </dt>
+        <dd>List tables in a SemsqlConn database</dd>
+
+        <dt>
 
           <code><a href="make_graphNEL_from_ontology_plot.html">make_graphNEL_from_ontology_plot()</a></code>
 
         </dt>
         <dd>obtain graphNEL from ontology_plot instance of ontologyPlot</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="ncit_map.html">ncit_map</a></code>
 
         </dt>
         <dd>a named vector with values rdfs labels in NCI thesaurus, and names the corresponding formal ontology tags</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="onto_plot2.html">onto_plot2()</a></code>
 
         </dt>
         <dd>high-level use of graph/Rgraphviz for rendering ontology relations</dd>
-      </dl><dl><dt>
+
+        <dt>
+
+          <code><a href="print.html">print</a></code>
+
+        </dt>
+        <dd>setup print</dd>
+
+        <dt>
+
+          <code><a href="reconnect.html">reconnect()</a></code>
+
+        </dt>
+        <dd>Reconnect a SemsqlConn to its database</dd>
+
+        <dt>
+
+          <code><a href="report.html">report()</a></code>
+
+        </dt>
+        <dd>Display a detailed report of a SemsqlConn object</dd>
+
+        <dt>
 
           <code><a href="retrieve_semsql_conn.html">retrieve_semsql_conn()</a></code>
 
         </dt>
         <dd>return a SQLite connection (read only) to an INCAtools Semantic SQL ontology</dd>
-      </dl><dl><dt>
+
+        <dt>
+
+          <code><a href="run_demo.html">run_demo()</a></code>
+
+        </dt>
+        <dd>Run a demonstration of SemsqlConn capabilities</dd>
+
+        <dt>
+
+          <code><a href="run_query.html">run_query()</a></code>
+
+        </dt>
+        <dd>Run an arbitrary SQL query against a SemsqlConn database</dd>
+
+        <dt>
+
+          <code><a href="search_labels.html">search_labels()</a></code>
+
+        </dt>
+        <dd>Search term labels in a SemsqlConn database</dd>
+
+        <dt>
+
+          <code><a href="semsql_connect.html">semsql_connect()</a></code>
+
+        </dt>
+        <dd>Create a SemsqlConn connection</dd>
+
+        <dt>
 
           <code><a href="semsql_to_oi.html">semsql_to_oi()</a></code>
 
         </dt>
         <dd>produce an ontology_index instance from semantic sql sqlite connection</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="semsql_url.html">semsql_url()</a></code>
 
         </dt>
         <dd>produce INCAtools distribution URL</dd>
+
+        <dt>
+
+          <code><a href="with_connection.html">with_connection()</a></code>
+
+        </dt>
+        <dd>Execute code with an automatically managed SemsqlConn</dd>
       </dl></div>
   </main></div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Vincent Carey.</p>
+  <p>Developed by Vincent Carey, NIH NHGRI 2U24HG004059-17.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

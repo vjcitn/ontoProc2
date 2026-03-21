@@ -9,7 +9,7 @@ annotation from ontology"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,8 +21,7 @@ annotation from ontology"></head><body>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/GeneOnto.html">Using ontoProc2 with Gene Ontology</a></li>
-    <li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -62,17 +61,45 @@ annotation from ontology</p>
 <dd><p>instance of ontology from ontologyIndex</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>graphNEL instance</p>
+    </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"Rgraphviz"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"graph"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">clcon</span> <span class="op">=</span> <span class="fu"><a href="retrieve_semsql_conn.html">retrieve_semsql_conn</a></span><span class="op">(</span><span class="st">"cl"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cl</span> <span class="op">=</span> <span class="fu"><a href="semsql_to_oi.html">semsql_to_oi</a></span><span class="op">(</span><span class="va">clcon</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some parent terms not found: BFO:0000002, BFO:0000004, SO:0000704 (16 more)</span>
+<span class="r-in"><span><span class="va">cl3k</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CL:0000492"</span>, <span class="st">"CL:0001054"</span>, <span class="st">"CL:0000236"</span>, <span class="st">"CL:0000625"</span>,</span></span>
+<span class="r-in"><span>   <span class="st">"CL:0000576"</span>, <span class="st">"CL:0000623"</span>, <span class="st">"CL:0000451"</span>, <span class="st">"CL:0000556"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p3k</span> <span class="op">=</span> <span class="fu">ontologyPlot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ontologyPlot/man/onto_plot.html" class="external-link">onto_plot</a></span><span class="op">(</span><span class="va">cl</span>, <span class="va">cl3k</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gnel</span> <span class="op">=</span> <span class="fu"><a href="make_graphNEL_from_ontology_plot.html">make_graphNEL_from_ontology_plot</a></span><span class="op">(</span><span class="va">p3k</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">graph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/graph/man/graphNEL-class.html" class="external-link">nodes</a></span><span class="op">(</span><span class="va">gnel</span><span class="op">)</span><span class="op">)</span> <span class="co"># before improving</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CL:0000255" "CL:0000988" "CL:0000842" "CL:0000542" "CL:0000791"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "CL:0000492"</span>
+<span class="r-in"><span><span class="va">gnel</span> <span class="op">=</span> <span class="fu">improveNodes</span><span class="op">(</span><span class="va">gnel</span>, <span class="va">cl</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">graph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/graph/man/graphNEL-class.html" class="external-link">nodes</a></span><span class="op">(</span><span class="va">gnel</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "eukaryotic\ncell\nCL:0000255"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "hematopoietic\ncell\nCL:0000988"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "mononuclear\nleukocyte\nCL:0000842"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "lymphocyte\nCL:0000542"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "mature\nalpha-beta T cell\nCL:0000791"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "CD4-positive\nhelper T cell\nCL:0000492"</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Vincent Carey.</p>
+  <p>Developed by Vincent Carey, NIH NHGRI 2U24HG004059-17.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
