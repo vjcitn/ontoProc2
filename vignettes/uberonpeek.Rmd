@@ -27,7 +27,9 @@ some tables and "statements".
 library(ontoProc2)
 library(DBI)
 library(dplyr)
-ubcon = retrieve_semsql_conn("uberon")
+ubss = semsql_connect(ontology="uberon")
+report(ubss)
+ubcon = ubss@con
 head(dbListTables(ubcon))
 tbl(ubcon, "statements")
 ```
@@ -69,9 +71,9 @@ We'll use the entailed edges table in EFO to find all statements
 that have 'heart' (UBERON:0000948) as object.
 
 ```{r lkncit}
-eforef = retrieve_semsql_conn("efo")  # 240 MB
-#nciref = retrieve_semsql_conn("ncit")  # > 500MB, block
-htab = tbl(eforef, "entailed_edge") |> 
+eforef = semsql_connect(ontology="efo")  # 240 MB
+#nciref = semsql_connect("ncit")  # > 500MB, block
+htab = tbl(eforef@con, "entailed_edge") |> 
   filter(object == "UBERON:0000948") |> as.data.frame() 
 head(htab)
 ```
@@ -92,9 +94,10 @@ To enumerate and decode the terms with disease location (EFO:0000784)
 in heart, we have
 
 ```{r lkdec}
+library(dplyr)
 library(DT)
-hdis = ncit_map[ unlist(htab |> filter(predicate == "EFO:0000784") 
-   |> select(subject)) ]
+hdis = ncit_map[ unlist(htab |> dplyr::filter(predicate == "EFO:0000784") 
+   |> dplyr::select(subject)) ]
 datatable(data.frame(tag=names(hdis), value=as.character(hdis)))
 ```
 

@@ -20,60 +20,80 @@ The ontoProc2 package has two aims:
 
 - to give convenient
 access to the ontologies that are transformed to "semantic
-SQL" in the INCAtools project;
-- to simplify operations that have been available in ontoProc.
+SQL" in the [INCAtools semantic sql project](https://github.com/INCATools/semantic-sql);
+- to simplify operations that have been available in [ontoProc](https://git.bioconductor.org/packages/ontoProc), which will be deprecated in 2027.
 
 # Acquiring ontologies
 
-`retrieve_semsql_conn` produces a connection to a SQLite table representing
-the ontology.  The arguments are
+## Make a connection
 
-- `ontology`, a short string that matches the "ID" from the [OBO collection](https://obofoundry.org/)
-- `cache`, a cache object inheriting from the main class defined for the [BiocFileCache package](https://www.bioconductor.org/packages/BiocFileCache)
+The best way to work with an ontology in this system is
+to use `semsql_connect`.  The `ontology` argument will
+be a short string that the INCAtools project uses as part
+of the filename for the ontology.  For Gene Ontology, the
+string is "go".
 
-The function will retrieve a SQLite database produced in the semsql project, store it
-in the specified cache, and returns a DBI connection based on RSQLite.
-
-For the example of [Cell Ontology](https://obofoundry.org/ontology/cl.html) we use
-
-```{r do1, message=FALSE}
+```{r doini, message=FALSE}
 library(ontoProc2)
-cellont = retrieve_semsql_conn("cl") # will grep on rname in bfcinfo
-cellont
+goss = semsql_connect(ontology="go")
+goss
+```
+## Make a report
+
+The `report` method provides details.
+```{r lkrep1}
+report(goss)
 ```
 
-Relevant metadata (should be worked into the retrieval process):
+## Probe the back end
 
-```{r lkmeta, message=FALSE}
+The back end is SQLite.  We can enumerate the
+tables available:
+```{r lktbs}
 library(dplyr)
-tbl(cellont, "statements") |> filter(predicate == "owl:versionInfo") |>
-   select(value) |> pull()
-tbl(cellont, "statements") |> filter(subject== "obo:cl.owl", predicate=="rdfs:comment") |>
-   select(value) |> pull() |> strsplit("Contact")
-```
-
-
-To investigate the ontology, it is natural to use dplyr and stringr.
-
-```{r do2, message=FALSE}
-library(stringr)
 library(DBI)
-head(dbListTables(cellont))
-celldf = tbl(cellont, "statements") |> 
-   select(subject, predicate, object, value) |> 
-   filter(predicate == "rdfs:label", str_like(subject, "CL:%")) |> as.data.frame() 
-library(DT)
-datatable(celldf)
+allt = dbListTables(goss@con)
+length(allt)
+head(allt)
 ```
+
+## Use tidy methods
+
+Individual tables are readily accessible.
+
+```{r lkti,message=FALSE}
+library(DT)
+tbl(goss@con, "statements")
+tbl(goss@con, "statements") |> head(20) |> as.data.frame() |> datatable()
+```
+
+To investigate the ontology, searching through RDF labels is a natural approach.
+
+```{r dosrc}
+search_labels(goss, "apoptosis") |> head() |> datatable()
+```
+
+Additional filtering could be useful here to focus on GO terms.  The `_riog...`
+labels have special roles in RDF inference, and this will be addressed in 
+vignettes to be added in the future.
+
+Let's improve the query:
+```{r dosrc2}
+search_labels(goss, "apoptosis") |> filter(grepl("^GO:", subject)) |> head() |> datatable()
+```
+Clearly it will be valuable to filter away obsolete terms.  We will investigate
+the use of edge tables to accomplish this in a future vignette.
+
 
 # Transformation to ontology_index instances
 
 The [ontologyX suite](https://academic.oup.com/bioinformatics/article/33/7/1104/2843897) of
 Daniel Greene and colleagues provides very convenient ontology handling functions.
-We can transform the SQLite data to this format:
+We can transform the SQLite data to this format.  We'll illustrate with cell ontology.
 
 ```{r lkoi}
-cloi = semsql_to_oi(cellont)
+clss = semsql_connect(ontology="cl")
+cloi = semsql_to_oi(clss@con)
 cloi
 ```
 
