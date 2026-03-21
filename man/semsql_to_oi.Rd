@@ -17,10 +17,9 @@ parent-child relations in tables statements and edge of the semantic sql resourc
 produce an ontology_index instance from semantic sql sqlite connection
 }
 \examples{
-#' @examples
-gg = retrieve_semsql_conn("aio")
-nai = SemSQL(gg, "AIO")
-nai
-oi = suppressWarnings(semsql_to_oi(slot(nai, "conn"))) # "Thing"
+\dontrun{
+conn <- semsql_connect(ontology = "aio")
+oi <- suppressWarnings(semsql_to_oi(conn@con))
 names(oi)
+}
 }

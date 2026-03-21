@@ -1,17 +1,17 @@
 library(ontoProc2)
 
 test_that("retriever behaves reasonably", {
-con = retrieve_semsql_conn("aio")
-aio = SemSQL(con, "aio")
-expect_true(slot(aio, "resource")=="aio")
-expect_true(slot(aio, "nstats")>100)
-DBI::dbDisconnect(con)
-expect_error({
-z <- suppressWarnings( tryCatch({
-     retrieve_semsql_conn("xyzzyAA", quietly=TRUE) # use ...
-  }, error = function(e) {
-    stop(paste0("Download failed: ", e$message))
-  }) )
-})
+  conn <- semsql_connect(ontology = "aio")
+  expect_true(inherits(conn, "ontoProc2::SemsqlConn"))
+  expect_true(get_prefix(conn) == "AIO")
+  expect_true(nrow(count_by_prefix(conn)) > 0)
+  disconnect(conn)
+  expect_error({
+    suppressWarnings(tryCatch({
+      retrieve_semsql_conn("xyzzyAA", quietly = TRUE)
+    }, error = function(e) {
+      stop(paste0("Download failed: ", e$message))
+    }))
+  })
 })
 
