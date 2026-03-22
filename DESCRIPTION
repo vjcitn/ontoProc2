@@ -25,7 +25,7 @@ Imports: RSQLite, DBI, BiocFileCache, R.utils, dplyr,
 	ontologyIndex, ontologyPlot, graph, Rgraphviz,
 	methods, S7
 Suggests: knitr, testthat, BiocStyle, DT, GO.db,
-	AnnotationDbi, stringr
+	AnnotationDbi, stringr, usethis
 VignetteBuilder: knitr
 biocViews: Infrastructure, DataRepresentation, Pathways, SingleCell
 RoxygenNote: 7.3.3
