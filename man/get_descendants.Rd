@@ -23,3 +23,8 @@ data.frame with columns \code{id}, \code{label}, \code{predicate}.
 \description{
 Get all descendants of a term via entailed edges
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+get_descendants(goref, "GO:0006915")
+disconnect(goref)
+}

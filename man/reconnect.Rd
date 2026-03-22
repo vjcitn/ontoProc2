@@ -17,3 +17,9 @@ Attempts to reconnect a disconnected \code{SemsqlConn} object to its
 database. Returns a new \code{SemsqlConn}; the original cannot be modified
 in place due to S7 value semantics.
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+disconnect(goref)
+goref <- reconnect(goref)
+disconnect(goref)
+}

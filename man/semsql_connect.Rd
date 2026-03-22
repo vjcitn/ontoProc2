@@ -41,11 +41,8 @@ a direct file path or by referencing a short ontology name that is
 retrieved and cached via \code{BiocFileCache}.
 }
 \examples{
-\dontrun{
 # by ontology short name (downloads if not cached)
-conn <- semsql_connect(ontology = "cl")
-
-# by explicit path
-conn <- semsql_connect(db_path = "/path/to/cl.db", ontology_prefix = "CL")
-}
+goref <- semsql_connect(ontology = "go")
+goref
+disconnect(goref)
 }

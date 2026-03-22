@@ -15,3 +15,8 @@ character vector of table names.
 \description{
 List tables in a SemsqlConn database
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+list_tables(goref)
+disconnect(goref)
+}

@@ -23,3 +23,9 @@ data.frame with columns \code{id} and \code{label}.
 \description{
 Find terms that have a given OWL someValuesFrom restriction
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+# cellular components that are part_of nucleus (GO:0005634)
+find_by_restriction(goref, "BFO:0000050", "GO:0005634")
+disconnect(goref)
+}

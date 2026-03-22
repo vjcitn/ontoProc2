@@ -17,3 +17,8 @@ character(1) definition text, or \code{NA_character_} if not found.
 \description{
 Get the text definition for a term
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+get_definition(goref, "GO:0006915")
+disconnect(goref)
+}

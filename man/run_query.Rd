@@ -17,3 +17,9 @@ data.frame with query results.
 \description{
 Run an arbitrary SQL query against a SemsqlConn database
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+run_query(goref,
+  "SELECT subject, value AS label FROM rdfs_label_statement LIMIT 5")
+disconnect(goref)
+}

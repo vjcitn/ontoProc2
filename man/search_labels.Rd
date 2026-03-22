@@ -21,9 +21,7 @@ data.frame with columns \code{subject} and \code{label}.
 Search term labels in a SemsqlConn database
 }
 \examples{
-\dontrun{
-conn <- semsql_connect(ontology = "cl")
-search_labels(conn, "neuron")
-disconnect(conn)
-}
+goref <- semsql_connect(ontology = "go")
+search_labels(goref, "apoptosis")
+disconnect(goref)
 }

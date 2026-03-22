@@ -10,8 +10,13 @@ get_prefix(x, ...)
 \item{x}{A \code{SemsqlConn} object.}
 }
 \value{
-character(1) the primary ontology prefix (e.g. \code{"CL"}).
+character(1) the primary ontology prefix (e.g. \code{"GO"}).
 }
 \description{
 Retrieve the ontology prefix from a SemsqlConn
+}
+\examples{
+goref <- semsql_connect(ontology = "go")
+get_prefix(goref)
+disconnect(goref)
 }

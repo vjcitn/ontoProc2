@@ -18,12 +18,11 @@ for use with \code{\link{get_ancestors}}, \code{\link{get_descendants}},
 and related functions.
 }
 \examples{
-# Connect to the Cell Ontology and retrieve ancestors using part-of edges
-conn <- semsql_connect(ontology = "cl")
-# neuron (CL:0000540) ancestors via is-a and part-of
-anc <- get_ancestors(conn, "CL:0000540",
+goref <- semsql_connect(ontology = "go")
+# apoptotic process (GO:0006915) ancestors via is-a and part-of
+anc <- get_ancestors(goref, "GO:0006915",
   predicates = c(PREDICATES$subclass_of, PREDICATES$part_of))
 head(anc)
-disconnect(conn)
+disconnect(goref)
 }
 \keyword{datasets}

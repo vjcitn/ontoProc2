@@ -18,3 +18,8 @@ data.frame with columns \code{id} and \code{label}, ordered by
 \description{
 Get direct superclasses of a term
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+get_direct_superclasses(goref, "GO:0006915")
+disconnect(goref)
+}

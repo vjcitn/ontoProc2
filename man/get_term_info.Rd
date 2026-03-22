@@ -18,3 +18,10 @@ list with elements \code{id}, \code{label}, \code{definition},
 \description{
 Retrieve a summary of information about a term
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+info <- get_term_info(goref, "GO:0006915")
+info$label
+info$superclasses
+disconnect(goref)
+}

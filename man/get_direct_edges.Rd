@@ -22,3 +22,9 @@ data.frame with columns \code{subject}, \code{subject_label},
 \description{
 Get direct edges in the ontology graph for a term
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+get_direct_edges(goref, "GO:0006915")
+get_direct_edges(goref, "GO:0006915", direction = "both")
+disconnect(goref)
+}

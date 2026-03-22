@@ -21,3 +21,8 @@ data.frame with columns \code{id}, \code{label}, \code{predicate}.
 Convenience wrapper around \code{\link{get_ancestors}} that follows both
 \code{rdfs:subClassOf} and \code{BFO:0000050} (part-of) edges.
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+get_ancestors_partonomy(goref, "GO:0005739")  # mitochondrion
+disconnect(goref)
+}

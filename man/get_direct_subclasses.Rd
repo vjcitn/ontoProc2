@@ -18,3 +18,9 @@ data.frame with columns \code{id} and \code{label}, ordered by
 \description{
 Get direct subclasses of a term
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+# direct children of "apoptotic process" (GO:0006915)
+get_direct_subclasses(goref, "GO:0006915")
+disconnect(goref)
+}

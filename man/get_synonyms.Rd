@@ -21,3 +21,9 @@ data.frame with columns \code{subject}, \code{predicate},
 \description{
 Get synonyms for a term
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+get_synonyms(goref, "GO:0006915")
+get_synonyms(goref, "GO:0006915", type = "exact")
+disconnect(goref)
+}

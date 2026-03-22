@@ -18,3 +18,9 @@ data.frame with columns \code{restriction_id}, \code{property},
 \description{
 Get OWL someValuesFrom restrictions for a term
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+# mitochondrion (GO:0005739) has part-of restrictions to cell
+get_restrictions(goref, "GO:0005739")
+disconnect(goref)
+}

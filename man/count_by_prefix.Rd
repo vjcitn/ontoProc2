@@ -16,3 +16,8 @@ data.frame with columns \code{prefix} and \code{n}, ordered by
 \description{
 Count labeled terms grouped by CURIE prefix
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+count_by_prefix(goref)
+disconnect(goref)
+}

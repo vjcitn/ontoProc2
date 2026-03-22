@@ -21,3 +21,9 @@ data.frame with columns \code{id} and \code{label}.
 \description{
 Find terms that are descendants of a superclass and have a given restriction
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+# CC terms (GO:0005575) that are part_of nucleus (GO:0005634)
+find_intersection(goref, "GO:0005575", "BFO:0000050", "GO:0005634")
+disconnect(goref)
+}

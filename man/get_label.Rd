@@ -9,11 +9,16 @@ get_label(x, ...)
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 
-\item{term_id}{character(1) CURIE, e.g. \code{"CL:0000540"}.}
+\item{term_id}{character(1) CURIE, e.g. \code{"GO:0006915"}.}
 }
 \value{
 character(1) label, or \code{NA_character_} if not found.
 }
 \description{
 Get the rdfs:label for a term
+}
+\examples{
+goref <- semsql_connect(ontology = "go")
+get_label(goref, "GO:0006915")  # "apoptotic process"
+disconnect(goref)
 }

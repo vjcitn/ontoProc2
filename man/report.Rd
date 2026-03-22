@@ -18,3 +18,8 @@ including connection status, database statistics (labeled terms, edges,
 definitions), prefix breakdown, and available key tables. More informative
 than \code{print()}, intended for interactive exploration.
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+report(goref)
+disconnect(goref)
+}

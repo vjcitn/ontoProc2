@@ -18,3 +18,8 @@ data.frame with PRAGMA table_info output (columns: cid, name, type,
 \description{
 Describe the columns of a table in a SemsqlConn database
 }
+\examples{
+goref <- semsql_connect(ontology = "go")
+describe_table(goref, "rdfs_label_statement")
+disconnect(goref)
+}

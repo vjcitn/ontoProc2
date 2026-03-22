@@ -66,13 +66,10 @@ S4_register(SemsqlConn)
 #'   to \code{\link[utils]{download.file}}.
 #' @return A \code{\link{SemsqlConn}} object.
 #' @examples
-#' \dontrun{
 #' # by ontology short name (downloads if not cached)
-#' conn <- semsql_connect(ontology = "cl")
-#'
-#' # by explicit path
-#' conn <- semsql_connect(db_path = "/path/to/cl.db", ontology_prefix = "CL")
-#' }
+#' goref <- semsql_connect(ontology = "go")
+#' goref
+#' disconnect(goref)
 #' @export
 semsql_connect <- function(db_path = NULL, ontology_prefix = NULL,
                            ontology = NULL,
@@ -124,6 +121,9 @@ semsql_connect <- function(db_path = NULL, ontology_prefix = NULL,
 #' @param quiet logical(1) if TRUE suppresses the disconnection message
 #'   (default FALSE).
 #' @return The \code{SemsqlConn} object invisibly.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' disconnect(goref)
 #' @export
 disconnect <- new_generic("disconnect", "x")
 
@@ -131,6 +131,11 @@ disconnect <- new_generic("disconnect", "x")
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @return logical(1).
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' is_connected(goref)   # TRUE
+#' disconnect(goref)
+#' is_connected(goref)   # FALSE
 #' @export
 is_connected <- new_generic("is_connected", "x")
 
@@ -138,6 +143,10 @@ is_connected <- new_generic("is_connected", "x")
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @return character vector of table names.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' list_tables(goref)
+#' disconnect(goref)
 #' @export
 list_tables <- new_generic("list_tables", "x")
 
@@ -147,13 +156,21 @@ list_tables <- new_generic("list_tables", "x")
 #' @param table_name character(1) name of the table.
 #' @return data.frame with PRAGMA table_info output (columns: cid, name, type,
 #'   notnull, dflt_value, pk).
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' describe_table(goref, "rdfs_label_statement")
+#' disconnect(goref)
 #' @export
 describe_table <- new_generic("describe_table", "x")
 
 #' Retrieve the ontology prefix from a SemsqlConn
 #'
 #' @param x A \code{SemsqlConn} object.
-#' @return character(1) the primary ontology prefix (e.g. \code{"CL"}).
+#' @return character(1) the primary ontology prefix (e.g. \code{"GO"}).
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_prefix(goref)
+#' disconnect(goref)
 #' @export
 get_prefix <- new_generic("get_prefix", "x")
 
@@ -165,19 +182,21 @@ get_prefix <- new_generic("get_prefix", "x")
 #' @param limit integer(1) maximum number of rows to return (default 20).
 #' @return data.frame with columns \code{subject} and \code{label}.
 #' @examples
-#' \dontrun{
-#' conn <- semsql_connect(ontology = "cl")
-#' search_labels(conn, "neuron")
-#' disconnect(conn)
-#' }
+#' goref <- semsql_connect(ontology = "go")
+#' search_labels(goref, "apoptosis")
+#' disconnect(goref)
 #' @export
 search_labels <- new_generic("search_labels", "x")
 
 #' Get the rdfs:label for a term
 #'
 #' @param x A \code{SemsqlConn} object.
-#' @param term_id character(1) CURIE, e.g. \code{"CL:0000540"}.
+#' @param term_id character(1) CURIE, e.g. \code{"GO:0006915"}.
 #' @return character(1) label, or \code{NA_character_} if not found.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_label(goref, "GO:0006915")  # "apoptotic process"
+#' disconnect(goref)
 #' @export
 get_label <- new_generic("get_label", "x")
 
@@ -186,6 +205,10 @@ get_label <- new_generic("get_label", "x")
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
 #' @return character(1) definition text, or \code{NA_character_} if not found.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_definition(goref, "GO:0006915")
+#' disconnect(goref)
 #' @export
 get_definition <- new_generic("get_definition", "x")
 
@@ -197,6 +220,11 @@ get_definition <- new_generic("get_definition", "x")
 #'   \code{"exact"}, \code{"broad"}, \code{"narrow"}, \code{"related"}.
 #' @return data.frame with columns \code{subject}, \code{predicate},
 #'   \code{synonym}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_synonyms(goref, "GO:0006915")
+#' get_synonyms(goref, "GO:0006915", type = "exact")
+#' disconnect(goref)
 #' @export
 get_synonyms <- new_generic("get_synonyms", "x")
 
@@ -206,6 +234,12 @@ get_synonyms <- new_generic("get_synonyms", "x")
 #' @param term_id character(1) CURIE.
 #' @return list with elements \code{id}, \code{label}, \code{definition},
 #'   \code{synonyms}, \code{superclasses}, \code{subclasses}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' info <- get_term_info(goref, "GO:0006915")
+#' info$label
+#' info$superclasses
+#' disconnect(goref)
 #' @export
 get_term_info <- new_generic("get_term_info", "x")
 
@@ -218,6 +252,11 @@ get_term_info <- new_generic("get_term_info", "x")
 #' @return data.frame with columns \code{subject}, \code{subject_label},
 #'   \code{predicate}, \code{predicate_label}, \code{object},
 #'   \code{object_label}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_direct_edges(goref, "GO:0006915")
+#' get_direct_edges(goref, "GO:0006915", direction = "both")
+#' disconnect(goref)
 #' @export
 get_direct_edges <- new_generic("get_direct_edges", "x")
 
@@ -227,6 +266,11 @@ get_direct_edges <- new_generic("get_direct_edges", "x")
 #' @param term_id character(1) CURIE.
 #' @return data.frame with columns \code{id} and \code{label}, ordered by
 #'   label.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' # direct children of "apoptotic process" (GO:0006915)
+#' get_direct_subclasses(goref, "GO:0006915")
+#' disconnect(goref)
 #' @export
 get_direct_subclasses <- new_generic("get_direct_subclasses", "x")
 
@@ -236,6 +280,10 @@ get_direct_subclasses <- new_generic("get_direct_subclasses", "x")
 #' @param term_id character(1) CURIE.
 #' @return data.frame with columns \code{id} and \code{label}, ordered by
 #'   label.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_direct_superclasses(goref, "GO:0006915")
+#' disconnect(goref)
 #' @export
 get_direct_superclasses <- new_generic("get_direct_superclasses", "x")
 
@@ -250,11 +298,9 @@ get_direct_superclasses <- new_generic("get_direct_superclasses", "x")
 #'   (default \code{FALSE}).
 #' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
 #' @examples
-#' \dontrun{
-#' conn <- semsql_connect(ontology = "cl")
-#' get_ancestors(conn, "CL:0000540")
-#' disconnect(conn)
-#' }
+#' goref <- semsql_connect(ontology = "go")
+#' get_ancestors(goref, "GO:0006915")
+#' disconnect(goref)
 #' @export
 get_ancestors <- new_generic("get_ancestors", "x")
 
@@ -267,6 +313,10 @@ get_ancestors <- new_generic("get_ancestors", "x")
 #' @param include_self logical(1) whether to include the term itself
 #'   (default \code{FALSE}).
 #' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_descendants(goref, "GO:0006915")
+#' disconnect(goref)
 #' @export
 get_descendants <- new_generic("get_descendants", "x")
 
@@ -276,6 +326,11 @@ get_descendants <- new_generic("get_descendants", "x")
 #' @param term_id character(1) CURIE.
 #' @return data.frame with columns \code{restriction_id}, \code{property},
 #'   \code{property_label}, \code{filler}, \code{filler_label}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' # mitochondrion (GO:0005739) has part-of restrictions to cell
+#' get_restrictions(goref, "GO:0005739")
+#' disconnect(goref)
 #' @export
 get_restrictions <- new_generic("get_restrictions", "x")
 
@@ -288,6 +343,11 @@ get_restrictions <- new_generic("get_restrictions", "x")
 #' @param include_filler_descendants logical(1) if TRUE also match subclasses
 #'   of \code{filler} (default \code{FALSE}).
 #' @return data.frame with columns \code{id} and \code{label}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' # cellular components that are part_of nucleus (GO:0005634)
+#' find_by_restriction(goref, "BFO:0000050", "GO:0005634")
+#' disconnect(goref)
 #' @export
 find_by_restriction <- new_generic("find_by_restriction", "x")
 
@@ -298,6 +358,11 @@ find_by_restriction <- new_generic("find_by_restriction", "x")
 #' @param relation_property character(1) property CURIE for the restriction.
 #' @param related_to_id character(1) filler CURIE for the restriction.
 #' @return data.frame with columns \code{id} and \code{label}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' # CC terms (GO:0005575) that are part_of nucleus (GO:0005634)
+#' find_intersection(goref, "GO:0005575", "BFO:0000050", "GO:0005634")
+#' disconnect(goref)
 #' @export
 find_intersection <- new_generic("find_intersection", "x")
 
@@ -308,6 +373,10 @@ find_intersection <- new_generic("find_intersection", "x")
 #' @param predicate character(1) predicate to traverse
 #'   (default \code{"rdfs:subClassOf"}).
 #' @return integer(1).
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' count_descendants(goref, "GO:0006915")  # all apoptosis subtypes
+#' disconnect(goref)
 #' @export
 count_descendants <- new_generic("count_descendants", "x")
 
@@ -316,6 +385,10 @@ count_descendants <- new_generic("count_descendants", "x")
 #' @param x A \code{SemsqlConn} object.
 #' @return data.frame with columns \code{prefix} and \code{n}, ordered by
 #'   \code{n} descending.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' count_by_prefix(goref)
+#' disconnect(goref)
 #' @export
 count_by_prefix <- new_generic("count_by_prefix", "x")
 
@@ -324,6 +397,11 @@ count_by_prefix <- new_generic("count_by_prefix", "x")
 #' @param x A \code{SemsqlConn} object.
 #' @param sql character(1) SQL query string.
 #' @return data.frame with query results.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' run_query(goref,
+#'   "SELECT subject, value AS label FROM rdfs_label_statement LIMIT 5")
+#' disconnect(goref)
 #' @export
 run_query <- new_generic("run_query", "x")
 
@@ -337,6 +415,10 @@ run_query <- new_generic("run_query", "x")
 #'
 #' @param object A \code{SemsqlConn} object.
 #' @return The \code{SemsqlConn} object invisibly.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' report(goref)
+#' disconnect(goref)
 #' @export
 report <- new_generic("report", "object")
 
@@ -349,6 +431,11 @@ report <- new_generic("report", "object")
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @return A new \code{SemsqlConn} object with an active connection.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' disconnect(goref)
+#' goref <- reconnect(goref)
+#' disconnect(goref)
 #' @export
 reconnect <- new_generic("reconnect", "x")
 
@@ -811,13 +898,12 @@ S7::method(report, SemsqlConn) <- function(object) {
 #'   \code{has_part}, \code{develops_from}, \code{located_in},
 #'   \code{has_characteristic}.
 #' @examples
-#' # Connect to the Cell Ontology and retrieve ancestors using part-of edges
-#' conn <- semsql_connect(ontology = "cl")
-#' # neuron (CL:0000540) ancestors via is-a and part-of
-#' anc <- get_ancestors(conn, "CL:0000540",
+#' goref <- semsql_connect(ontology = "go")
+#' # apoptotic process (GO:0006915) ancestors via is-a and part-of
+#' anc <- get_ancestors(goref, "GO:0006915",
 #'   predicates = c(PREDICATES$subclass_of, PREDICATES$part_of))
 #' head(anc)
-#' disconnect(conn)
+#' disconnect(goref)
 #' @export
 PREDICATES <- list(
   subclass_of      = "rdfs:subClassOf",
@@ -839,6 +925,10 @@ PREDICATES <- list(
 #' @param include_self logical(1) whether to include the term itself
 #'   (default \code{FALSE}).
 #' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_ancestors_partonomy(goref, "GO:0005739")  # mitochondrion
+#' disconnect(goref)
 #' @export
 get_ancestors_partonomy <- function(conn, term_id, include_self = FALSE) {
   get_ancestors(conn, term_id,
@@ -857,6 +947,10 @@ get_ancestors_partonomy <- function(conn, term_id, include_self = FALSE) {
 #' @param include_self logical(1) whether to include the term itself
 #'   (default \code{FALSE}).
 #' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
+#' @examples
+#' goref <- semsql_connect(ontology = "go")
+#' get_descendants_partonomy(goref, "GO:0005634")  # nucleus sub-components
+#' disconnect(goref)
 #' @export
 get_descendants_partonomy <- function(conn, term_id, include_self = FALSE) {
   get_descendants(conn, term_id,
@@ -890,60 +984,3 @@ with_connection <- function(db_path, expr) {
   eval(substitute(expr), envir = env)
 }
 
-#' Run a demonstration of SemsqlConn capabilities
-#'
-#' @description
-#' Runs a series of example queries against a \code{SemsqlConn} object using
-#' the Cell Ontology neuron term (\code{CL:0000540}) as the example. Useful
-#' for verifying a new connection is working correctly.
-#'
-#' @param conn A \code{SemsqlConn} object.
-#' @return NULL invisibly, called for its side effects.
-#' @examples
-#' \dontrun{
-#' conn <- semsql_connect(ontology = "cl")
-#' run_demo(conn)
-#' disconnect(conn)
-#' }
-#' @export
-run_demo <- function(conn) {
-  stopifnot(inherits(conn, "SemsqlConn"))
-
-  cat("\n", strrep("=", 50), "\n", sep = "")
-  cat("SemsqlConn Demo\n")
-  cat(strrep("=", 50), "\n\n")
-
-  cat("1. Searching for terms containing 'neuron':\n")
-  neurons <- search_labels(conn, "neuron", limit = 5L)
-  print(neurons)
-
-  cat("\n", strrep("-", 40), "\n\n")
-
-  cat("2. Term info for 'neuron' (CL:0000540):\n")
-  info <- get_term_info(conn, "CL:0000540")
-  cat("   Label:", info$label, "\n")
-  cat("   Definition:", substr(info$definition, 1, 100), "...\n")
-
-  cat("\n", strrep("-", 40), "\n\n")
-
-  cat("3. Direct superclasses of neuron:\n")
-  print(info$superclasses)
-
-  cat("\n", strrep("-", 40), "\n\n")
-
-  cat("4. All ancestors of neuron:\n")
-  ancestors <- get_ancestors(conn, "CL:0000540")
-  print(head(ancestors, 10))
-  cat("   ... (", nrow(ancestors), " total ancestors)\n")
-
-  cat("\n", strrep("-", 40), "\n\n")
-
-  cat("5. Counting descendants:\n")
-  n <- count_descendants(conn, "CL:0000540")
-  cat("   Neuron has", n, "descendant cell types\n")
-
-  cat("\n", strrep("=", 50), "\n")
-  cat("Demo complete!\n")
-  cat(strrep("=", 50), "\n")
-  invisible(NULL)
-}

@@ -25,9 +25,7 @@ data.frame with columns \code{id}, \code{label}, \code{predicate}.
 Get all ancestors of a term via entailed edges
 }
 \examples{
-\dontrun{
-conn <- semsql_connect(ontology = "cl")
-get_ancestors(conn, "CL:0000540")
-disconnect(conn)
-}
+goref <- semsql_connect(ontology = "go")
+get_ancestors(goref, "GO:0006915")
+disconnect(goref)
 }
