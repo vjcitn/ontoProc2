@@ -219,6 +219,209 @@ onto_plot2(cloi, c("CL:0000624", "CL:0000492", "CL:0000793", "CL:0000803"))
 
 ![](ontoProc2_files/figure-html/dopl-1.png)
 
+## Background
+
+The S7 class design in this package was initiated by a request to
+Anthropic Claude to use S7 in establishing code that mirrors the tasks
+accomplished in the [INCAtools jupyter
+notebook](https://github.com/INCATools/semantic-sql/blob/main/notebooks/SemanticSQL-Tutorial.ipynb).
+
+### Searching in label text
+
+The code of `search_labels` is:
+
+``` r
+library(S7)
+method(search_labels, SemsqlConn)
+```
+
+    ## <S7_method> method(search_labels, ontoProc2::SemsqlConn)
+    ## function (x, pattern, limit = 20L) 
+    ## {
+    ##     query <- sprintf("\n    SELECT subject, value AS label\n    FROM rdfs_label_statement\n    WHERE value LIKE '%%%s%%'\n    LIMIT %d\n  ", 
+    ##         pattern, limit)
+    ##     dbGetQuery(x@con, query)
+    ## }
+    ## <environment: namespace:ontoProc2>
+
+### Exploring concept properties with ‘edge tables’
+
+The INCAtools notebook discusses the fact that `rdfs_label_statement` is
+a SQLite table “view”.
+
+The notebook indicates that a SPARQL query on an RDF store for the
+following computation would be “quite hard”. We want to find all the
+“edges” leading from “enteric neuron”, which would constitute the set of
+subject-predicate-object statements about this cell type with “enteric
+neuron” as subject.
+
+In this code we use the concept of a “CURIE” (Compact Uniform Resource
+Identifier): a fixed length numerical identifier with a prefix
+indicating the source ontology in which the ontologic concept is based.
+
+``` r
+if (!is_connected(clss)) clss = reconnect(clss)
+entcurie = search_labels(clss, "enteric neuron") |> 
+  filter(grepl("^CL", subject)) |> dplyr::select(subject) |> unlist()
+entcurie
+```
+
+    ##      subject 
+    ## "CL:0007011"
+
+``` r
+get_direct_edges(clss, entcurie)
+```
+
+    ##      subject  subject_label       predicate   predicate_label         object
+    ## 1 CL:0007011 enteric neuron     BFO:0000050           part of UBERON:0002005
+    ## 2 CL:0007011 enteric neuron     BFO:0000050           part of UBERON:0002005
+    ## 3 CL:0007011 enteric neuron      RO:0002100 has soma location UBERON:0002005
+    ## 4 CL:0007011 enteric neuron      RO:0002100 has soma location UBERON:0002005
+    ## 5 CL:0007011 enteric neuron      RO:0002202     develops from     CL:0002607
+    ## 6 CL:0007011 enteric neuron rdfs:subClassOf              <NA>     CL:0000029
+    ## 7 CL:0007011 enteric neuron rdfs:subClassOf              <NA>     CL:0000107
+    ##                          object_label
+    ## 1              enteric nervous system
+    ## 2              enteric nervous system
+    ## 3              enteric nervous system
+    ## 4              enteric nervous system
+    ## 5 migratory enteric neural crest cell
+    ## 6         neural crest derived neuron
+    ## 7                    autonomic neuron
+
+Here the underlying code is performing a join:
+
+``` r
+method(get_direct_edges, SemsqlConn)
+```
+
+    ## <S7_method> method(get_direct_edges, ontoProc2::SemsqlConn)
+    ## function (x, term_id, direction = c("outgoing", "incoming", "both")) 
+    ## {
+    ##     direction <- match.arg(direction)
+    ##     where_clause <- switch(direction, outgoing = sprintf("e.subject = '%s'", 
+    ##         term_id), incoming = sprintf("e.object = '%s'", term_id), 
+    ##         both = sprintf("e.subject = '%s' OR e.object = '%s'", 
+    ##             term_id, term_id))
+    ##     query <- sprintf("\n    SELECT\n      e.subject,\n      sl.value AS subject_label,\n      e.predicate,\n      pl.value AS predicate_label,\n      e.object,\n      ol.value AS object_label\n    FROM edge e\n    LEFT JOIN rdfs_label_statement sl ON e.subject = sl.subject\n    LEFT JOIN rdfs_label_statement pl ON e.predicate = pl.subject\n    LEFT JOIN rdfs_label_statement ol ON e.object = ol.subject\n    WHERE %s\n  ", 
+    ##         where_clause)
+    ##     dbGetQuery(x@con, query)
+    ## }
+    ## <environment: namespace:ontoProc2>
+
+### Generalizing a concept: Ancestors
+
+The notebook mentions that the “entailed edges” table includes all
+statements that can be inferred from the application of base axioms of
+the ontology.
+
+``` r
+get_ancestors(clss, entcurie)
+```
+
+    ##                id                            label       predicate
+    ## 1     BFO:0000002                             <NA> rdfs:subClassOf
+    ## 2     BFO:0000004                             <NA> rdfs:subClassOf
+    ## 3     BFO:0000040                             <NA> rdfs:subClassOf
+    ## 4  UBERON:0001062                anatomical entity rdfs:subClassOf
+    ## 5  UBERON:0000061             anatomical structure rdfs:subClassOf
+    ## 6      CL:0000107                 autonomic neuron rdfs:subClassOf
+    ## 7      CL:0000000                             cell rdfs:subClassOf
+    ## 8      CL:0000211         electrically active cell rdfs:subClassOf
+    ## 9      CL:0000393     electrically responsive cell rdfs:subClassOf
+    ## 10     CL:0000404      electrically signaling cell rdfs:subClassOf
+    ## 12     CL:0000255                  eukaryotic cell rdfs:subClassOf
+    ## 13 UBERON:0000465       material anatomical entity rdfs:subClassOf
+    ## 14     CL:0002319                      neural cell rdfs:subClassOf
+    ## 15     CL:0000029      neural crest derived neuron rdfs:subClassOf
+    ## 16     CL:0000540                           neuron rdfs:subClassOf
+    ## 17     CL:2000032 peripheral nervous system neuron rdfs:subClassOf
+
+### Working with multiple ontologies
+
+The INCAtools notebook includes an example of finding all neurons that
+are part of the forebrain. This involves identifying CURIEs for
+relations and anatomical structures, thus working with the relational
+ontology (RO) and UBERON.
+
+``` r
+ub = semsql_connect(ontology="uberon")
+```
+
+    ## Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b87946edce89_uberon.db
+
+    ## Primary ontology prefix: UBERON
+
+``` r
+ro = semsql_connect(ontology="ro")
+```
+
+    ## Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/1269f106cdd77_ro.db
+
+    ## Primary ontology prefix: RO
+
+First question: What’s the CURIE for “forebrain” in UBERON?
+
+``` r
+fbcur = search_labels(ub, "forebrain", limit=1000) |> filter(label=="forebrain") |>
+  select(subject) |> unlist()
+fbcur
+```
+
+    ##          subject 
+    ## "UBERON:0001890"
+
+Second question: What’s the CURIE for “has soma location” in RO?
+
+``` r
+loccur = search_labels(ro, "has soma location") |> select(subject) |> unlist()
+loccur
+```
+
+    ##      subject 
+    ## "RO:0002100"
+
+What’s the CURIE for “neuron”?
+
+``` r
+ncur = search_labels(clss, "neuron", limit=1000) |> filter(label=="neuron") |>
+  select(subject) |> unlist()
+ncur
+```
+
+    ##      subject 
+    ## "CL:0000540"
+
+Now we use three steps to obtain the solution.
+
+First, enumerate all cell types that are located in forebrain.
+
+``` r
+clinfb = tbl(clss@con, "entailed_edge") |> filter(predicate == loccur, object == fbcur) |> 
+         select(subject) |> collect() |> unlist() 
+length(clinfb)
+```
+
+    ## [1] 185
+
+Second, filter these to those identified as ‘subclassOf’ “neuron”.
+
+``` r
+clisneur = tbl(clss@con, "entailed_edge") |> filter(predicate == "rdfs:subClassOf", object==ncur) |> 
+         filter(subject %in% clinfb) |> select(subject) |> collect() |> unlist() 
+length(clisneur)
+```
+
+    ## [1] 185
+
+Finally, get the labels.
+
+``` r
+tbl(clss@con, "rdfs_label_statement") |> filter(subject %in% clisneur) |> 
+         select(subject, value) |> collect() |> DT::datatable()
+```
+
 ## Session information
 
 ``` r
@@ -248,29 +451,31 @@ sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] DT_0.34.0        DBI_1.2.3        dplyr_1.2.0      ontoProc2_0.99.3
-    ## [5] BiocStyle_2.39.0
+    ## [1] S7_0.2.1         rmarkdown_2.30   devtools_2.4.6   usethis_3.2.1   
+    ## [5] DT_0.34.0        DBI_1.2.3        dplyr_1.2.0      ontoProc2_0.99.4
+    ## [9] BiocStyle_2.39.0
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] utf8_1.2.6          rappdirs_0.3.4      sass_0.4.10        
-    ##  [4] generics_0.1.4      RSQLite_2.4.6       digest_0.6.39      
-    ##  [7] magrittr_2.0.4      evaluate_1.0.5      grid_4.6.0         
-    ## [10] bookdown_0.46       fastmap_1.2.0       blob_1.3.0         
-    ## [13] R.oo_1.27.1         jsonlite_2.0.0      ontologyIndex_2.12 
-    ## [16] R.utils_2.13.0      ontologyPlot_1.7    graph_1.89.1       
-    ## [19] BiocManager_1.30.27 purrr_1.2.1         crosstalk_1.2.2    
-    ## [22] Rgraphviz_2.55.0    httr2_1.2.2         textshaping_1.0.4  
-    ## [25] jquerylib_0.1.4     paintmap_1.0        cli_3.6.5          
-    ## [28] rlang_1.1.7         dbplyr_2.5.2        R.methodsS3_1.8.2  
-    ## [31] bit64_4.6.0-1       withr_3.0.2         cachem_1.1.0       
-    ## [34] yaml_2.3.12         otel_0.2.0          tools_4.6.0        
-    ## [37] memoise_2.0.1       filelock_1.0.3      BiocGenerics_0.57.0
-    ## [40] curl_7.0.0          vctrs_0.7.1         R6_2.6.1           
-    ## [43] stats4_4.6.0        BiocFileCache_3.1.0 lifecycle_1.0.5    
-    ## [46] fs_1.6.6            htmlwidgets_1.6.4   bit_4.6.0          
-    ## [49] ragg_1.5.1          pkgconfig_2.0.3     desc_1.4.3         
-    ## [52] pkgdown_2.2.0       pillar_1.11.1       bslib_0.10.0       
-    ## [55] glue_1.8.0          systemfonts_1.3.1   xfun_0.56          
-    ## [58] tibble_3.3.1        tidyselect_1.2.1    knitr_1.51         
-    ## [61] htmltools_0.5.9     rmarkdown_2.30      compiler_4.6.0     
-    ## [64] S7_0.2.1
+    ##  [1] xfun_0.56           bslib_0.10.0        httr2_1.2.2        
+    ##  [4] remotes_2.5.0       htmlwidgets_1.6.4   ontologyPlot_1.7   
+    ##  [7] vctrs_0.7.1         tools_4.6.0         crosstalk_1.2.2    
+    ## [10] generics_0.1.4      stats4_4.6.0        curl_7.0.0         
+    ## [13] tibble_3.3.1        RSQLite_2.4.6       blob_1.3.0         
+    ## [16] pkgconfig_2.0.3     R.oo_1.27.1         dbplyr_2.5.2       
+    ## [19] desc_1.4.3          graph_1.89.1        lifecycle_1.0.5    
+    ## [22] compiler_4.6.0      textshaping_1.0.4   codetools_0.2-20   
+    ## [25] htmltools_0.5.9     sass_0.4.10         yaml_2.3.12        
+    ## [28] pillar_1.11.1       pkgdown_2.2.0       jquerylib_0.1.4    
+    ## [31] ellipsis_0.3.2      R.utils_2.13.0      cachem_1.1.0       
+    ## [34] sessioninfo_1.2.3   tidyselect_1.2.1    digest_0.6.39      
+    ## [37] purrr_1.2.1         bookdown_0.46       paintmap_1.0       
+    ## [40] fastmap_1.2.0       grid_4.6.0          cli_3.6.5          
+    ## [43] magrittr_2.0.4      pkgbuild_1.4.8      utf8_1.2.6         
+    ## [46] withr_3.0.2         filelock_1.0.3      rappdirs_0.3.4     
+    ## [49] bit64_4.6.0-1       bit_4.6.0           otel_0.2.0         
+    ## [52] ragg_1.5.1          R.methodsS3_1.8.2   memoise_2.0.1      
+    ## [55] evaluate_1.0.5      knitr_1.51          BiocFileCache_3.1.0
+    ## [58] rlang_1.1.7         ontologyIndex_2.12  glue_1.8.0         
+    ## [61] Rgraphviz_2.55.0    BiocManager_1.30.27 BiocGenerics_0.57.0
+    ## [64] pkgload_1.5.0       jsonlite_2.0.0      R6_2.6.1           
+    ## [67] systemfonts_1.3.1   fs_1.6.6

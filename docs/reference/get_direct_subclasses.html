@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,6 +64,37 @@
   label.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="co"># direct children of "apoptotic process" (GO:0006915)</span></span></span>
+<span class="r-in"><span><span class="fu">get_direct_subclasses</span><span class="op">(</span><span class="va">goref</span>, <span class="st">"GO:0006915"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            id                                                        label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  GO:0043276                                                      anoikis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  GO:0071839                        apoptotic process in bone marrow cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  GO:0140208 apoptotic process in response to mitochondrial fragmentation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  GO:1902742                    apoptotic process involved in development</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  GO:0072577                           endothelial cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  GO:1904019                            epithelial cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  GO:1904606                                   fat cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  GO:0044346                                 fibroblast apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  GO:0034349                                 glial cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 GO:1902489                                hepatoblast apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 GO:0006925                          inflammatory cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 GO:0071887                                  leukocyte apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 GO:1902362                                 melanocyte apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 GO:0097152                           mesenchymal cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 GO:0010657                                muscle cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 GO:0033028                               myeloid cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 GO:1904516                         myofibroblast cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 GO:0051402                                     neuron apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 GO:1990009                               retinal cell apoptotic process</span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

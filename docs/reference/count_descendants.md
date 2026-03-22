@@ -25,3 +25,15 @@ count_descendants(x, ...)
 ## Value
 
 integer(1).
+
+## Examples
+
+``` r
+goref <- semsql_connect(ontology = "go")
+#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Primary ontology prefix: GO
+count_descendants(goref, "GO:0006915")  # all apoptosis subtypes
+#> [1] 72
+disconnect(goref)
+#> Disconnected from 'b24227f056f7_go.db'
+```

@@ -9,7 +9,7 @@ rdfs:subClassOf and BFO:0000051 (has-part) edges."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,6 +71,1189 @@ rdfs:subClassOf and BFO:0000051 (has-part) edges."></head><body>
     <p>data.frame with columns <code>id</code>, <code>label</code>, <code>predicate</code>.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="fu">get_descendants_partonomy</span><span class="op">(</span><span class="va">goref</span>, <span class="st">"GO:0005634"</span><span class="op">)</span>  <span class="co"># nucleus sub-components</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       CL:0000236</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       CL:0001201</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       CL:0000819</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       CL:0000820</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       CL:0000821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       CL:0000822</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       CL:0002113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       CL:0002123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       CL:0002110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10      CL:0002116</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11      CL:0002112</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      CL:0002122</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13      CL:0002109</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14      CL:0002115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15      CL:0000968</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16      CL:0000943</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      CL:0000944</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18      CL:0000961</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19      CL:0000962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20      CL:0000964</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21      CL:0000965</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22      CL:0000963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23      CL:0000966</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24      CL:0000967</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25      CL:0001022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26      CL:0002465</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27      CL:0000989</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28      CL:0002396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29      CL:0001054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30      CL:0001055</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31      CL:0002397</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32      CL:0002532</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33      CL:0002037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34      CL:0002121</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35      CL:0002120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36      CL:0002432</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37      CL:0002434</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38      CL:0002126</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39      CL:0002125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40      CL:0002124</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41      CL:0002108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42      CL:0002118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43      CL:0002102</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44      CL:0002111</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45      CL:0002105</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46      CL:0002119</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47      CL:0002101</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48      CL:0002114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49      CL:0002430</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50      CL:0000803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51      CL:0002454</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52      CL:0000924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53      CL:0000929</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54      CL:0000930</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55      CL:0000492</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56      CL:0000923</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57      CL:0000926</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58      CL:0000927</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59      CL:0000792</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60      CL:0002431</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61      CL:0001051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62      CL:0000624</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63      CL:0000934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64      CL:0000793</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65      CL:0000897</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66      CL:0000810</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67      CL:0002344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68      CL:0002338</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69      CL:0002429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70      CL:0002433</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71      CL:0002435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72      CL:0002016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73      CL:0002018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74      CL:0000802</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75      CL:0000915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76      CL:0000796</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77      CL:0002455</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78      CL:0002460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79      CL:0002456</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80      CL:0002059</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81      CL:0001052</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82      CL:0001041</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83      CL:0000625</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84      CL:0000908</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85      CL:0000794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86      CL:0000909</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87      CL:0000795</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88      CL:0000811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89      CL:0001202</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90      CL:0000806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91      CL:0002423</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92      CL:0002424</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93      CL:0000807</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94      CL:0000808</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95      CL:0002346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96      CL:0002478</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97      CL:0002479</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98      CL:0002013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99      CL:0002395</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100     CL:0002058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101     CL:0002398</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102     CL:0000973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103     CL:0000987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104     CL:0000984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105     CL:0000976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106     CL:0000949</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107     CL:0002107</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108     CL:0001053</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109     CL:0002106</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110     CL:0000948</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111     CL:0000947</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112     CL:0000950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113     CL:0000951</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114     CL:0000979</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115     CL:0000985</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116     CL:0000982</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117     CL:0000977</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118     CL:0002117</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119     CL:0002104</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120     CL:0002103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121     CL:0000971</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122     CL:0000986</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123     CL:0000983</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124     CL:0000978</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125     CL:0002014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126     CL:0002017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127     CL:0002015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128     CL:0000453</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129     CL:0002473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130     CL:0002472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131     CL:0002469</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132     CL:0002471</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133     CL:0002470</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134 UBERON:0001211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135     CL:0002402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136 UBERON:0010386</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137 UBERON:0004697</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138     CL:0009014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139     CL:0002464</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140     CL:0002463</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141     CL:0000084</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142     CL:0002038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143     CL:0000545</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144     CL:0000899</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145     CL:0000546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146     CL:0001042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147     CL:0000958</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148     CL:0000959</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149     CL:0000960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150     CL:4030058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151     CL:0000918</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152     CL:0000901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153     CL:0000928</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154     CL:0000925</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155     CL:0000896</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156     CL:0000906</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157     CL:0000931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158     CL:0002462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159     CL:0002477</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160     CL:0017509</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161     CL:0000789</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162     CL:0000797</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163     CL:0000946</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164     GO:0043079</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165     GO:1905754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166     CL:0000770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167     CL:0000774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168     CL:0017506</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169     CL:0000549</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170     CL:0000769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171     CL:0000614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172     CL:0000227</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173 UBERON:0004749</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174     CL:0002476</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175 UBERON:0001963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176 UBERON:0013478</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177     CL:0000878</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178 UBERON:0009114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179 UBERON:0005206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180     CL:0000972</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181     CL:0000860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182     CL:0009038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183     CL:0000990</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184 UBERON:0002123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185     CL:0000910</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186     CL:0000451</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187     CL:0000916</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188     CL:0011024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 189     CL:0000981</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 190     CL:0002489</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191     CL:0002428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192     CL:0000809</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 193     CL:0001044</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 194     CL:0001050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 195     CL:0000911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 196     CL:0000861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 197     CL:0000773</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 198     CL:0000612</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 199     CL:0002457</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 200 UBERON:0012069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 201     CL:0000765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202     CL:0011025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 203     CL:0008046</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 204     GO:0001674</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205     GO:0001939</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 206     CL:0002404</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 207     CL:0000843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 208 UBERON:0006340</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 209     CL:0002047</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 210     CL:0002400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 211     CL:0002049</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 212     CL:0002050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 213     CL:0002052</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 214     CL:0002054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 215     CL:0002056</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 216     CL:0000798</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 217     CL:0000801</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 218     CL:0002405</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 219     CL:0000486</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 220     GO:0048555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 221     GO:0043073</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 222 UBERON:0010754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 223     CL:0000844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 224     GO:0042585</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 225     CL:0001067</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 226     CL:0001069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 227     CL:0001071</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228 UBERON:0001962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 229     CL:0000912</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 230     CL:0000816</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 231     CL:0000992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232     CL:0002533</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 233     CL:0000914</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 234     CL:0002039</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 235     CL:0002040</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 236     CL:0002041</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 237     CL:0002042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 238     CL:0002420</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 239     CL:0000790</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 240     CL:0000768</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 241     CL:0000840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 242     CL:0002218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 243     CL:0000772</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 244     CL:0000799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 245     CL:0001082</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 246     CL:0000823</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247     CL:0000776</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 248     CL:0000805</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 249     CL:0000863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 250     CL:0002127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251     CL:0001065</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252     CL:0002393</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 253     CL:0002496</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 254     CL:0002507</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255 UBERON:0003453</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256     CL:0000957</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257 UBERON:0006338</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258     GO:0097571</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 259 UBERON:0018117</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 260     CL:2000055</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 261     CL:0000974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 262     CL:1001603</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 263 UBERON:0010748</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 264 UBERON:0009039</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 265 UBERON:0010420</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 266 UBERON:0010395</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 267 UBERON:0010753</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 268     CL:0000542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 269     CL:0000945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 270     CL:0001200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 271     CL:0002474</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 272     CL:0002475</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 273 UBERON:0000444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 274 UBERON:0001744</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 275     GO:0031039</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 276     CL:0000235</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 277     GO:0001673</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 278     GO:0001940</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 279     CL:0000845</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 280     CL:0000785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 281     CL:0000993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 282     CL:0002534</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 283     CL:0002436</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 284     CL:0002437</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 285     CL:0000814</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 286     CL:0002419</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 287     CL:0000791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 288     CL:0000043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 289     CL:0000841</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 290     CL:0002401</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 291     CL:0000800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 292     CL:0002629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 293     CL:0000096</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 294     GO:0043082</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 295     GO:0043076</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 296     CL:0000787</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 297     CL:0000813</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 298     CL:0002678</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 299     CL:0000777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 300     CL:0000129</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 301     GO:0031040</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 302     GO:0048556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 303     CL:0000576</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 304     CL:0000842</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 305     CL:0010004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 306     CL:2000085</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 307     CL:0000781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 308     CL:0000778</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 309     CL:0000113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 310 UBERON:0001961</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 311     CL:0000940</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 312     CL:0000780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 313     CL:0000779</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 314     CL:0000228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 315     CL:0000647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 316     CL:0000783</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 317     CL:0000782</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 318     CL:4052024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 319     CL:0002372</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 320     CL:0000788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 321     CL:0000898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 322     CL:0000895</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 323     CL:0000900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 324 UBERON:0012330</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 325     CL:0002679</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 326     CL:0000623</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 327     CL:4052025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 328     CL:0000875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 329     CL:0000762</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 331     CL:0000552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 332     CL:4033087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 333     CL:0000786</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 334     CL:0000980</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 335     CL:0000784</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 336     GO:0043078</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 337     CL:0000550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 338     CL:0000956</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 339     CL:0000955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 340     CL:0000937</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 341     CL:0000953</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 342     CL:0000952</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 343     CL:0000817</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 344     GO:0048353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 345 UBERON:0010422</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 346     GO:0045120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 347     CL:0000815</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 348 UBERON:0005270</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 349     CL:0017507</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 350     CL:0002427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 351     GO:0097572</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 352 UBERON:0018118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 353 UBERON:0010755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 354 UBERON:0001745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 355     CL:0000975</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 356     CL:0000226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 357     CL:0008002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 358     CL:0000189</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 359 UBERON:0006907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 360 UBERON:0003454</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 361     CL:0000954</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 362     CL:0008003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363 UBERON:0010421</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 364 UBERON:0005196</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 365 UBERON:0001249</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 366 UBERON:0004041</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 367 UBERON:0004042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 368     CL:0000862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 369     CL:4052002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 370     CL:0000525</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 371 UBERON:0006339</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 372 UBERON:0009115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 373     CL:0000828</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 374     CL:0000941</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 375     CL:0000866</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 376     CL:0000942</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 377     CL:0000893</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 378 UBERON:0002370</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 379 UBERON:0003988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 380 UBERON:0002125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 381 UBERON:0003483</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 382     CL:0000864</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 383     CL:0002673</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 384     CL:0000818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 385     CL:0000921</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386     CL:0000922</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387     CL:0000932</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388     CL:0000933</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389     CL:0000970</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390     CL:4052028</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391     CL:4033064</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                           label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                        B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                         B cell, CD19-positive</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                    B-1 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                                   B-1a B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                   B-1b B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                    B-2 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                               B220-low CD38-negative unswitched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8              B220-low CD38-positive IgG-negative class switched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                                           B220-low CD38-positive naive B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                              B220-low CD38-positive unswitched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                         B220-positive CD38-negative unswitched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        B220-positive CD38-positive IgG-negative class switched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                     B220-positive CD38-positive naive B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                         B220-positive CD38-positive unswitched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                                                                      Be cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                                                     Be1 Cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                                                                     Be2 cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                                                   Bm1 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                                                   Bm2 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                                                  Bm2' B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                                                                   Bm3 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22                                                             Bm3-delta B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23                                                                   Bm4 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24                                                                   Bm5 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25                                                      CD115-positive monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26                                                CD11b-positive dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                                        CD11c-low plasmacytoid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28                                             CD14-low, CD16-positive monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29                                                       CD14-positive monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30                                             CD14-positive, CD16-low monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31                                        CD14-positive, CD16-positive monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32                                         CD16-positive myeloid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33  CD2-positive, CD5-positive, CD44-positive alpha-beta intraepithelial T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34        CD24-negative CD38-negative IgG-negative class switched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35        CD24-positive CD38-negative IgG-negative class switched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36                                 CD24-positive, CD4 single-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37                                 CD24-positive, CD8 single-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38                     CD25-positive, CD27-positive immature gamma-delta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39                                             CD27-negative gamma-delta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40                                             CD27-positive gamma-delta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41                                              CD38-negative IgG memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42                      CD38-negative IgG-negative class switched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43                                                   CD38-negative naive B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44                                       CD38-negative unswitched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45                                              CD38-positive IgG memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46                      CD38-positive IgG-negative class switched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47                                                   CD38-positive naive B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48                                       CD38-positive unswitched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49                     CD4-intermediate, CD8-positive double-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50                 CD4-negative CD8-negative gamma-delta intraepithelial T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51              CD4-negative, CD8-alpha-negative, CD11b-positive dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52                                  CD4-negative, CD8-negative type I NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53       CD4-negative, CD8-negative type I NK T cell secreting interferon-gamma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54          CD4-negative, CD8-negative type I NK T cell secreting interleukin-4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55                                                   CD4-positive helper T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56                                                CD4-positive type I NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57                     CD4-positive type I NK T cell secreting interferon-gamma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58                        CD4-positive type I NK T cell secreting interleukin-4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59                    CD4-positive, CD25-positive, alpha-beta regulatory T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60                     CD4-positive, CD8-intermediate double-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61               CD4-positive, CXCR3-negative, CCR6-negative, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62                                              CD4-positive, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63                                    CD4-positive, alpha-beta cytotoxic T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64                              CD4-positive, alpha-beta intraepithelial T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65                                       CD4-positive, alpha-beta memory T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66                                           CD4-positive, alpha-beta thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67            CD56-negative, CD161-positive immature natural killer cell, human</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68            CD56-positive, CD161-positive immature natural killer cell, human</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69                                      CD69-positive double-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70                        CD69-positive, CD4-positive single-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71                        CD69-positive, CD8-positive single-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72                           CD71-low, GlyA-positive polychromatic erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73                     CD71-negative, GlyA-positive orthochromatic erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74                 CD8-alpha alpha positive, gamma-delta intraepithelial T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75                  CD8-alpha-alpha-positive, alpha-beta intraepithelial T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76                   CD8-alpha-beta-positive, alpha-beta intraepithelial T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77                               CD8-alpha-negative plasmacytoid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78                        CD8-alpha-negative thymic conventional dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79                               CD8-alpha-positive plasmacytoid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80                        CD8-alpha-positive thymic conventional dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81               CD8-positive, CXCR3-negative, CCR6-negative, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82                   CD8-positive, CXCR3-positive, alpha-beta regulatory T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83                                              CD8-positive, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84                  CD8-positive, alpha-beta cytokine secreting effector T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85                                    CD8-positive, alpha-beta cytotoxic T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86                                       CD8-positive, alpha-beta memory T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87                                   CD8-positive, alpha-beta regulatory T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88                                           CD8-positive, alpha-beta thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89                                                    CD86-positive plasmablast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90                                                                DN2 thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91                                                               DN2a thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92                                                               DN2b thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93                                                                DN3 thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94                                                                DN4 thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95             Dx5-negative, NK1.1-positive immature natural killer cell, mouse</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96                                            F4/80-negative adipose macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97                                            F4/80-positive adipose macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98                                        GlyA-positive basophilic erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99                                                  Gr1-high classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100                                              Gr1-low non-classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101                                        Gr1-positive, CD43-positive monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102                                                           IgA memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103                                                             IgA plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104                                                             IgA plasmablast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105                                                 IgA short lived plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106                                                             IgD plasmablast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107                                IgD-negative CD38-positive IgG memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108                                                  IgD-negative memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109                                IgD-positive CD38-positive IgG memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110                                                           IgE memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111                                                             IgE plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112                                                             IgE plasmablast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113                                                 IgE short lived plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114                                                           IgG memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115                                                             IgG plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116                                                             IgG plasmablast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117                                                 IgG short lived plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118                                   IgG-negative class switched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119                                  IgG-negative double negative memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120                                  IgG-positive double negative memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121                                                           IgM memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122                                                             IgM plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123                                                             IgM plasmablast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124                                                 IgM short lived plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125                            Kit-negative, Ly-76 high basophilic erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126                  Kit-negative, Ly-76 high orthochromatophilic erythroblasts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127                    Kit-negative, Ly-76 high polychromatophilic erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128                                                             Langerhans cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129                                          MHC-II-high non-classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130                                           MHC-II-low non-classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131                                          MHC-II-negative classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132                                      MHC-II-negative non-classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133                                          MHC-II-positive classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134                                                               Peyer's patch</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135                                                        Peyer's patch B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136                                                      Peyer's patch follicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137                                               Peyer's patch germinal center</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138                                                    Peyer's patch lymphocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139                                       SIRPa-negative adipose dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140                                       SIRPa-positive adipose dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141                                                                      T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142                                                    T follicular helper cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143                                                             T-helper 1 cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144                                                            T-helper 17 cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145                                                             T-helper 2 cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146                                                            T-helper 22 cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147                                                                   T1 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148                                                                   T2 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149                                                                   T3 B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150                                                     TCR-positive macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151                                                                    Tc2 cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152                                                                    Tr1 cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153                       activated CD4-negative, CD8-negative type I NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154                                     activated CD4-positive type I NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155                                   activated CD4-positive, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156                                   activated CD8-positive, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157                                                 activated type II NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158                                                      adipose dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159                                                          adipose macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160                                                             alobate nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161                                                           alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162                                           alpha-beta intraepithelial T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163                                                     antibody secreting cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164                                                      antipodal cell nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165                                             ascospore-type prospore nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166                                                          band form basophil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167                                                        band form eosinophil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168                                                              banded nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169                                                     basophilic erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170                                                    basophilic metamyelocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171                                                        basophilic myelocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172                                                             binucleate cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173                                                                  blastodisc</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174                                                      bone marrow macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175                                        bronchial-associated lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176                                                                cecal tonsil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177                                           central nervous system macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178                                                             cervical thymus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179                                                       choroid plexus stroma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180                                                class switched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181                                                          classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182                                                            colon macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183                                                 conventional dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184                                                            cortex of thymus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185                                                            cytotoxic T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186                                                              dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187                                                  dendritic epidermal T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188                                           double negative T regulatory cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 189                                               double negative memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 190                                                   double negative thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191                                                       double-positive blast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192                                       double-positive, alpha-beta thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 193                                    effector CD4-positive, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 194                                    effector CD8-positive, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 195                                                             effector T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 196                                                         elicited macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 197                                                  eosinophilic metamyelocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 198                                                      eosinophilic myelocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 199                                                   epidermal Langerhans cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 200                                       epithelium-associated lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 201                                                                erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202                                                            exhausted T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 203                                                     extrafusal muscle fiber</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 204                                                    female germ cell nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205                                                           female pronucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 206                                                             fetal thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 207                                                           follicular B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 208                                      fourth ventricle choroid plexus stroma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 209                                                 fraction B precursor B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 210                                               fraction B/C precursor B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 211                                                 fraction C precursor B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 212                                                fraction C' precursor B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 213                                                 fraction D precursor B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 214                                                  fraction E immature B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 215                                                    fraction F mature B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 216                                                          gamma-delta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 217                                          gamma-delta intraepithelial T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 218                                                       gamma-delta thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 219                                                                garland cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 220                                                     generative cell nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 221                                                           germ cell nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 222                                                             germinal center</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 223                                                      germinal center B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 224                                                            germinal vesicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 225                                                group 1 innate lymphoid cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 226                                                group 2 innate lymphoid cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 227                                                group 3 innate lymphoid cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228                                              gut-associated lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 229                                                               helper T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 230                                                             immature B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 231                              immature CD11c-low plasmacytoid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232                               immature CD16-positive myeloid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 233                                                          immature NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 234                                                  immature NK T cell stage I</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 235                                                 immature NK T cell stage II</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 236                                                immature NK T cell stage III</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 237                                                 immature NK T cell stage IV</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 238                                                             immature T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 239                                                  immature alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 240                                                           immature basophil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 241                                        immature conventional dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 242                              immature dendritic epithelial T cell precursor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 243                                                         immature eosinophil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 244                                                 immature gamma-delta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 245                                               immature innate lymphoid cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 246                                                immature natural killer cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247                                                         immature neutrophil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 248                                          immature single positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 249                                                     inflammatory macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 250                                                      innate effector T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251                                                        innate lymphoid cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252                                                       intermediate monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 253                                                  intraepithelial lymphocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 254                                 langerin-positive lymph node dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255                                               large intestine Peyer's patch</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256                                                         large pre-B-II cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257                                     lateral ventricle choroid plexus stroma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258                                                                left nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 259                                              left renal cortex interstitium</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 260                                                        liver dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 261                                                      long lived plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 262                                                             lung macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 263                                                         lymph node follicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 264                                                  lymph node germinal center</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 265                                      lymph node germinal center mantle zone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 266                                                 lymph node primary follicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 267                                               lymph node secondary follicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 268                                                                  lymphocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 269                                                     lymphocyte of B lineage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 270                                      lymphocyte of B lineage, CD19-positive</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 271                                 lymphoid MHC-II-negative classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 272                             lymphoid MHC-II-negative non-classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 273                                                           lymphoid follicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 274                                                             lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 275                                                                macronucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 276                                                                  macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 277                                                      male germ cell nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 278                                                             male pronucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 279                                              marginal zone B cell of spleen</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 280                                                               mature B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 281                                mature CD11c-low plasmacytoid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 282                                 mature CD16-positive myeloid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 283                                        mature CD4 single-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 284                                        mature CD8 single-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 285                                                            mature NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 286                                                               mature T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 287                                                    mature alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 288                                                             mature basophil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 289                                          mature conventional dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 290                                mature dendritic epithelial T cell precursor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 291                                                   mature gamma-delta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 292                                                      mature microglial cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 293                                                           mature neutrophil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 294                                            megagametophyte egg cell nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 295                                                       megasporocyte nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 296                                                               memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 297                                                               memory T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 298                                                    memory regulatory T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 299                                                         mesangial phagocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 300                                                             microglial cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 301                                                                micronucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 302                                                      microsporocyte nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 303                                                                    monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 304                                                            mononuclear cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 305                                             mononuclear cell of bone marrow</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 306                                          mononuclear cell of umbilical cord</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 307                                                     mononuclear odontoclast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 308                                                      mononuclear osteoclast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 309                                                       mononuclear phagocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 310                                           mucosa-associated lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 311                                                    mucosal invariant T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 312                                                    multinuclear odontoclast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 313                                                     multinuclear osteoclast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 314                                                          multinucleate cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 315                                                   multinucleated giant cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 316                                                    multinucleated phagocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 317                                                      myeloid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 318                                               myotendinous junction nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 319                                                                     myotube</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 320                                                                naive B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 321                                                                naive T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 322                        naive thymus-derived CD4-positive, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 323                        naive thymus-derived CD8-positive, alpha-beta T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 324                                            nasal-associated lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 325                                                   natural helper lymphocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 326                                                         natural killer cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 327                                              neuromuscular junction nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 328                                                      non-classical monocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 329                                                       nucleated thrombocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 331                                                 orthochromatic erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 332                                               placental resident macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 333                                                                 plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 334                                                                 plasmablast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 335                                                 plasmacytoid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 336                                                               polar nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 337                                             polychromatophilic erythroblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 338                                                                pre-B-I cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 339                                                               pre-B-II cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 340                                                     pre-natural killer cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 341                                         preBCR-negative large pre-B-II cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 342                                         preBCR-positive large pre-B-II cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 343                                                            precursor B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 344                                                   primary endosperm nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 345                                             primary nodular lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 346                                                                  pronucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 347                                                           regulatory T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 348                                                   renal cortex interstitium</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 349                                                            reniform nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 350                                           resting double-positive thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 351                                                               right nucleus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 352                                             right renal cortex interstitium</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 353                                                   secondary follicle corona</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 354                                           secondary nodular lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 355                                                     short lived plasma cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 356                                                        single nucleate cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 357                                                       skeletal muscle fiber</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 358                                                            slow muscle cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 359                                                          slow muscle tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 360                                               small intestine Peyer's patch</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 361                                                         small pre-B-II cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 362                                                      somatic muscle myotube</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363                                                        spleen B cell corona</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 364                                                      spleen germinal center</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 365                                                    spleen lymphoid follicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 366                                                   spleen primary B follicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 367                                                 spleen secondary B follicle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 368                                                       suppressor macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 369                                                              syncytial cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 370                                                    syncytiotrophoblast cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 371                                       third ventricle choroid plexus stroma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 372                                                             thoracic thymus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 373                                                                thromboblast</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 374                                          thymic conventional dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 375                                                           thymic macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 376                                          thymic plasmacytoid dendritic cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 377                                                                   thymocyte</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 378                                                                      thymus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 379                                            thymus corticomedullary boundary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 380                                                               thymus lobule</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 381                                                      thymus lymphoid tissue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 382                                                  tissue-resident macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 383                                                          tongue muscle cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 384                                                   transitional stage B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 385                                                            type I NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386                                                           type II NK T cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387                                type II NK T cell secreting interferon-gamma</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388                                   type II NK T cell secreting interleukin-4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389                                                    unswitched memory B cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390                                                 uterine natural killer cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391                                                 uterine resident macrophage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           predicate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99      BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 189     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 190     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 193     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 194     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 195     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 196     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 197     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 198     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 199     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 200     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 201     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 203     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 204 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 206     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 207     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 208     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 209     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 210     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 211     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 212     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 213     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 214     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 215     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 216     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 217     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 218     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 219     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 220 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 221 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 222     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 223     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 224 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 225     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 226     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 227     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 229     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 230     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 231     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 233     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 234     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 235     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 236     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 237     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 238     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 239     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 240     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 241     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 242     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 243     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 244     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 245     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 246     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 248     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 249     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 250     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 253     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 254     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 259     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 260     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 261     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 262     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 263     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 264     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 265     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 266     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 267     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 268     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 269     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 270     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 271     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 272     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 273     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 274     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 275 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 276     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 277 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 278 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 279     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 280     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 281     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 282     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 283     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 284     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 285     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 286     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 287     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 288     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 289     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 290     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 291     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 292     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 293     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 294 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 295 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 296     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 297     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 298     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 299     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 300     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 301 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 302 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 303     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 304     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 305     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 306     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 307     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 308     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 309     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 310     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 311     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 312     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 313     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 314     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 315     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 316     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 317     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 318 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 319     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 320     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 321     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 322     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 323     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 324     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 325     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 326     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 327 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 328     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 329     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 331     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 332     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 333     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 334     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 335     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 336 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 337     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 338     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 339     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 340     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 341     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 342     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 343     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 344 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 345     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 346 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 347     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 348     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 349 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 350     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 351 rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 352     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 353     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 354     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 355     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 356     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 357     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 358     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 359     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 360     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 361     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 362     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 364     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 365     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 366     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 367     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 368     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 369     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 370     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 371     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 372     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 373     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 374     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 375     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 376     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 377     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 378     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 379     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 380     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 381     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 382     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 383     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 384     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 385     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390     BFO:0000051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391     BFO:0000051</span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -68,8 +68,6 @@
 - [`retrieve_semsql_conn()`](https://github.com/vjcitn/ontoProc2/reference/retrieve_semsql_conn.md)
   : return a SQLite connection (read only) to an INCAtools Semantic SQL
   ontology
-- [`run_demo()`](https://github.com/vjcitn/ontoProc2/reference/run_demo.md)
-  : Run a demonstration of SemsqlConn capabilities
 - [`run_query()`](https://github.com/vjcitn/ontoProc2/reference/run_query.md)
   : Run an arbitrary SQL query against a SemsqlConn database
 - [`search_labels()`](https://github.com/vjcitn/ontoProc2/reference/search_labels.md)

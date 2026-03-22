@@ -11,7 +11,7 @@ in place due to S7 value semantics."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,6 +65,20 @@ in place due to S7 value semantics.</p>
     <p>A new <code>SemsqlConn</code> object with an active connection.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
+<span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu">reconnect</span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

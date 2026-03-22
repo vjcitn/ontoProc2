@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,11 +70,54 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">conn</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"cl"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">search_labels</span><span class="op">(</span><span class="va">conn</span>, <span class="st">"neuron"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">conn</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="fu">search_labels</span><span class="op">(</span><span class="va">goref</span>, <span class="st">"apoptosis"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           subject</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     CHEBI:68494</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     CHEBI:68495</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      GO:0003377</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  _:riog00109215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  _:riog00112658</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      GO:0006918</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7      GO:0006920</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8      GO:0006921</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      GO:0006922</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10     GO:0006923</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 _:riog00112701</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12     GO:0008189</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13     GO:0016329</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14     GO:0016506</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15     GO:0019987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16     GO:0030972</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17     GO:0031558</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18     GO:0033668</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 _:riog00187929</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20     GO:0039526</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                  label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                  apoptosis inhibitor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                    apoptosis inducer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        obsolete regulation of apoptosis by sphingosine-1-phosphate signaling pathway</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                  Apoptosis induced DNA fragmentation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                            Apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                               obsolete induction of apoptosis by p53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                                     obsolete commitment to apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8              cellular component disassembly involved in execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                  obsolete cleavage of lamin involved in execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 obsolete cleavage of cytoskeletal proteins involved in execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                                   Influenza Virus Induced Apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                               obsolete apoptosis inhibitor activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                               obsolete apoptosis regulator activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                                               obsolete apoptosis activator activity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                                      obsolete negative regulation of anti-apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16    obsolete cleavage of cytosolic proteins involved in execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                    obsolete induction of apoptosis in response to chemical stimulus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                     symbiont-mediated suppression of host apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                                            Suppression of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                    obsolete perturbation by virus of host apoptosis</span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +59,116 @@
     <p>character vector of table names.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="fu">list_tables</span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "all_problems"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [2] "annotation_property_node"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [3] "anonymous_class_expression"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [4] "anonymous_expression"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [5] "anonymous_individual_expression"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [6] "anonymous_property_expression"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [7] "asymmetric_property_node"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [8] "axiom_dbxref_annotation"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [9] "blank_node"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "class_node"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [11] "contributor"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [12] "count_of_instantiated_classes"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [13] "count_of_predicates"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [14] "count_of_subclasses"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [15] "creator"                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [16] "deprecated_node"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [17] "edge"                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [18] "entailed_edge"                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "entailed_edge_cycle"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [20] "entailed_edge_same_predicate_cycle"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [21] "entailed_subclass_of_edge"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [22] "entailed_type_edge"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [23] "has_broad_match_statement"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [24] "has_broad_synonym_statement"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [25] "has_dbxref_statement"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [26] "has_exact_match_statement"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [27] "has_exact_synonym_statement"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [28] "has_mapping_statement"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [29] "has_match_statement"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [30] "has_narrow_match_statement"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] "has_narrow_synonym_statement"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [32] "has_oio_synonym_statement"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [33] "has_related_match_statement"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [34] "has_related_synonym_statement"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [35] "has_synonym_statement"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] "has_text_definition_statement"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] "iri_node"                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [38] "irreflexive_property_node"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [39] "lexical_problem"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [40] "named_individual_node"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] "node"                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [42] "node_identifier"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [43] "node_to_node_statement"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [44] "node_to_value_statement"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [45] "node_with_two_labels_problem"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "object_property_node"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [47] "ontology_node"                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [48] "ontology_status_statement"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [49] "orcid"                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [50] "owl_all_values_from"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [51] "owl_axiom"                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [52] "owl_axiom_annotation"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [53] "owl_complement_of_statement"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [54] "owl_complex_axiom"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] "owl_disjoint_class_statement"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [56] "owl_equivalent_class_statement"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [57] "owl_equivalent_to_intersection_member"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [58] "owl_has_self"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [59] "owl_has_value"                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [60] "owl_imports_statement"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61] "owl_inverse_of_statement"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [62] "owl_reified_axiom"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [63] "owl_restriction"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] "owl_same_as_statement"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [65] "owl_some_values_from"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [66] "owl_subclass_of_some_values_from"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [67] "prefix"                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [68] "problem"                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [69] "property_node"                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [70] "property_used_with_datatype_values_and_objects"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] "rdf_first_statement"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [72] "rdf_level_summary_statistic"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "rdf_list_member_statement"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [74] "rdf_list_node"                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [75] "rdf_list_statement"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] "rdf_rest_statement"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [77] "rdf_rest_transitive_statement"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [78] "rdf_type_statement"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [79] "rdfs_domain_statement"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [80] "rdfs_label_statement"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] "rdfs_range_statement"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "rdfs_subclass_of_named_statement"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [83] "rdfs_subclass_of_statement"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [84] "rdfs_subproperty_of_statement"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [85] "reflexive_property_node"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [86] "relation_graph_construct"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [87] "repair_action"                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [88] "statements"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [89] "subgraph_edge_by_ancestor"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [90] "subgraph_edge_by_ancestor_or_descendant"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "subgraph_edge_by_child"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [92] "subgraph_edge_by_descendant"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [93] "subgraph_edge_by_parent"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [94] "subgraph_edge_by_self"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [95] "subgraph_query"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [96] "symmetric_property_node"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [97] "term_association"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [98] "trailing_whitespace_problem"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [99] "transitive_edge"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "transitive_property_node"                      </span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

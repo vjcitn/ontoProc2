@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,6 +73,28 @@ of <code>filler</code> (default <code>FALSE</code>).</p></dd>
     <p>data.frame with columns <code>id</code> and <code>label</code>.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="co"># cellular components that are part_of nucleus (GO:0005634)</span></span></span>
+<span class="r-in"><span><span class="fu">find_by_restriction</span><span class="op">(</span><span class="va">goref</span>, <span class="st">"BFO:0000050"</span>, <span class="st">"GO:0005634"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            id                              label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  GO:0046818                 dense nuclear body</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  GO:0140510             mitotic nuclear bridge</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  GO:0005635                   nuclear envelope</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  GO:0042405             nuclear inclusion body</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  GO:0031981                      nuclear lumen</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  GO:0005880                nuclear microtubule</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  GO:0140513 nuclear protein-containing complex</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  GO:0110093               nucleus lagging edge</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  GO:0110092               nucleus leading edge</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 GO:0000943       retrotransposon nucleocapsid</span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -11,7 +11,7 @@ and related functions."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,23 +61,22 @@ and related functions.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Connect to the Cell Ontology and retrieve ancestors using part-of edges</span></span></span>
-<span class="r-in"><span><span class="va">conn</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"cl"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b242134f3ccd_cl.db</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: CL</span>
-<span class="r-in"><span><span class="co"># neuron (CL:0000540) ancestors via is-a and part-of</span></span></span>
-<span class="r-in"><span><span class="va">anc</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_ancestors.html">get_ancestors</a></span><span class="op">(</span><span class="va">conn</span>, <span class="st">"CL:0000540"</span>,</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="co"># apoptotic process (GO:0006915) ancestors via is-a and part-of</span></span></span>
+<span class="r-in"><span><span class="va">anc</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_ancestors.html">get_ancestors</a></span><span class="op">(</span><span class="va">goref</span>, <span class="st">"GO:0006915"</span>,</span></span>
 <span class="r-in"><span>  predicates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">PREDICATES</span><span class="op">$</span><span class="va">subclass_of</span>, <span class="va">PREDICATES</span><span class="op">$</span><span class="va">part_of</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">anc</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               id             label       predicate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    BFO:0000002              &lt;NA&gt;     BFO:0000050</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    BFO:0000004              &lt;NA&gt;     BFO:0000050</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    BFO:0000040              &lt;NA&gt;     BFO:0000050</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    BFO:0000004              &lt;NA&gt; rdfs:subClassOf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    BFO:0000040              &lt;NA&gt; rdfs:subClassOf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 UBERON:0001062 anatomical entity     BFO:0000050</span>
-<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">conn</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b242134f3ccd_cl.db'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            id                 label       predicate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  GO:0008150    biological_process rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  GO:0008219            cell death rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  GO:0009987      cellular process rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 BFO:0000003             occurrent rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 BFO:0000015               process rdfs:subClassOf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  GO:0012501 programmed cell death rdfs:subClassOf</span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

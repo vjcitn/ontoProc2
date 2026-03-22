@@ -58,11 +58,12 @@ object.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
 # by ontology short name (downloads if not cached)
-conn <- semsql_connect(ontology = "cl")
-
-# by explicit path
-conn <- semsql_connect(db_path = "/path/to/cl.db", ontology_prefix = "CL")
-} # }
+goref <- semsql_connect(ontology = "go")
+#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Primary ontology prefix: GO
+goref
+#> <SemsqlConn>  prefix: GO  | labeled terms: 88,356 
+disconnect(goref)
+#> Disconnected from 'b24227f056f7_go.db'
 ```

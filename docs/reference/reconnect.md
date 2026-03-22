@@ -19,3 +19,18 @@ reconnect(x, ...)
 ## Value
 
 A new `SemsqlConn` object with an active connection.
+
+## Examples
+
+``` r
+goref <- semsql_connect(ontology = "go")
+#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Primary ontology prefix: GO
+disconnect(goref)
+#> Disconnected from 'b24227f056f7_go.db'
+goref <- reconnect(goref)
+#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Primary ontology prefix: GO
+disconnect(goref)
+#> Disconnected from 'b24227f056f7_go.db'
+```

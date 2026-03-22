@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,6 +70,166 @@
   <code>object_label</code>.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">goref</span> <span class="op">&lt;-</span> <span class="fu"><a href="semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Primary ontology prefix: GO</span>
+<span class="r-in"><span><span class="fu">get_direct_edges</span><span class="op">(</span><span class="va">goref</span>, <span class="st">"GO:0006915"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      subject     subject_label       predicate predicate_label          object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 GO:0006915 apoptotic process      RO:0002162        in taxon NCBITaxon:33154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 GO:0006915 apoptotic process      RO:0002224     starts with      GO:0097190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 GO:0006915 apoptotic process      RO:0002224     starts with      GO:0097190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 GO:0006915 apoptotic process      RO:0002230       ends with      GO:0097194</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 GO:0006915 apoptotic process      RO:0002230       ends with      GO:0097194</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 GO:0006915 apoptotic process rdfs:subClassOf            &lt;NA&gt;      GO:0012501</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   object_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 Opisthokonta</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  apoptotic signaling pathway</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  apoptotic signaling pathway</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        programmed cell death</span>
+<span class="r-in"><span><span class="fu">get_direct_edges</span><span class="op">(</span><span class="va">goref</span>, <span class="st">"GO:0006915"</span>, direction <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       subject                                                subject_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  GO:0006915                                            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  GO:0006915                                            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  GO:0006915                                            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  GO:0006915                                            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  GO:0006915                                            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  GO:0006915                                            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  GO:0006925                          inflammatory cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  GO:0008637                              apoptotic mitochondrial changes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  GO:0008637                              apoptotic mitochondrial changes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 GO:0010657                                muscle cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 GO:0016505   peptidase activator activity involved in apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 GO:0016505   peptidase activator activity involved in apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 GO:0033028                               myeloid cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 GO:0033668              symbiont-mediated suppression of host apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 GO:0033668              symbiont-mediated suppression of host apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 GO:0034349                                 glial cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 GO:0042981                              regulation of apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 GO:0042981                              regulation of apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 GO:0043065                     positive regulation of apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 GO:0043065                     positive regulation of apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 GO:0043066                     negative regulation of apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 GO:0043066                     negative regulation of apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 GO:0043276                                                      anoikis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 GO:0044346                                 fibroblast apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 GO:0051402                                     neuron apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 GO:0052150             symbiont-mediated perturbation of host apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27 GO:0052151               symbiont-mediated activation of host apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 GO:0052151               symbiont-mediated activation of host apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 GO:0071839                        apoptotic process in bone marrow cell</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 GO:0071887                                  leukocyte apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31 GO:0072577                           endothelial cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32 GO:0097152                           mesenchymal cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33 GO:0097190                                  apoptotic signaling pathway</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34 GO:0097190                                  apoptotic signaling pathway</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35 GO:0097194                                 execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36 GO:0097194                                 execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37 GO:0140208 apoptotic process in response to mitochondrial fragmentation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38 GO:1902362                                 melanocyte apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39 GO:1902489                                hepatoblast apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40 GO:1902742                    apoptotic process involved in development</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 GO:1904019                            epithelial cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42 GO:1904516                         myofibroblast cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43 GO:1904606                                   fat cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44 GO:1990009                               retinal cell apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          predicate                          predicate_label          object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       RO:0002162                                 in taxon NCBITaxon:33154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       RO:0002224                              starts with      GO:0097190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       RO:0002224                              starts with      GO:0097190</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       RO:0002230                                ends with      GO:0097194</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       RO:0002230                                ends with      GO:0097194</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  rdfs:subClassOf                                     &lt;NA&gt;      GO:0012501</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8      BFO:0000050                                  part of      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      BFO:0000050                                  part of      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11     BFO:0000050                                  part of      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12     BFO:0000050                                  part of      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14      RO:0012014 negatively regulates in another organism      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15      RO:0012014 negatively regulates in another organism      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      RO:0002211                                regulates      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18      RO:0002211                                regulates      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19      RO:0002213                     positively regulates      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20      RO:0002213                     positively regulates      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21      RO:0002212                     negatively regulates      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22      RO:0002212                     negatively regulates      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26      RO:0002010            regulates in another organism      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27      RO:0012013 positively regulates in another organism      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28      RO:0012013 positively regulates in another organism      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33     BFO:0000050                                  part of      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34     BFO:0000050                                  part of      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35     BFO:0000050                                  part of      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36     BFO:0000050                                  part of      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44 rdfs:subClassOf                                     &lt;NA&gt;      GO:0006915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    object_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                  Opisthokonta</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   apoptotic signaling pathway</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   apoptotic signaling pathway</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  execution phase of apoptosis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         programmed cell death</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7             apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8             apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9             apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43            apoptotic process</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44            apoptotic process</span>
+<span class="r-in"><span><span class="fu"><a href="disconnect.html">disconnect</a></span><span class="op">(</span><span class="va">goref</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Disconnected from 'b24227f056f7_go.db'</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

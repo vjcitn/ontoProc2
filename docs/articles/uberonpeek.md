@@ -279,7 +279,7 @@ sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] DT_0.34.0        dplyr_1.2.0      DBI_1.2.3        ontoProc2_0.99.3
+    ## [1] DT_0.34.0        dplyr_1.2.0      DBI_1.2.3        ontoProc2_0.99.4
     ## [5] BiocStyle_2.39.0
     ## 
     ## loaded via a namespace (and not attached):
