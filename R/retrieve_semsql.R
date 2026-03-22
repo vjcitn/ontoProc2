@@ -9,6 +9,8 @@
 #' @param cacheid character(1) or NULL; if non-null, the associated SQLite resource will be used from cache
 #' @param \dots passed to download.file
 #' @return an RSQLite DBI connection instance
+#' @note When the cache is searched, the string given as 'ontology' will be prefixed with '^'.  This
+#' helps avoid confusion between pcl.db and cl.db, for example.
 #' @examples
 #' # first time will involve a download and decompression
 #' aionto = retrieve_semsql_conn("aio")
@@ -29,7 +31,7 @@ retrieve_semsql_conn = function(ontology = "efo",
   #rname = paste0("^", ontology, "_bbop_ontoproc2")  # ?
   rname = paste0(ontology, "_bbop_ontoproc2")
   bbop_info = BiocFileCache::bfcquery(cache, rname)
-  ind = grep(rname, bbop_info$rname) 
+  ind = grep(paste0("^", rname), bbop_info$rname) 
   if (length(ind)>0) {
     if (length(ind)>1) {
        message(sprintf("multiple cache entries found matching request %s", rname))

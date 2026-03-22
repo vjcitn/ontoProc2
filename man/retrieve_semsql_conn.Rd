@@ -26,6 +26,10 @@ an RSQLite DBI connection instance
 \description{
 return a SQLite connection (read only) to an INCAtools Semantic SQL ontology
 }
+\note{
+When the cache is searched, the string given as 'ontology' will be prefixed with '^'.  This
+helps avoid confusion between pcl.db and cl.db, for example.
+}
 \examples{
 # first time will involve a download and decompression
 aionto = retrieve_semsql_conn("aio")
