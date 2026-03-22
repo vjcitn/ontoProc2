@@ -1,7 +1,7 @@
 Package: ontoProc2
 Date: 2026-03-16
 Title: Ontology Facilities Based on INCAtools Semantic SQL
-Version: 0.99.3
+Version: 0.99.4
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),
@@ -16,6 +16,8 @@ Description: This package provides ontology facilities based on
 	INCAtools Semantic SQL.  Tooling is provided to retrieve
 	and cache SQLite databases representing curated ontologies.
 	ontologyIndex ontology_index instances can be produced.
+	Anthropic's Claude was used in the development of S7
+	classes and methods and in the production of documentation.
 License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 4.5.0)

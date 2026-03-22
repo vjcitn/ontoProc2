@@ -91,7 +91,7 @@ The [ontologyX suite](https://academic.oup.com/bioinformatics/article/33/7/1104/
 Daniel Greene and colleagues provides very convenient ontology handling functions.
 We can transform the SQLite data to this format.  We'll illustrate with cell ontology.
 
-```{r lkoi}
+```{r lkoi, cache=TRUE}
 clss = semsql_connect(ontology="cl")
 cloi = semsql_to_oi(clss@con)
 cloi
@@ -101,6 +101,108 @@ A convenience function assists with visualizations:
 
 ```{r dopl}
 onto_plot2(cloi, c("CL:0000624", "CL:0000492", "CL:0000793", "CL:0000803"))
+```
+
+# Background
+
+The S7 class design in this package was initiated by a request to Anthropic Claude
+to use S7 in establishing code that mirrors the tasks accomplished in the
+[INCAtools jupyter notebook](https://github.com/INCATools/semantic-sql/blob/main/notebooks/SemanticSQL-Tutorial.ipynb).
+
+## Searching in label text
+
+The code of `search_labels` is:
+```{r lksrch}
+library(S7)
+method(search_labels, SemsqlConn)
+```
+
+## Exploring concept properties with 'edge tables'
+
+The INCAtools notebook discusses the fact that `rdfs_label_statement` is a SQLite table "view".
+
+The notebook indicates that a SPARQL query on an RDF store for the following computation
+would be "quite hard".  We want to find all the "edges" leading from "enteric neuron", which
+would constitute the set of subject-predicate-object statements about this cell type with "enteric
+neuron" as subject.
+
+In this code we use the concept of a "CURIE" (Compact Uniform Resource Identifier):
+a fixed length numerical identifier with
+a prefix indicating the source ontology in which the ontologic concept is based.
+
+```{r doentr}
+if (!is_connected(clss)) clss = reconnect(clss)
+entcurie = search_labels(clss, "enteric neuron") |> 
+  filter(grepl("^CL", subject)) |> dplyr::select(subject) |> unlist()
+entcurie
+get_direct_edges(clss, entcurie)
+```
+
+Here the underlying code is performing a join:
+```{r lkmeth}
+method(get_direct_edges, SemsqlConn)
+```
+
+## Generalizing a concept: Ancestors
+
+The notebook mentions that the "entailed edges" table includes
+all statements that can be inferred from the application of
+base axioms of the ontology.
+
+```{r lkent}
+get_ancestors(clss, entcurie)
+```
+
+## Working with multiple ontologies
+
+The INCAtools notebook includes an example of finding all neurons
+that are part of the forebrain.  This involves identifying
+CURIEs for relations and anatomical structures, thus working
+with the relational ontology (RO) and UBERON.
+
+```{r getmore}
+ub = semsql_connect(ontology="uberon")
+ro = semsql_connect(ontology="ro")
+```
+
+First question: What's the CURIE for "forebrain" in UBERON?
+```{r lkub}
+fbcur = search_labels(ub, "forebrain", limit=1000) |> filter(label=="forebrain") |>
+  select(subject) |> unlist()
+fbcur
+```
+Second question: What's the CURIE for "has soma location" in RO?
+```{r lkro}
+loccur = search_labels(ro, "has soma location") |> select(subject) |> unlist()
+loccur
+```
+What's the CURIE for "neuron"?
+```{r lkcurn}
+ncur = search_labels(clss, "neuron", limit=1000) |> filter(label=="neuron") |>
+  select(subject) |> unlist()
+ncur
+```
+
+Now we use three steps to obtain the solution.
+
+First, enumerate all cell types that are located in forebrain.
+```{r infb}
+clinfb = tbl(clss@con, "entailed_edge") |> filter(predicate == loccur, object == fbcur) |> 
+         select(subject) |> collect() |> unlist() 
+length(clinfb)
+```
+
+Second, filter these to those identified as 'subclassOf' "neuron".
+```{r isne}
+clisneur = tbl(clss@con, "entailed_edge") |> filter(predicate == "rdfs:subClassOf", object==ncur) |> 
+         filter(subject %in% clinfb) |> select(subject) |> collect() |> unlist() 
+length(clisneur)
+```
+
+Finally, get the labels.
+```{r doint}
+tbl(clss@con, "rdfs_label_statement") |> filter(subject %in% clisneur) |> 
+         select(subject, value) |> collect() |> DT::datatable()
 ```
 
 # Session information
