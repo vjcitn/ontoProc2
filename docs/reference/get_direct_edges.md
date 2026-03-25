@@ -1,37 +1,63 @@
+<div id="main" class="col-md-9" role="main">
+
 # Get direct edges in the ontology graph for a term
+
+<div class="ref-description section level2">
 
 Get direct edges in the ontology graph for a term
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 get_direct_edges(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
 
-- term_id:
+-   term\_id:
 
-  character(1) CURIE.
+    character(1) CURIE.
 
-- direction:
+-   direction:
 
-  character(1) one of `"outgoing"`, `"incoming"`, `"both"`.
+    character(1) one of `"outgoing"`, `"incoming"`, `"both"`.
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 data.frame with columns `subject`, `subject_label`, `predicate`,
 `predicate_label`, `object`, `object_label`.
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 get_direct_edges(goref, "GO:0006915")
 #>      subject     subject_label       predicate predicate_label          object
@@ -185,5 +211,11 @@ get_direct_edges(goref, "GO:0006915", direction = "both")
 #> 43            apoptotic process
 #> 44            apoptotic process
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

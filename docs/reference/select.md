@@ -1,40 +1,66 @@
+<div id="main" class="col-md-9" role="main">
+
 # emulate the AnnotationDbi select method
+
+<div class="ref-description section level2">
 
 emulate the AnnotationDbi select method
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 select(x, keys, columns, keytype = "GOID", ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  instance of SemSQL
+    instance of SemSQL
 
-- keys:
+-   keys:
 
-  vector of elements of the appropriate type
+    vector of elements of the appropriate type
 
-- columns:
+-   columns:
 
-  vector of desired output columns
+    vector of desired output columns
 
-- keytype:
+-   keytype:
 
-  character(1) defaults to 'GOID'
+    character(1) defaults to 'GOID'
 
-- ...:
+-   ...:
 
-  not used
+    not used
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 standardGeneric
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 example("select,SemSQL-method")
@@ -58,3 +84,9 @@ example("select,SemSQL-method")
 #> 1 GO:0000003 OBSOLETE. The production of new individuals that co… obso… biologi…
 #> 2 GO:0018942 The chemical reactions and pathways involving organ… orga… biologi…
 ```
+
+</div>
+
+</div>
+
+</div>

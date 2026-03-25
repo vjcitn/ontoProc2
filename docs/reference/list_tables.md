@@ -1,28 +1,54 @@
+<div id="main" class="col-md-9" role="main">
+
 # List tables in a SemsqlConn database
+
+<div class="ref-description section level2">
 
 List tables in a SemsqlConn database
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 list_tables(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 character vector of table names.
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 list_tables(goref)
 #>   [1] "all_problems"                                  
@@ -126,5 +152,11 @@ list_tables(goref)
 #>  [99] "transitive_edge"                               
 #> [100] "transitive_property_node"                      
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

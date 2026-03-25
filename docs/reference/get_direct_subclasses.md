@@ -1,32 +1,58 @@
+<div id="main" class="col-md-9" role="main">
+
 # Get direct subclasses of a term
+
+<div class="ref-description section level2">
 
 Get direct subclasses of a term
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 get_direct_subclasses(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
 
-- term_id:
+-   term\_id:
 
-  character(1) CURIE.
+    character(1) CURIE.
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 data.frame with columns `id` and `label`, ordered by label.
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 # direct children of "apoptotic process" (GO:0006915)
 get_direct_subclasses(goref, "GO:0006915")
@@ -51,5 +77,11 @@ get_direct_subclasses(goref, "GO:0006915")
 #> 18 GO:0051402                                     neuron apoptotic process
 #> 19 GO:1990009                               retinal cell apoptotic process
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

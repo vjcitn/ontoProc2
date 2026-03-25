@@ -1,33 +1,59 @@
+<div id="main" class="col-md-9" role="main">
+
 # Describe the columns of a table in a SemsqlConn database
+
+<div class="ref-description section level2">
 
 Describe the columns of a table in a SemsqlConn database
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 describe_table(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
 
-- table_name:
+-   table\_name:
 
-  character(1) name of the table.
+    character(1) name of the table.
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
-data.frame with PRAGMA table_info output (columns: cid, name, type,
-notnull, dflt_value, pk).
+data.frame with PRAGMA table\_info output (columns: cid, name, type,
+notnull, dflt\_value, pk).
+
+</div>
+
+<div class="section level2">
 
 ## Examples
 
+<div class="sourceCode">
+
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 describe_table(goref, "rdfs_label_statement")
 #>   cid      name type notnull dflt_value pk
@@ -40,5 +66,11 @@ describe_table(goref, "rdfs_label_statement")
 #> 7   6  language TEXT       0         NA  0
 #> 8   7     graph TEXT       0         NA  0
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,8 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
+<li><a class="dropdown-item" href="../articles/celltoprotein.html">celltoprotein -- connecting Cell and Protein Ontologies</a></li>
+    <li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
   </ul>
 </li>
       </ul>
@@ -61,10 +62,9 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>ontoProc2 -- leveraging semantic SQL for ontology analysis in Bioconductor</h1>
-                        <h4 data-toc-skip class="author">Vincent J.
-Carey, stvjc at channing.harvard.edu</h4>
+                        <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">March 22, 2026</h4>
+            <h4 data-toc-skip class="date">March 25, 2026</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/ontoProc2/blob/HEAD/vignettes/ontoProc2.Rmd"><code>vignettes/ontoProc2.Rmd</code></a></small>
       <div class="d-none name"><code>ontoProc2.Rmd</code></div>
@@ -77,11 +77,8 @@ Carey, stvjc at channing.harvard.edu</h4>
 </h2>
 <p>The ontoProc2 package has two aims:</p>
 <ul>
-<li>to give convenient access to the ontologies that are transformed to
-“semantic SQL” in the <a href="https://github.com/INCATools/semantic-sql" class="external-link">INCAtools semantic sql
-project</a>;</li>
-<li>to simplify operations that have been available in <a href="https://git.bioconductor.org/packages/ontoProc" class="external-link">ontoProc</a>,
-which will be deprecated in 2027.</li>
+<li>to give convenient access to the ontologies that are transformed to “semantic SQL” in the <a href="https://github.com/INCATools/semantic-sql" class="external-link">INCAtools semantic sql project</a>;</li>
+<li>to simplify operations that have been available in <a href="https://git.bioconductor.org/packages/ontoProc" class="external-link">ontoProc</a>, which will be deprecated in 2027.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -90,10 +87,7 @@ which will be deprecated in 2027.</li>
 <div class="section level3">
 <h3 id="make-a-connection">Make a connection<a class="anchor" aria-label="anchor" href="#make-a-connection"></a>
 </h3>
-<p>The best way to work with an ontology in this system is to use
-<code>semsql_connect</code>. The <code>ontology</code> argument will be
-a short string that the INCAtools project uses as part of the filename
-for the ontology. For Gene Ontology, the string is “go”.</p>
+<p>The best way to work with an ontology in this system is to use <code>semsql_connect</code>. The <code>ontology</code> argument will be a short string that the INCAtools project uses as part of the filename for the ontology. For Gene Ontology, the string is “go”.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vjcitn/ontoProc2">ontoProc2</a></span><span class="op">)</span></span>
 <span><span class="va">goss</span> <span class="op">=</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology<span class="op">=</span><span class="st">"go"</span><span class="op">)</span></span>
@@ -113,7 +107,7 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Connection Details:</span></span>
 <span><span class="co">## ---------------------------------------- </span></span>
-<span><span class="co">##   Database path:    /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db </span></span>
+<span><span class="co">##   Database path:    /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db </span></span>
 <span><span class="co">##   Ontology prefix:  GO </span></span>
 <span><span class="co">##   Status:           ✓   Connected </span></span>
 <span><span class="co">## </span></span>
@@ -180,7 +174,7 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT" class="external-link">DT</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">goss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"statements"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># Source:   table&lt;`statements`&gt; [?? x 8]</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># Database: sqlite 3.51.2 [/home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db]</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># Database: sqlite 3.51.2 [/Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db]</span></span></span>
 <span><span class="co">##    stanza                 subject predicate object value datatype language graph</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span> obo:go/extensions/go-… obo:go… owl:vers… <span style="color: #BB0000;">NA</span>     2026… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
@@ -197,33 +191,25 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">goss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"statements"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="datatables html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","IAO:0000111","IAO:0000112","IAO:0000114","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115"],["obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","IAO:0000111","IAO:0000112","IAO:0000114","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115"],["owl:versionInfo","oio:hasOBOFormatVersion","oio:default-namespace","dcterms:license","dce:title","dce:description","IAO:0000700","IAO:0000700","IAO:0000700","owl:versionIRI","rdf:type","rdf:type","rdf:type","rdf:type","rdfs:label","rdfs:label","IAO:0000119","IAO:0000117","IAO:0000116","IAO:0000115"],[null,null,null,"cc:by/4.0/",null,null,"GO:0008150","GO:0005575","GO:0003674","obo:go/releases/2026-01-23/extensions/go-plus.ofn","owl:Ontology","owl:AnnotationProperty","owl:AnnotationProperty","owl:AnnotationProperty",null,null,null,null,null,null],["2026-01-23","1.2","gene_ontology",null,"Gene Ontology","The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",null,null,null,null,null,null,null,null,"definition","definition","GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;","PERSON:Daniel Schober","2012-04-05: \nBarry Smith\n\nThe official OBI definition, explaining the meaning of a class or property: 'Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions'  is terrible.\n\nCan you fix to something like:\n\nA statement of necessary and sufficient conditions explaining the meaning of an expression referring to a class or property.\n\nAlan Ruttenberg\n\nYour proposed definition is a reasonable candidate, except that it is very common that necessary and sufficient conditions are not given. Mostly they are necessary, occasionally they are necessary and sufficient or just sufficient. Often they use terms that are not themselves defined and so they effectively can't be evaluated by those criteria. \n\nOn the specifics of the proposed definition:\n\nWe don't have definitions of 'meaning' or 'expression' or 'property'. For 'reference' in the intended sense I think we use the term 'denotation'. For 'expression', I think we you mean symbol, or identifier. For 'meaning' it differs for class and property. For class we want documentation that let's the intended reader determine whether an entity is instance of the class, or not. For property we want documentation that let's the intended reader determine, given a pair of potential relata, whether the assertion that the relation holds is true. The 'intended reader' part suggests that we also specify who, we expect, would be able to understand the definition, and also generalizes over human and computer reader to include textual and logical definition. \n\nPersonally, I am more comfortable weakening definition to documentation, with instructions as to what is desirable. \n\nWe also have the outstanding issue of how to aim different definitions to different audiences. A clinical audience reading chebi wants a different sort of definition documentation/definition from a chemistry trained audience, and similarly there is a need for a definition that is adequate for an ontologist to work with.","The official definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions."],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,"en",null,"en","en","en","en"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>stanza<\/th>\n      <th>subject<\/th>\n      <th>predicate<\/th>\n      <th>object<\/th>\n      <th>value<\/th>\n      <th>datatype<\/th>\n      <th>language<\/th>\n      <th>graph<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"stanza","targets":1},{"name":"subject","targets":2},{"name":"predicate","targets":3},{"name":"object","targets":4},{"name":"value","targets":5},{"name":"datatype","targets":6},{"name":"language","targets":7},{"name":"graph","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>To investigate the ontology, searching through RDF labels is a
-natural approach.</p>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","IAO:0000111","IAO:0000112","IAO:0000114","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115"],["obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","IAO:0000111","IAO:0000112","IAO:0000114","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115"],["owl:versionInfo","oio:hasOBOFormatVersion","oio:default-namespace","dcterms:license","dce:title","dce:description","IAO:0000700","IAO:0000700","IAO:0000700","owl:versionIRI","rdf:type","rdf:type","rdf:type","rdf:type","rdfs:label","rdfs:label","IAO:0000119","IAO:0000117","IAO:0000116","IAO:0000115"],[null,null,null,"cc:by/4.0/",null,null,"GO:0008150","GO:0005575","GO:0003674","obo:go/releases/2026-01-23/extensions/go-plus.ofn","owl:Ontology","owl:AnnotationProperty","owl:AnnotationProperty","owl:AnnotationProperty",null,null,null,null,null,null],["2026-01-23","1.2","gene_ontology",null,"Gene Ontology","The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",null,null,null,null,null,null,null,null,"definition","definition","GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;","PERSON:Daniel Schober","2012-04-05: \nBarry Smith\n\nThe official OBI definition, explaining the meaning of a class or property: 'Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions'  is terrible.\n\nCan you fix to something like:\n\nA statement of necessary and sufficient conditions explaining the meaning of an expression referring to a class or property.\n\nAlan Ruttenberg\n\nYour proposed definition is a reasonable candidate, except that it is very common that necessary and sufficient conditions are not given. Mostly they are necessary, occasionally they are necessary and sufficient or just sufficient. Often they use terms that are not themselves defined and so they effectively can't be evaluated by those criteria. \n\nOn the specifics of the proposed definition:\n\nWe don't have definitions of 'meaning' or 'expression' or 'property'. For 'reference' in the intended sense I think we use the term 'denotation'. For 'expression', I think we you mean symbol, or identifier. For 'meaning' it differs for class and property. For class we want documentation that let's the intended reader determine whether an entity is instance of the class, or not. For property we want documentation that let's the intended reader determine, given a pair of potential relata, whether the assertion that the relation holds is true. The 'intended reader' part suggests that we also specify who, we expect, would be able to understand the definition, and also generalizes over human and computer reader to include textual and logical definition. \n\nPersonally, I am more comfortable weakening definition to documentation, with instructions as to what is desirable. \n\nWe also have the outstanding issue of how to aim different definitions to different audiences. A clinical audience reading chebi wants a different sort of definition documentation/definition from a chemistry trained audience, and similarly there is a need for a definition that is adequate for an ontologist to work with.","The official definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions."],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,"en",null,"en","en","en","en"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>stanza<\/th>\n      <th>subject<\/th>\n      <th>predicate<\/th>\n      <th>object<\/th>\n      <th>value<\/th>\n      <th>datatype<\/th>\n      <th>language<\/th>\n      <th>graph<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"stanza","targets":1},{"name":"subject","targets":2},{"name":"predicate","targets":3},{"name":"object","targets":4},{"name":"value","targets":5},{"name":"datatype","targets":6},{"name":"language","targets":7},{"name":"graph","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>To investigate the ontology, searching through RDF labels is a natural approach.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">goss</span>, <span class="st">"apoptosis"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="datatables html-widget html-fill-item" id="htmlwidget-e5c8c404fe174e4c81bd" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["CHEBI:68494","CHEBI:68495","GO:0003377","_:riog00109215","_:riog00112658","GO:0006918"],["apoptosis inhibitor","apoptosis inducer","obsolete regulation of apoptosis by sphingosine-1-phosphate signaling pathway","Apoptosis induced DNA fragmentation","Apoptosis","obsolete induction of apoptosis by p53"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>subject<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"subject","targets":1},{"name":"label","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Additional filtering could be useful here to focus on GO terms. The
-<code>_riog...</code> labels have special roles in RDF inference, and
-this will be addressed in vignettes to be added in the future.</p>
+<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["CHEBI:68494","CHEBI:68495","GO:0003377","_:riog00109215","_:riog00112658","GO:0006918"],["apoptosis inhibitor","apoptosis inducer","obsolete regulation of apoptosis by sphingosine-1-phosphate signaling pathway","Apoptosis induced DNA fragmentation","Apoptosis","obsolete induction of apoptosis by p53"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>subject<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"subject","targets":1},{"name":"label","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Additional filtering could be useful here to focus on GO terms. The <code>_riog...</code> labels have special roles in RDF inference, and this will be addressed in vignettes to be added in the future.</p>
 <p>Let’s improve the query:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">goss</span>, <span class="st">"apoptosis"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^GO:"</span>, <span class="va">subject</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="datatables html-widget html-fill-item" id="htmlwidget-36aa3d2a04d42bbc2145" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-36aa3d2a04d42bbc2145">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["GO:0003377","GO:0006918","GO:0006920","GO:0006921","GO:0006922","GO:0006923"],["obsolete regulation of apoptosis by sphingosine-1-phosphate signaling pathway","obsolete induction of apoptosis by p53","obsolete commitment to apoptosis","cellular component disassembly involved in execution phase of apoptosis","obsolete cleavage of lamin involved in execution phase of apoptosis","obsolete cleavage of cytoskeletal proteins involved in execution phase of apoptosis"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>subject<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"subject","targets":1},{"name":"label","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Clearly it will be valuable to filter away obsolete terms. We will
-investigate the use of edge tables to accomplish this in a future
-vignette.</p>
+<script type="application/json" data-for="htmlwidget-36aa3d2a04d42bbc2145">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],["GO:0003377","GO:0006918","GO:0006920","GO:0006921","GO:0006922","GO:0006923"],["obsolete regulation of apoptosis by sphingosine-1-phosphate signaling pathway","obsolete induction of apoptosis by p53","obsolete commitment to apoptosis","cellular component disassembly involved in execution phase of apoptosis","obsolete cleavage of lamin involved in execution phase of apoptosis","obsolete cleavage of cytoskeletal proteins involved in execution phase of apoptosis"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>subject<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"subject","targets":1},{"name":"label","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Clearly it will be valuable to filter away obsolete terms. We will investigate the use of edge tables to accomplish this in a future vignette.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="transformation-to-ontology_index-instances">Transformation to ontology_index instances<a class="anchor" aria-label="anchor" href="#transformation-to-ontology_index-instances"></a>
 </h2>
-<p>The <a href="https://academic.oup.com/bioinformatics/article/33/7/1104/2843897" class="external-link">ontologyX
-suite</a> of Daniel Greene and colleagues provides very convenient
-ontology handling functions. We can transform the SQLite data to this
-format. We’ll illustrate with cell ontology.</p>
+<p>The <a href="https://academic.oup.com/bioinformatics/article/33/7/1104/2843897" class="external-link">ontologyX suite</a> of Daniel Greene and colleagues provides very convenient ontology handling functions. We can transform the SQLite data to this format. We’ll illustrate with cell ontology.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clss</span> <span class="op">=</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology<span class="op">=</span><span class="st">"cl"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b242134f3ccd_cl.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e27456c620_cl.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: CL</span></span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cloi</span> <span class="op">=</span> <span class="fu"><a href="../reference/semsql_to_oi.html">semsql_to_oi</a></span><span class="op">(</span><span class="va">clss</span><span class="op">@</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
@@ -260,10 +246,7 @@ format. We’ll illustrate with cell ontology.</p>
 <div class="section level2">
 <h2 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h2>
-<p>The S7 class design in this package was initiated by a request to
-Anthropic Claude to use S7 in establishing code that mirrors the tasks
-accomplished in the <a href="https://github.com/INCATools/semantic-sql/blob/main/notebooks/SemanticSQL-Tutorial.ipynb" class="external-link">INCAtools
-jupyter notebook</a>.</p>
+<p>The S7 class design in this package was initiated by a request to Anthropic Claude to use S7 in establishing code that mirrors the tasks accomplished in the <a href="https://github.com/INCATools/semantic-sql/blob/main/notebooks/SemanticSQL-Tutorial.ipynb" class="external-link">INCAtools jupyter notebook</a>.</p>
 <div class="section level3">
 <h3 id="searching-in-label-text">Searching in label text<a class="anchor" aria-label="anchor" href="#searching-in-label-text"></a>
 </h3>
@@ -283,17 +266,9 @@ jupyter notebook</a>.</p>
 <div class="section level3">
 <h3 id="exploring-concept-properties-with-edge-tables">Exploring concept properties with ‘edge tables’<a class="anchor" aria-label="anchor" href="#exploring-concept-properties-with-edge-tables"></a>
 </h3>
-<p>The INCAtools notebook discusses the fact that
-<code>rdfs_label_statement</code> is a SQLite table “view”.</p>
-<p>The notebook indicates that a SPARQL query on an RDF store for the
-following computation would be “quite hard”. We want to find all the
-“edges” leading from “enteric neuron”, which would constitute the set of
-subject-predicate-object statements about this cell type with “enteric
-neuron” as subject.</p>
-<p>In this code we use the concept of a “CURIE” (Compact Uniform
-Resource Identifier): a fixed length numerical identifier with a prefix
-indicating the source ontology in which the ontologic concept is
-based.</p>
+<p>The INCAtools notebook discusses the fact that <code>rdfs_label_statement</code> is a SQLite table “view”.</p>
+<p>The notebook indicates that a SPARQL query on an RDF store for the following computation would be “quite hard”. We want to find all the “edges” leading from “enteric neuron”, which would constitute the set of subject-predicate-object statements about this cell type with “enteric neuron” as subject.</p>
+<p>In this code we use the concept of a “CURIE” (Compact Uniform Resource Identifier): a fixed length numerical identifier with a prefix indicating the source ontology in which the ontologic concept is based.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_connected.html">is_connected</a></span><span class="op">(</span><span class="va">clss</span><span class="op">)</span><span class="op">)</span> <span class="va">clss</span> <span class="op">=</span> <span class="fu"><a href="../reference/reconnect.html">reconnect</a></span><span class="op">(</span><span class="va">clss</span><span class="op">)</span></span>
 <span><span class="va">entcurie</span> <span class="op">=</span> <span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">clss</span>, <span class="st">"enteric neuron"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -339,9 +314,7 @@ based.</p>
 <div class="section level3">
 <h3 id="generalizing-a-concept-ancestors">Generalizing a concept: Ancestors<a class="anchor" aria-label="anchor" href="#generalizing-a-concept-ancestors"></a>
 </h3>
-<p>The notebook mentions that the “entailed edges” table includes all
-statements that can be inferred from the application of base axioms of
-the ontology.</p>
+<p>The notebook mentions that the “entailed edges” table includes all statements that can be inferred from the application of base axioms of the ontology.</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_ancestors.html">get_ancestors</a></span><span class="op">(</span><span class="va">clss</span>, <span class="va">entcurie</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                id                            label       predicate</span></span>
@@ -365,17 +338,14 @@ the ontology.</p>
 <div class="section level3">
 <h3 id="working-with-multiple-ontologies">Working with multiple ontologies<a class="anchor" aria-label="anchor" href="#working-with-multiple-ontologies"></a>
 </h3>
-<p>The INCAtools notebook includes an example of finding all neurons
-that are part of the forebrain. This involves identifying CURIEs for
-relations and anatomical structures, thus working with the relational
-ontology (RO) and UBERON.</p>
+<p>The INCAtools notebook includes an example of finding all neurons that are part of the forebrain. This involves identifying CURIEs for relations and anatomical structures, thus working with the relational ontology (RO) and UBERON.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ub</span> <span class="op">=</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology<span class="op">=</span><span class="st">"uberon"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b87946edce89_uberon.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e22de1c3cc_uberon.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: UBERON</span></span></code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ro</span> <span class="op">=</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology<span class="op">=</span><span class="st">"ro"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/1269f106cdd77_ro.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/53b7a3ff554_ro.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: RO</span></span></code></pre>
 <p>First question: What’s the CURIE for “forebrain” in UBERON?</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
@@ -404,8 +374,7 @@ ontology (RO) and UBERON.</p>
 <span>         <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">clinfb</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 185</span></span></code></pre>
-<p>Second, filter these to those identified as ‘subclassOf’
-“neuron”.</p>
+<p>Second, filter these to those identified as ‘subclassOf’ “neuron”.</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clisneur</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">clss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"entailed_edge"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">predicate</span> <span class="op">==</span> <span class="st">"rdfs:subClassOf"</span>, <span class="va">object</span><span class="op">==</span><span class="va">ncur</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>         <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">subject</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">clinfb</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span> </span>
@@ -424,57 +393,50 @@ ontology (RO) and UBERON.</p>
 </h2>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-02-16 r89423)</span></span>
-<span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
+<pre><code><span><span class="co">## R version 4.5.2 (2025-10-31)</span></span>
+<span><span class="co">## Platform: aarch64-apple-darwin20</span></span>
+<span><span class="co">## Running under: macOS Sequoia 15.7.4</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Matrix products: default</span></span>
-<span><span class="co">## BLAS:   /home/vincent/R-dev-dist/lib/R/lib/libRblas.so </span></span>
-<span><span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0  LAPACK version 3.12.0</span></span>
+<span><span class="co">## BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib </span></span>
+<span><span class="co">## LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## locale:</span></span>
-<span><span class="co">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
-<span><span class="co">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
-<span><span class="co">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
-<span><span class="co">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
-<span><span class="co">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span><span class="co">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span><span class="co">## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## time zone: America/New_York</span></span>
-<span><span class="co">## tzcode source: system (glibc)</span></span>
+<span><span class="co">## tzcode source: internal</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## attached base packages:</span></span>
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] S7_0.2.1         rmarkdown_2.30   devtools_2.4.6   usethis_3.2.1   </span></span>
-<span><span class="co">## [5] DT_0.34.0        DBI_1.2.3        dplyr_1.2.0      ontoProc2_0.99.4</span></span>
-<span><span class="co">## [9] BiocStyle_2.39.0</span></span>
+<span><span class="co">## [1] S7_0.2.1         DT_0.34.0        DBI_1.3.0        dplyr_1.2.0     </span></span>
+<span><span class="co">## [5] ontoProc2_0.99.8 BiocStyle_2.38.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] xfun_0.56           bslib_0.10.0        httr2_1.2.2        </span></span>
-<span><span class="co">##  [4] remotes_2.5.0       htmlwidgets_1.6.4   ontologyPlot_1.7   </span></span>
-<span><span class="co">##  [7] vctrs_0.7.1         tools_4.6.0         crosstalk_1.2.2    </span></span>
-<span><span class="co">## [10] generics_0.1.4      stats4_4.6.0        curl_7.0.0         </span></span>
-<span><span class="co">## [13] tibble_3.3.1        RSQLite_2.4.6       blob_1.3.0         </span></span>
-<span><span class="co">## [16] pkgconfig_2.0.3     R.oo_1.27.1         dbplyr_2.5.2       </span></span>
-<span><span class="co">## [19] desc_1.4.3          graph_1.89.1        lifecycle_1.0.5    </span></span>
-<span><span class="co">## [22] compiler_4.6.0      textshaping_1.0.4   codetools_0.2-20   </span></span>
-<span><span class="co">## [25] htmltools_0.5.9     sass_0.4.10         yaml_2.3.12        </span></span>
-<span><span class="co">## [28] pillar_1.11.1       pkgdown_2.2.0       jquerylib_0.1.4    </span></span>
-<span><span class="co">## [31] ellipsis_0.3.2      R.utils_2.13.0      cachem_1.1.0       </span></span>
-<span><span class="co">## [34] sessioninfo_1.2.3   tidyselect_1.2.1    digest_0.6.39      </span></span>
-<span><span class="co">## [37] purrr_1.2.1         bookdown_0.46       paintmap_1.0       </span></span>
-<span><span class="co">## [40] fastmap_1.2.0       grid_4.6.0          cli_3.6.5          </span></span>
-<span><span class="co">## [43] magrittr_2.0.4      pkgbuild_1.4.8      utf8_1.2.6         </span></span>
-<span><span class="co">## [46] withr_3.0.2         filelock_1.0.3      rappdirs_0.3.4     </span></span>
-<span><span class="co">## [49] bit64_4.6.0-1       bit_4.6.0           otel_0.2.0         </span></span>
-<span><span class="co">## [52] ragg_1.5.1          R.methodsS3_1.8.2   memoise_2.0.1      </span></span>
-<span><span class="co">## [55] evaluate_1.0.5      knitr_1.51          BiocFileCache_3.1.0</span></span>
-<span><span class="co">## [58] rlang_1.1.7         ontologyIndex_2.12  glue_1.8.0         </span></span>
-<span><span class="co">## [61] Rgraphviz_2.55.0    BiocManager_1.30.27 BiocGenerics_0.57.0</span></span>
-<span><span class="co">## [64] pkgload_1.5.0       jsonlite_2.0.0      R6_2.6.1           </span></span>
-<span><span class="co">## [67] systemfonts_1.3.1   fs_1.6.6</span></span></code></pre>
+<span><span class="co">##  [1] utf8_1.2.6          rappdirs_0.3.4      sass_0.4.10        </span></span>
+<span><span class="co">##  [4] generics_0.1.4      RSQLite_2.4.6       digest_0.6.39      </span></span>
+<span><span class="co">##  [7] magrittr_2.0.4      evaluate_1.0.5      grid_4.5.2         </span></span>
+<span><span class="co">## [10] bookdown_0.46       fastmap_1.2.0       blob_1.3.0         </span></span>
+<span><span class="co">## [13] R.oo_1.27.1         jsonlite_2.0.0      ontologyIndex_2.12 </span></span>
+<span><span class="co">## [16] R.utils_2.13.0      ontologyPlot_1.7    graph_1.88.1       </span></span>
+<span><span class="co">## [19] BiocManager_1.30.27 purrr_1.2.1         crosstalk_1.2.2    </span></span>
+<span><span class="co">## [22] Rgraphviz_2.54.0    codetools_0.2-20    httr2_1.2.2        </span></span>
+<span><span class="co">## [25] textshaping_1.0.4   jquerylib_0.1.4     paintmap_1.0       </span></span>
+<span><span class="co">## [28] cli_3.6.5           rlang_1.1.7         dbplyr_2.5.2       </span></span>
+<span><span class="co">## [31] R.methodsS3_1.8.2   bit64_4.6.0-1       withr_3.0.2        </span></span>
+<span><span class="co">## [34] cachem_1.1.0        yaml_2.3.12         otel_0.2.0         </span></span>
+<span><span class="co">## [37] tools_4.5.2         memoise_2.0.1       filelock_1.0.3     </span></span>
+<span><span class="co">## [40] BiocGenerics_0.56.0 curl_7.0.0          vctrs_0.7.1        </span></span>
+<span><span class="co">## [43] R6_2.6.1            stats4_4.5.2        BiocFileCache_3.0.0</span></span>
+<span><span class="co">## [46] lifecycle_1.0.5     fs_1.6.6            htmlwidgets_1.6.4  </span></span>
+<span><span class="co">## [49] bit_4.6.0           ragg_1.5.0          pkgconfig_2.0.3    </span></span>
+<span><span class="co">## [52] desc_1.4.3          pkgdown_2.2.0       pillar_1.11.1      </span></span>
+<span><span class="co">## [55] bslib_0.10.0        glue_1.8.0          systemfonts_1.3.1  </span></span>
+<span><span class="co">## [58] xfun_0.56           tibble_3.3.1        tidyselect_1.2.1   </span></span>
+<span><span class="co">## [61] knitr_1.51          htmltools_0.5.9     rmarkdown_2.30     </span></span>
+<span><span class="co">## [64] compiler_4.5.2</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

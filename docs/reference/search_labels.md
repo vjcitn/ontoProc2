@@ -1,37 +1,63 @@
+<div id="main" class="col-md-9" role="main">
+
 # Search term labels in a SemsqlConn database
+
+<div class="ref-description section level2">
 
 Search term labels in a SemsqlConn database
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 search_labels(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
 
-- pattern:
+-   pattern:
 
-  character(1) substring to match against rdfs:label values (SQL LIKE
-  pattern, case-insensitive on most SQLite builds).
+    character(1) substring to match against rdfs:label values (SQL LIKE
+    pattern, case-insensitive on most SQLite builds).
 
-- limit:
+-   limit:
 
-  integer(1) maximum number of rows to return (default 20).
+    integer(1) maximum number of rows to return (default 20).
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 data.frame with columns `subject` and `label`.
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 search_labels(goref, "apoptosis")
 #>           subject
@@ -77,5 +103,11 @@ search_labels(goref, "apoptosis")
 #> 19                                                            Suppression of apoptosis
 #> 20                                    obsolete perturbation by virus of host apoptosis
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

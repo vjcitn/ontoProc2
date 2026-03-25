@@ -1,41 +1,67 @@
+<div id="main" class="col-md-9" role="main">
+
 # Find terms that have a given OWL someValuesFrom restriction
+
+<div class="ref-description section level2">
 
 Find terms that have a given OWL someValuesFrom restriction
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 find_by_restriction(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
 
-- property:
+-   property:
 
-  character(1) property CURIE (e.g. `"BFO:0000050"` for part-of).
+    character(1) property CURIE (e.g. `"BFO:0000050"` for part-of).
 
-- filler:
+-   filler:
 
-  character(1) filler class CURIE.
+    character(1) filler class CURIE.
 
-- include_filler_descendants:
+-   include\_filler\_descendants:
 
-  logical(1) if TRUE also match subclasses of `filler` (default
-  `FALSE`).
+    logical(1) if TRUE also match subclasses of `filler` (default
+    `FALSE`).
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 data.frame with columns `id` and `label`.
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 # cellular components that are part_of nucleus (GO:0005634)
 find_by_restriction(goref, "BFO:0000050", "GO:0005634")
@@ -51,5 +77,11 @@ find_by_restriction(goref, "BFO:0000050", "GO:0005634")
 #> 9  GO:0110092               nucleus leading edge
 #> 10 GO:0000943       retrotransposon nucleocapsid
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

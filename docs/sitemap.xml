@@ -1,6 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://github.com/vjcitn/ontoProc2/404.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/articles/GeneOnto.html</loc></url>
+<url><loc>https://github.com/vjcitn/ontoProc2/articles/celltoprotein.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/articles/index.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/articles/ontoProc2.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/articles/uberonpeek.html</loc></url>
@@ -10,6 +11,8 @@
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/SemSQL-class.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/SemSQL.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/SemsqlConn.html</loc></url>
+<url><loc>https://github.com/vjcitn/ontoProc2/reference/cells_with_pmp.html</loc></url>
+<url><loc>https://github.com/vjcitn/ontoProc2/reference/cn2tag.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/count_by_prefix.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/count_descendants.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/describe_table.html</loc></url>
@@ -26,6 +29,7 @@
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/get_direct_superclasses.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/get_label.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/get_prefix.html</loc></url>
+<url><loc>https://github.com/vjcitn/ontoProc2/reference/get_present_pmp.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/get_restrictions.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/get_synonyms.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/get_term_info.html</loc></url>
@@ -49,6 +53,7 @@
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/semsql_to_oi.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/semsql_url.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/show-SemSQL-method.html</loc></url>
+<url><loc>https://github.com/vjcitn/ontoProc2/reference/tag2cn.html</loc></url>
 <url><loc>https://github.com/vjcitn/ontoProc2/reference/with_connection.html</loc></url>
 </urlset>
 

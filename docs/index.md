@@ -1,4 +1,8 @@
+<div id="main" class="col-md-9" role="main">
+
 # ontoProc2
+
+<div class="section level1">
 
 Revise ontoProc methods to take advantage of INCAtools SemanticSQL
 representations of ontologies
@@ -30,3 +34,7 @@ available.
 
 In this package we will provide tools to retrieve, cache, and make use
 of these ontologies.
+
+</div>
+
+</div>

@@ -1,9 +1,19 @@
+<div id="main" class="col-md-9" role="main">
+
 # return a SQLite connection (read only) to an INCAtools Semantic SQL ontology
+
+<div class="ref-description section level2">
 
 return a SQLite connection (read only) to an INCAtools Semantic SQL
 ontology
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 retrieve_semsql_conn(
@@ -14,30 +24,58 @@ retrieve_semsql_conn(
 )
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- ontology:
+-   ontology:
 
-  character(1) short string prefixing .db.gz in the INCAtools collection
+    character(1) short string prefixing .db.gz in the INCAtools
+    collection
 
-- cache:
+-   cache:
 
-  a BiocFileCache instance, defaulting to BiocFileCache::BiocFileCache()
+    a BiocFileCache instance, defaulting to
+    BiocFileCache::BiocFileCache()
 
-- cacheid:
+-   cacheid:
 
-  character(1) or NULL; if non-null, the associated SQLite resource will
-  be used from cache
+    character(1) or NULL; if non-null, the associated SQLite resource
+    will be used from cache
 
-- ...:
+-   ...:
 
-  passed to download.file
+    passed to download.file
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 an RSQLite DBI connection instance
 
+</div>
+
+<div class="section level2">
+
+## Note
+
+When the cache is searched, the string given as 'ontology' will be
+prefixed with '^'. This helps avoid confusion between pcl.db and cl.db,
+for example.
+
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 # first time will involve a download and decompression
@@ -48,7 +86,7 @@ head(DBI::dbListTables(aionto))
 #> [5] "anonymous_individual_expression" "anonymous_property_expression"  
 dplyr::tbl(aionto, "class_node") |> head() 
 #> # Source:   SQL [?? x 1]
-#> # Database: sqlite 3.51.2 [/home/vincent/.cache/R/BiocFileCache/b2422b2bbf70_aio.db]
+#> # Database: sqlite 3.51.2 [/Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/4561637cb3e4_aio.db]
 #>   id                             
 #>   <chr>                          
 #> 1 aio:AbstractRNNCell            
@@ -58,3 +96,9 @@ dplyr::tbl(aionto, "class_node") |> head()
 #> 5 aio:ActivityRegularizationLayer
 #> 6 aio:AdaptiveAvgPool1DLayer     
 ```
+
+</div>
+
+</div>
+
+</div>

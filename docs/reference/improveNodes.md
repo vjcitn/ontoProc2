@@ -1,29 +1,55 @@
+<div id="main" class="col-md-9" role="main">
+
 # inject linefeeds for node names for graph, with textual annotation from ontology
+
+<div class="ref-description section level2">
 
 inject linefeeds for node names for graph, with textual annotation from
 ontology
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 improveNodes(g, ont)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- g:
+-   g:
 
-  graphNEL instance
+    graphNEL instance
 
-- ont:
+-   ont:
 
-  instance of ontology from ontologyIndex
+    instance of ontology from ontologyIndex
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 graphNEL instance
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 requireNamespace("Rgraphviz")
@@ -47,3 +73,9 @@ head(graph::nodes(gnel))
 #> [5] "mature\nalpha-beta T cell\nCL:0000791"  
 #> [6] "CD4-positive\nhelper T cell\nCL:0000492"
 ```
+
+</div>
+
+</div>
+
+</div>

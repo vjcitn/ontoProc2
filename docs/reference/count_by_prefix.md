@@ -1,28 +1,54 @@
+<div id="main" class="col-md-9" role="main">
+
 # Count labeled terms grouped by CURIE prefix
+
+<div class="ref-description section level2">
 
 Count labeled terms grouped by CURIE prefix
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 count_by_prefix(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 data.frame with columns `prefix` and `n`, ordered by `n` descending.
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 count_by_prefix(goref)
 #>       prefix     n
@@ -49,5 +75,11 @@ count_by_prefix(goref)
 #> 21       COB     5
 #> 22       OBI     1
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

@@ -1,43 +1,67 @@
+<div id="main" class="col-md-9" role="main">
+
 # Get all ancestors of a term via entailed edges
+
+<div class="ref-description section level2">
 
 Get all ancestors of a term via entailed edges
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 get_ancestors(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
 
-- term_id:
+-   term\_id:
 
-  character(1) CURIE.
+    character(1) CURIE.
 
-- predicates:
+-   predicates:
 
-  character vector of predicate CURIEs to follow. Defaults to
-  `"rdfs:subClassOf"`. See
-  [`PREDICATES`](https://github.com/vjcitn/ontoProc2/reference/PREDICATES.md)
-  for common values.
+    character vector of predicate CURIEs to follow. Defaults to
+    `"rdfs:subClassOf"`. See `PREDICATES` for common values.
 
-- include_self:
+-   include\_self:
 
-  logical(1) whether to include the term itself (default `FALSE`).
+    logical(1) whether to include the term itself (default `FALSE`).
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 data.frame with columns `id`, `label`, `predicate`.
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 get_ancestors(goref, "GO:0006915")
 #>            id                 label       predicate
@@ -48,5 +72,11 @@ get_ancestors(goref, "GO:0006915")
 #> 6 BFO:0000015               process rdfs:subClassOf
 #> 7  GO:0012501 programmed cell death rdfs:subClassOf
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

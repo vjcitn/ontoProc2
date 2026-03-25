@@ -1,37 +1,63 @@
+<div id="main" class="col-md-9" role="main">
+
 # Get synonyms for a term
+
+<div class="ref-description section level2">
 
 Get synonyms for a term
 
+</div>
+
+<div class="section level2">
+
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 get_synonyms(x, ...)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  A `SemsqlConn` object.
+    A `SemsqlConn` object.
 
-- term_id:
+-   term\_id:
 
-  character(1) CURIE.
+    character(1) CURIE.
 
-- type:
+-   type:
 
-  character(1) synonym scope: one of `"all"`, `"exact"`, `"broad"`,
-  `"narrow"`, `"related"`.
+    character(1) synonym scope: one of `"all"`, `"exact"`, `"broad"`,
+    `"narrow"`, `"related"`.
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 data.frame with columns `subject`, `predicate`, `synonym`.
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/vincent/.cache/R/BiocFileCache/b24227f056f7_go.db
+#> Connected to SemanticSQL database: /Users/vincentcarey/Library/Caches/org.R-project.R/R/BiocFileCache/40e293b372b_go.db
 #> Primary ontology prefix: GO
 get_synonyms(goref, "GO:0006915")
 #> [1] subject   predicate synonym  
@@ -42,5 +68,11 @@ get_synonyms(goref, "GO:0006915", type = "exact")
 #> 2 GO:0006915 oio:hasExactSynonym    apoptotic programmed cell death
 #> 3 GO:0006915 oio:hasExactSynonym programmed cell death by apoptosis
 disconnect(goref)
-#> Disconnected from 'b24227f056f7_go.db'
+#> Disconnected from '40e293b372b_go.db'
 ```
+
+</div>
+
+</div>
+
+</div>

@@ -1,83 +1,80 @@
+<div id="main" class="col-md-9" role="main">
+
 # Package index
+
+<div class="section level2">
 
 ## All functions
 
-- [`PREDICATES`](https://github.com/vjcitn/ontoProc2/reference/PREDICATES.md)
-  : Standard predicate CURIEs used in OBO ontologies
-- [`SemsqlConn()`](https://github.com/vjcitn/ontoProc2/reference/SemsqlConn.md)
-  : SemsqlConn: S7 connection wrapper for SemanticSQL databases
-- [`count_by_prefix()`](https://github.com/vjcitn/ontoProc2/reference/count_by_prefix.md)
-  : Count labeled terms grouped by CURIE prefix
-- [`count_descendants()`](https://github.com/vjcitn/ontoProc2/reference/count_descendants.md)
-  : Count the number of descendants of a term
-- [`describe_table()`](https://github.com/vjcitn/ontoProc2/reference/describe_table.md)
-  : Describe the columns of a table in a SemsqlConn database
-- [`disconnect()`](https://github.com/vjcitn/ontoProc2/reference/disconnect.md)
-  : Disconnect a SemsqlConn from its database
-- [`find_by_restriction()`](https://github.com/vjcitn/ontoProc2/reference/find_by_restriction.md)
-  : Find terms that have a given OWL someValuesFrom restriction
-- [`find_intersection()`](https://github.com/vjcitn/ontoProc2/reference/find_intersection.md)
-  : Find terms that are descendants of a superclass and have a given
-  restriction
-- [`get_ancestors()`](https://github.com/vjcitn/ontoProc2/reference/get_ancestors.md)
-  : Get all ancestors of a term via entailed edges
-- [`get_ancestors_partonomy()`](https://github.com/vjcitn/ontoProc2/reference/get_ancestors_partonomy.md)
-  : Get ancestors traversing both is-a and part-of relationships
-- [`get_definition()`](https://github.com/vjcitn/ontoProc2/reference/get_definition.md)
-  : Get the text definition for a term
-- [`get_descendants()`](https://github.com/vjcitn/ontoProc2/reference/get_descendants.md)
-  : Get all descendants of a term via entailed edges
-- [`get_descendants_partonomy()`](https://github.com/vjcitn/ontoProc2/reference/get_descendants_partonomy.md)
-  : Get descendants traversing both is-a and has-part relationships
-- [`get_direct_edges()`](https://github.com/vjcitn/ontoProc2/reference/get_direct_edges.md)
-  : Get direct edges in the ontology graph for a term
-- [`get_direct_subclasses()`](https://github.com/vjcitn/ontoProc2/reference/get_direct_subclasses.md)
-  : Get direct subclasses of a term
-- [`get_direct_superclasses()`](https://github.com/vjcitn/ontoProc2/reference/get_direct_superclasses.md)
-  : Get direct superclasses of a term
-- [`get_label()`](https://github.com/vjcitn/ontoProc2/reference/get_label.md)
-  : Get the rdfs:label for a term
-- [`get_prefix()`](https://github.com/vjcitn/ontoProc2/reference/get_prefix.md)
-  : Retrieve the ontology prefix from a SemsqlConn
-- [`get_restrictions()`](https://github.com/vjcitn/ontoProc2/reference/get_restrictions.md)
-  : Get OWL someValuesFrom restrictions for a term
-- [`get_synonyms()`](https://github.com/vjcitn/ontoProc2/reference/get_synonyms.md)
-  : Get synonyms for a term
-- [`get_term_info()`](https://github.com/vjcitn/ontoProc2/reference/get_term_info.md)
-  : Retrieve a summary of information about a term
-- [`improveNodes()`](https://github.com/vjcitn/ontoProc2/reference/improveNodes.md)
-  : inject linefeeds for node names for graph, with textual annotation
-  from ontology
-- [`is_connected()`](https://github.com/vjcitn/ontoProc2/reference/is_connected.md)
-  : Test whether a SemsqlConn has a valid open connection
-- [`list_tables()`](https://github.com/vjcitn/ontoProc2/reference/list_tables.md)
-  : List tables in a SemsqlConn database
-- [`make_graphNEL_from_ontology_plot()`](https://github.com/vjcitn/ontoProc2/reference/make_graphNEL_from_ontology_plot.md)
-  : obtain graphNEL from ontology_plot instance of ontologyPlot
-- [`ncit_map`](https://github.com/vjcitn/ontoProc2/reference/ncit_map.md)
-  : a named vector with values rdfs labels in NCI thesaurus, and names
-  the corresponding formal ontology tags
-- [`onto_plot2()`](https://github.com/vjcitn/ontoProc2/reference/onto_plot2.md)
-  : high-level use of graph/Rgraphviz for rendering ontology relations
-- [`print`](https://github.com/vjcitn/ontoProc2/reference/print.md) :
-  setup print
-- [`reconnect()`](https://github.com/vjcitn/ontoProc2/reference/reconnect.md)
-  : Reconnect a SemsqlConn to its database
-- [`report()`](https://github.com/vjcitn/ontoProc2/reference/report.md)
-  : Display a detailed report of a SemsqlConn object
-- [`retrieve_semsql_conn()`](https://github.com/vjcitn/ontoProc2/reference/retrieve_semsql_conn.md)
-  : return a SQLite connection (read only) to an INCAtools Semantic SQL
-  ontology
-- [`run_query()`](https://github.com/vjcitn/ontoProc2/reference/run_query.md)
-  : Run an arbitrary SQL query against a SemsqlConn database
-- [`search_labels()`](https://github.com/vjcitn/ontoProc2/reference/search_labels.md)
-  : Search term labels in a SemsqlConn database
-- [`semsql_connect()`](https://github.com/vjcitn/ontoProc2/reference/semsql_connect.md)
-  : Create a SemsqlConn connection
-- [`semsql_to_oi()`](https://github.com/vjcitn/ontoProc2/reference/semsql_to_oi.md)
-  : produce an ontology_index instance from semantic sql sqlite
-  connection
-- [`semsql_url()`](https://github.com/vjcitn/ontoProc2/reference/semsql_url.md)
-  : produce INCAtools distribution URL
-- [`with_connection()`](https://github.com/vjcitn/ontoProc2/reference/with_connection.md)
-  : Execute code with an automatically managed SemsqlConn
+</div>
+
+<div class="section level2">
+
+-   `PREDICATES` : Standard predicate CURIEs used in OBO ontologies
+-   `SemsqlConn()` : SemsqlConn: S7 connection wrapper for SemanticSQL
+    databases
+-   `cells_with_pmp()` : produce a table with cells exhibiting given
+    proteins on plasma membrane according to CL
+-   `cn2tag` : a named vector with mapping from cell type phrase to
+    CURIE for CL.owl of 2025-12-17
+-   `count_by_prefix()` : Count labeled terms grouped by CURIE prefix
+-   `count_descendants()` : Count the number of descendants of a term
+-   `describe_table()` : Describe the columns of a table in a SemsqlConn
+    database
+-   `disconnect()` : Disconnect a SemsqlConn from its database
+-   `find_by_restriction()` : Find terms that have a given OWL
+    someValuesFrom restriction
+-   `find_intersection()` : Find terms that are descendants of a
+    superclass and have a given restriction
+-   `get_ancestors()` : Get all ancestors of a term via entailed edges
+-   `get_ancestors_partonomy()` : Get ancestors traversing both is-a and
+    part-of relationships
+-   `get_definition()` : Get the text definition for a term
+-   `get_descendants()` : Get all descendants of a term via entailed
+    edges
+-   `get_descendants_partonomy()` : Get descendants traversing both is-a
+    and has-part relationships
+-   `get_direct_edges()` : Get direct edges in the ontology graph for a
+    term
+-   `get_direct_subclasses()` : Get direct subclasses of a term
+-   `get_direct_superclasses()` : Get direct superclasses of a term
+-   `get_label()` : Get the rdfs:label for a term
+-   `get_prefix()` : Retrieve the ontology prefix from a SemsqlConn
+-   `get_present_pmp()` : produce a table with list of proteins from
+    protein ontology identified as present on cell membranes for input
+    cell type CURIEs
+-   `get_restrictions()` : Get OWL someValuesFrom restrictions for a
+    term
+-   `get_synonyms()` : Get synonyms for a term
+-   `get_term_info()` : Retrieve a summary of information about a term
+-   `improveNodes()` : inject linefeeds for node names for graph, with
+    textual annotation from ontology
+-   `is_connected()` : Test whether a SemsqlConn has a valid open
+    connection
+-   `list_tables()` : List tables in a SemsqlConn database
+-   `make_graphNEL_from_ontology_plot()` : obtain graphNEL from
+    ontology\_plot instance of ontologyPlot
+-   `ncit_map` : a named vector with values rdfs labels in NCI
+    thesaurus, and names the corresponding formal ontology tags
+-   `onto_plot2()` : high-level use of graph/Rgraphviz for rendering
+    ontology relations
+-   `print` : setup print
+-   `reconnect()` : Reconnect a SemsqlConn to its database
+-   `report()` : Display a detailed report of a SemsqlConn object
+-   `retrieve_semsql_conn()` : return a SQLite connection (read only) to
+    an INCAtools Semantic SQL ontology
+-   `run_query()` : Run an arbitrary SQL query against a SemsqlConn
+    database
+-   `search_labels()` : Search term labels in a SemsqlConn database
+-   `semsql_connect()` : Create a SemsqlConn connection
+-   `semsql_to_oi()` : produce an ontology\_index instance from semantic
+    sql sqlite connection
+-   `semsql_url()` : produce INCAtools distribution URL
+-   `tag2cn` : a named vector with mapping from CURIE to cell type
+    phrase for CL.owl of 2025-12-17
+-   `with_connection()` : Execute code with an automatically managed
+    SemsqlConn
+
+</div>
+
+</div>

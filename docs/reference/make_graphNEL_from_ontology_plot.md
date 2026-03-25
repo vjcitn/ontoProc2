@@ -1,24 +1,50 @@
-# obtain graphNEL from ontology_plot instance of ontologyPlot
+<div id="main" class="col-md-9" role="main">
 
-obtain graphNEL from ontology_plot instance of ontologyPlot
+# obtain graphNEL from ontology\_plot instance of ontologyPlot
+
+<div class="ref-description section level2">
+
+obtain graphNEL from ontology\_plot instance of ontologyPlot
+
+</div>
+
+<div class="section level2">
 
 ## Usage
+
+<div class="sourceCode">
 
 ``` r
 make_graphNEL_from_ontology_plot(x)
 ```
 
+</div>
+
+</div>
+
+<div class="section level2">
+
 ## Arguments
 
-- x:
+-   x:
 
-  instance of S3 class ontology_plot
+    instance of S3 class ontology\_plot
+
+</div>
+
+<div class="section level2">
 
 ## Value
 
 instance of S4 graphNEL class
 
+</div>
+
+<div class="section level2">
+
 ## Examples
+
+<div class="sourceCode">
 
 ``` r
 # \donttest{
@@ -38,3 +64,9 @@ Rgraphviz::renderGraph(gnel)
 
 # }
 ```
+
+</div>
+
+</div>
+
+</div>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,8 @@
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/celltoprotein.html">celltoprotein -- connecting Cell and Protein Ontologies</a></li>
+    <li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -58,6 +59,20 @@
 
         </dt>
         <dd>SemsqlConn: S7 connection wrapper for SemanticSQL databases</dd>
+
+        <dt>
+
+          <code><a href="cells_with_pmp.html">cells_with_pmp()</a></code>
+
+        </dt>
+        <dd>produce a table with cells exhibiting given proteins on plasma membrane according to CL</dd>
+
+        <dt>
+
+          <code><a href="cn2tag.html">cn2tag</a></code>
+
+        </dt>
+        <dd>a named vector with mapping from cell type phrase to CURIE for CL.owl of 2025-12-17</dd>
 
         <dt>
 
@@ -170,6 +185,13 @@
 
         </dt>
         <dd>Retrieve the ontology prefix from a SemsqlConn</dd>
+
+        <dt>
+
+          <code><a href="get_present_pmp.html">get_present_pmp()</a></code>
+
+        </dt>
+        <dd>produce a table with list of proteins from protein ontology identified as present on cell membranes for input cell type CURIEs</dd>
 
         <dt>
 
@@ -296,6 +318,13 @@
 
         </dt>
         <dd>produce INCAtools distribution URL</dd>
+
+        <dt>
+
+          <code><a href="tag2cn.html">tag2cn</a></code>
+
+        </dt>
+        <dd>a named vector with mapping from CURIE to cell type phrase for CL.owl of 2025-12-17</dd>
 
         <dt>
 
