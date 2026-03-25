@@ -42,6 +42,7 @@ We have a helper resource for finding exact Cell Ontology names
 of cell types.
 
 ```{r lkct1}
+data("tag2cn", package="ontoProc2")
 cd8reg = grep("CD8-positive.*regulatory", tag2cn, value=TRUE)
 cd8reg
 ```
