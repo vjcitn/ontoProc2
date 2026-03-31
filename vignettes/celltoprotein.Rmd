@@ -34,7 +34,7 @@ Connect to the relational ontology and search for CURIEs related
 to "plasma membrane".
 ```{r lkon1,message=FALSE}
 library(ontoProc2)
-ro = semsql_connect(ontology="ro") 
+ro <- semsql_connect(ontology = "ro")
 search_labels(ro, "plasma membrane")
 ```
 
@@ -42,8 +42,8 @@ We have a helper resource for finding exact Cell Ontology names
 of cell types.
 
 ```{r lkct1}
-data("tag2cn", package="ontoProc2")
-cd8reg = grep("CD8-positive.*regulatory", tag2cn, value=TRUE)
+data("tag2cn", package = "ontoProc2")
+cd8reg <- grep("CD8-positive.*regulatory", tag2cn, value = TRUE)
 cd8reg
 ```
 
@@ -51,7 +51,7 @@ Now with these cell type identifiers, we can search for the
 proteins identified as "part of plasma membrane".
 We need to use the CURIEs for precision
 ```{r lkct2, message=FALSE}
-prtab = get_present_pmp(names(cd8reg))
+prtab <- get_present_pmp(names(cd8reg))
 library(DT)
 datatable(prtab)
 ```
@@ -61,8 +61,8 @@ datatable(prtab)
 We pick two proteins and look for associated cell types.
 
 ```{r lkpr1, message=FALSE}
-prs = c("PR:000001094", "PR:000001380")
-clk = cells_with_pmp(prs)
+prs <- c("PR:000001094", "PR:000001380")
+clk <- cells_with_pmp(prs)
 datatable(clk)
 ```
 
@@ -73,7 +73,7 @@ Cell Ontology includes all assertions that are derivable from base
 axioms of the ontology.  
 
 ```{r lkentedg, message=FALSE}
-cl = semsql_connect(ontology="cl")
+cl <- semsql_connect(ontology = "cl")
 cl
 library(dplyr)
 tbl(cl@con, "entailed_edge")
@@ -82,7 +82,10 @@ tbl(cl@con, "entailed_edge") |> count()
 
 We can look for statements that have "RO:0002104" as predicate:
 ```{r domo}
-tbl(cl@con, "entailed_edge") |> filter(predicate=="RO:0002104") |>
-  as.data.frame() |> filter(grepl("PR:", object)) |> arrange(subject) |>
+tbl(cl@con, "entailed_edge") |>
+  filter(predicate == "RO:0002104") |>
+  as.data.frame() |>
+  filter(grepl("PR:", object)) |>
+  arrange(subject) |>
   datatable()
 ```
