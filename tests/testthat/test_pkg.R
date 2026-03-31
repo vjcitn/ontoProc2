@@ -7,11 +7,13 @@ test_that("retriever behaves reasonably", {
   expect_true(nrow(count_by_prefix(conn)) > 0)
   disconnect(conn)
   expect_error({
-    suppressWarnings(tryCatch({
-      retrieve_semsql_conn("xyzzyAA", quietly = TRUE)
-    }, error = function(e) {
-      stop(paste0("Download failed: ", e$message))
-    }))
+    suppressWarnings(tryCatch(
+      {
+        retrieve_semsql_conn("xyzzyAA", quietly = TRUE)
+      },
+      error = function(e) {
+        stop(paste0("Download failed: ", e$message))
+      }
+    ))
   })
 })
-

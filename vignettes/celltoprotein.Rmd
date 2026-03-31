@@ -62,8 +62,8 @@ We pick two proteins and look for associated cell types.
 
 ```{r lkpr1, message=FALSE}
 prs <- c("PR:000001094", "PR:000001380")
-clk <- cells_with_pmp(prs)
-datatable(clk)
+clk <- try(cells_with_pmp(prs))
+if (inherits(clk, "try-error")) message("it is necessary to allow a large download of Protein Ontology for this chunk to run") else datatable(clk)
 ```
 
 # Some details
@@ -88,4 +88,19 @@ tbl(cl@con, "entailed_edge") |>
   filter(grepl("PR:", object)) |>
   arrange(subject) |>
   datatable()
+```
+
+Disconnect databases.
+
+```{r dodisc}
+disconnect(cl)
+disconnect(ro)
+```
+
+
+
+# Session information
+
+```{r lksess}
+sessionInfo()
 ```

@@ -18,5 +18,7 @@ produce a table with cells exhibiting given proteins on plasma
 membrane according to CL
 }
 \examples{
+\donttest{
 cells_with_pmp(c("PR:000002064", "PR:000001874"))
+}
 }
