@@ -49,8 +49,10 @@ cd8reg
 
 Now with these cell type identifiers, we can search for the
 proteins identified as "part of plasma membrane".
-We need to use the CURIEs for precision
-```{r lkct2, message=FALSE}
+We need to use the CURIEs for precision.  THIS IS BLOCKED
+UNTIL WE HAVE A SUBSET OF PR DATA TO ILLUSTRATE AS THE
+PR DOWNLOADS ARE TOO SLOW.
+```{r lkct2, message=FALSE,eval=FALSE}
 prtab <- get_present_pmp(names(cd8reg))
 library(DT)
 datatable(prtab)
@@ -58,9 +60,9 @@ datatable(prtab)
 
 # Given a protein, what cell types are asserted to possess it as a membrane part?
 
-We pick two proteins and look for associated cell types.
+We pick two proteins and look for associated cell types.  BLOCKED AS ABOVE.
 
-```{r lkpr1, message=FALSE}
+```{r lkpr1, message=FALSE,eval=FALSE}
 prs <- c("PR:000001094", "PR:000001380")
 clk <- try(cells_with_pmp(prs))
 if (inherits(clk, "try-error")) message("it is necessary to allow a large download of Protein Ontology for this chunk to run") else datatable(clk)
