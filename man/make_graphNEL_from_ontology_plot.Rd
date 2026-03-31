@@ -19,15 +19,17 @@ obtain graphNEL from ontology_plot instance of ontologyPlot
 \donttest{
 requireNamespace("Rgraphviz")
 requireNamespace("graph")
-clcon = retrieve_semsql_conn("cl")
-cl = semsql_to_oi(clcon)
-cl3k = c("CL:0000492", "CL:0001054", "CL:0000236", "CL:0000625",
-   "CL:0000576", "CL:0000623", "CL:0000451", "CL:0000556")
-p3k = ontologyPlot::onto_plot(cl, cl3k)
-gnel = make_graphNEL_from_ontology_plot(p3k)
-gnel = improveNodes(gnel, cl)
-graph::graph.par(list(nodes=list(shape="plaintext", cex=.8)))
-gnel = Rgraphviz::layoutGraph(gnel)
+clcon <- retrieve_semsql_conn("cl")
+cl <- semsql_to_oi(clcon)
+cl3k <- c(
+  "CL:0000492", "CL:0001054", "CL:0000236", "CL:0000625",
+  "CL:0000576", "CL:0000623", "CL:0000451", "CL:0000556"
+)
+p3k <- ontologyPlot::onto_plot(cl, cl3k)
+gnel <- make_graphNEL_from_ontology_plot(p3k)
+gnel <- improveNodes(gnel, cl)
+graph::graph.par(list(nodes = list(shape = "plaintext", cex = .8)))
+gnel <- Rgraphviz::layoutGraph(gnel)
 Rgraphviz::renderGraph(gnel)
 }
 }

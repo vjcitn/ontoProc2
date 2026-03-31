@@ -4,6 +4,6 @@
 #' @examples
 #' semsql_url("cl")
 #' @export
-semsql_url = function(ontology = "efo") {
+semsql_url <- function(ontology = "efo") {
   sprintf("https://s3.amazonaws.com/bbop-sqlite/%s.db.gz", ontology)
 }

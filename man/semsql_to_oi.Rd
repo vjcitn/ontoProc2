@@ -10,7 +10,7 @@ semsql_to_oi(con)
 \item{con}{DBI::dbConnect value for sqlite table}
 }
 \value{
-result of ontologyIndex::ontology_index evaluated for the labels and 
+result of ontologyIndex::ontology_index evaluated for the labels and
 parent-child relations in tables statements and edge of the semantic sql resource
 }
 \description{

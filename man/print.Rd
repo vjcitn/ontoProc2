@@ -6,6 +6,9 @@
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 }
+\value{
+print action
+}
 \description{
 setup print
 

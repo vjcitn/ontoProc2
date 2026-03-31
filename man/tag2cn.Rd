@@ -14,7 +14,7 @@ data(tag2cn)
 a named vector with mapping from CURIE to cell type phrase for CL.owl of 2025-12-17
 }
 \examples{
-data("tag2cn", package="ontoProc2")
+data("tag2cn", package = "ontoProc2")
 tag2cn[c("CL:0000000", "CL:0000006")]
 }
 \keyword{datasets}

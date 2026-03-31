@@ -22,6 +22,6 @@ Count the number of descendants of a term
 }
 \examples{
 goref <- semsql_connect(ontology = "go")
-count_descendants(goref, "GO:0006915")  # all apoptosis subtypes
+count_descendants(goref, "GO:0006915") # all apoptosis subtypes
 disconnect(goref)
 }

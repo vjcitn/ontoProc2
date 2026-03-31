@@ -19,6 +19,6 @@ Get the rdfs:label for a term
 }
 \examples{
 goref <- semsql_connect(ontology = "go")
-get_label(goref, "GO:0006915")  # "apoptotic process"
+get_label(goref, "GO:0006915") # "apoptotic process"
 disconnect(goref)
 }

@@ -17,7 +17,7 @@ Test whether a SemsqlConn has a valid open connection
 }
 \examples{
 goref <- semsql_connect(ontology = "go")
-is_connected(goref)   # TRUE
+is_connected(goref) # TRUE
 disconnect(goref)
-is_connected(goref)   # FALSE
+is_connected(goref) # FALSE
 }

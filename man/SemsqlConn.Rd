@@ -6,6 +6,9 @@
 \usage{
 SemsqlConn(con = NULL, db_path = character(0), ontology_prefix = character(0))
 }
+\value{
+wrapped connection
+}
 \description{
 An S7 class that encapsulates a SQLite connection to an ontology database
 following the SemanticSQL schema. Provides methods for common ontology

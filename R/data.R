@@ -4,7 +4,7 @@
 #' @usage
 #' data(ncit_map)
 #' @examples
-#' data("ncit_map", package="ontoProc2")
+#' data("ncit_map", package = "ontoProc2")
 #' ncit_map["EFO:1000899"]
 "ncit_map"
 
@@ -14,7 +14,7 @@
 #' @usage
 #' data(tag2cn)
 #' @examples
-#' data("tag2cn", package="ontoProc2")
+#' data("tag2cn", package = "ontoProc2")
 #' tag2cn[c("CL:0000000", "CL:0000006")]
 "tag2cn"
 
@@ -24,6 +24,6 @@
 #' @usage
 #' data(cn2tag)
 #' @examples
-#' data("cn2tag", package="ontoProc2")
+#' data("cn2tag", package = "ontoProc2")
 #' cn2tag["Kupffer cell"]
 "cn2tag"

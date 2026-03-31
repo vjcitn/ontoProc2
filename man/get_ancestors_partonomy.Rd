@@ -23,6 +23,6 @@ Convenience wrapper around \code{\link{get_ancestors}} that follows both
 }
 \examples{
 goref <- semsql_connect(ontology = "go")
-get_ancestors_partonomy(goref, "GO:0005739")  # mitochondrion
+get_ancestors_partonomy(goref, "GO:0005739") # mitochondrion
 disconnect(goref)
 }

@@ -14,7 +14,7 @@ data(cn2tag)
 a named vector with mapping from cell type phrase to CURIE for CL.owl of 2025-12-17
 }
 \examples{
-data("cn2tag", package="ontoProc2")
+data("cn2tag", package = "ontoProc2")
 cn2tag["Kupffer cell"]
 }
 \keyword{datasets}

@@ -1,4 +1,3 @@
-
 # =============================================================================
 # SemanticSQL R Interface - S7 Class Implementation
 # =============================================================================
@@ -19,6 +18,7 @@
 #'     e.g. \code{"CL"} for the Cell Ontology}
 #' }
 #' @import S7
+#' @return wrapped connection
 #' @export
 SemsqlConn <- new_class(
   "SemsqlConn",
@@ -133,9 +133,9 @@ disconnect <- new_generic("disconnect", "x")
 #' @return logical(1).
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
-#' is_connected(goref)   # TRUE
+#' is_connected(goref) # TRUE
 #' disconnect(goref)
-#' is_connected(goref)   # FALSE
+#' is_connected(goref) # FALSE
 #' @export
 is_connected <- new_generic("is_connected", "x")
 
@@ -195,7 +195,7 @@ search_labels <- new_generic("search_labels", "x")
 #' @return character(1) label, or \code{NA_character_} if not found.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
-#' get_label(goref, "GO:0006915")  # "apoptotic process"
+#' get_label(goref, "GO:0006915") # "apoptotic process"
 #' disconnect(goref)
 #' @export
 get_label <- new_generic("get_label", "x")
@@ -375,7 +375,7 @@ find_intersection <- new_generic("find_intersection", "x")
 #' @return integer(1).
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
-#' count_descendants(goref, "GO:0006915")  # all apoptosis subtypes
+#' count_descendants(goref, "GO:0006915") # all apoptosis subtypes
 #' disconnect(goref)
 #' @export
 count_descendants <- new_generic("count_descendants", "x")
@@ -399,8 +399,10 @@ count_by_prefix <- new_generic("count_by_prefix", "x")
 #' @return data.frame with query results.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
-#' run_query(goref,
-#'   "SELECT subject, value AS label FROM rdfs_label_statement LIMIT 5")
+#' run_query(
+#'   goref,
+#'   "SELECT subject, value AS label FROM rdfs_label_statement LIMIT 5"
+#' )
 #' disconnect(goref)
 #' @export
 run_query <- new_generic("run_query", "x")
@@ -507,7 +509,9 @@ method(get_label, SemsqlConn) <- function(x, term_id) {
     WHERE subject = '%s'
   ", term_id)
   result <- dbGetQuery(x@con, query)
-  if (nrow(result) == 0) return(NA_character_)
+  if (nrow(result) == 0) {
+    return(NA_character_)
+  }
   result$label[1]
 }
 
@@ -518,12 +522,16 @@ method(get_definition, SemsqlConn) <- function(x, term_id) {
     WHERE subject = '%s'
   ", term_id)
   result <- dbGetQuery(x@con, query)
-  if (nrow(result) == 0) return(NA_character_)
+  if (nrow(result) == 0) {
+    return(NA_character_)
+  }
   result$definition[1]
 }
 
-method(get_synonyms, SemsqlConn) <- function(x, term_id,
-    type = c("all", "exact", "broad", "narrow", "related")) {
+method(get_synonyms, SemsqlConn) <- function(
+  x, term_id,
+  type = c("all", "exact", "broad", "narrow", "related")
+) {
   type <- match.arg(type)
   view_name <- switch(type,
     all      = "has_oio_synonym_statement",
@@ -542,12 +550,12 @@ method(get_synonyms, SemsqlConn) <- function(x, term_id,
 
 method(get_term_info, SemsqlConn) <- function(x, term_id) {
   list(
-    id          = term_id,
-    label       = get_label(x, term_id),
-    definition  = get_definition(x, term_id),
-    synonyms    = get_synonyms(x, term_id),
+    id = term_id,
+    label = get_label(x, term_id),
+    definition = get_definition(x, term_id),
+    synonyms = get_synonyms(x, term_id),
     superclasses = get_direct_superclasses(x, term_id),
-    subclasses  = get_direct_subclasses(x, term_id)
+    subclasses = get_direct_subclasses(x, term_id)
   )
 }
 
@@ -555,8 +563,10 @@ method(get_term_info, SemsqlConn) <- function(x, term_id) {
 # EDGE QUERY METHODS
 # =============================================================================
 
-method(get_direct_edges, SemsqlConn) <- function(x, term_id,
-    direction = c("outgoing", "incoming", "both")) {
+method(get_direct_edges, SemsqlConn) <- function(
+  x, term_id,
+  direction = c("outgoing", "incoming", "both")
+) {
   direction <- match.arg(direction)
   where_clause <- switch(direction,
     outgoing = sprintf("e.subject = '%s'", term_id),
@@ -612,8 +622,10 @@ method(get_direct_superclasses, SemsqlConn) <- function(x, term_id) {
 # ENTAILED (TRANSITIVE) QUERY METHODS
 # =============================================================================
 
-method(get_ancestors, SemsqlConn) <- function(x, term_id,
-    predicates = "rdfs:subClassOf", include_self = FALSE) {
+method(get_ancestors, SemsqlConn) <- function(
+  x, term_id,
+  predicates = "rdfs:subClassOf", include_self = FALSE
+) {
   pred_list <- paste0("'", predicates, "'", collapse = ", ")
   query <- sprintf("
     SELECT
@@ -633,8 +645,10 @@ method(get_ancestors, SemsqlConn) <- function(x, term_id,
   result
 }
 
-method(get_descendants, SemsqlConn) <- function(x, term_id,
-    predicates = "rdfs:subClassOf", include_self = FALSE) {
+method(get_descendants, SemsqlConn) <- function(
+  x, term_id,
+  predicates = "rdfs:subClassOf", include_self = FALSE
+) {
   pred_list <- paste0("'", predicates, "'", collapse = ", ")
   query <- sprintf("
     SELECT
@@ -676,8 +690,10 @@ method(get_restrictions, SemsqlConn) <- function(x, term_id) {
   dbGetQuery(x@con, query)
 }
 
-method(find_by_restriction, SemsqlConn) <- function(x, property, filler,
-    include_filler_descendants = FALSE) {
+method(find_by_restriction, SemsqlConn) <- function(
+  x, property, filler,
+  include_filler_descendants = FALSE
+) {
   if (include_filler_descendants) {
     query <- sprintf("
       SELECT DISTINCT
@@ -714,8 +730,10 @@ method(find_by_restriction, SemsqlConn) <- function(x, property, filler,
 # COMPLEX QUERY METHODS
 # =============================================================================
 
-method(find_intersection, SemsqlConn) <- function(x, superclass_id,
-    relation_property, related_to_id) {
+method(find_intersection, SemsqlConn) <- function(
+  x, superclass_id,
+  relation_property, related_to_id
+) {
   query <- sprintf("
     WITH descendants AS (
       SELECT subject FROM entailed_edge
@@ -747,8 +765,10 @@ method(find_intersection, SemsqlConn) <- function(x, superclass_id,
 # STATISTICS METHODS
 # =============================================================================
 
-method(count_descendants, SemsqlConn) <- function(x, term_id,
-    predicate = "rdfs:subClassOf") {
+method(count_descendants, SemsqlConn) <- function(
+  x, term_id,
+  predicate = "rdfs:subClassOf"
+) {
   query <- sprintf("
     SELECT COUNT(DISTINCT subject) AS n
     FROM entailed_edge
@@ -778,6 +798,7 @@ method(count_by_prefix, SemsqlConn) <- function(x) {
 #' setup print
 #' @name print
 #' @rdname print
+#' @return print action
 #' @export
 new_generic("print", "x")
 
@@ -789,14 +810,19 @@ new_generic("print", "x")
 #' @param x A \code{SemsqlConn} object.
 #' @export
 S7::method(print, SemsqlConn) <- function(x) {
-  if (!is_connected(x))
+  if (!is_connected(x)) {
     stop("SemsqlConn object is disconnected; reconnect with semsql_connect()")
-  n_labels <- dbGetQuery(x@con,
-    "SELECT COUNT(*) AS n FROM rdfs_label_statement")$n
-  cat("<SemsqlConn>",
-      " prefix:", x@ontology_prefix,
-      " | labeled terms:", format(n_labels, big.mark = ","),
-      "\n")
+  }
+  n_labels <- dbGetQuery(
+    x@con,
+    "SELECT COUNT(*) AS n FROM rdfs_label_statement"
+  )$n
+  cat(
+    "<SemsqlConn>",
+    " prefix:", x@ontology_prefix,
+    " | labeled terms:", format(n_labels, big.mark = ","),
+    "\n"
+  )
   invisible(x)
 }
 
@@ -818,7 +844,7 @@ S7::method(report, SemsqlConn) <- function(object) {
 
   connected <- is_connected(object)
   status_symbol <- if (connected) "\u2713" else "\u2717"
-  status_text   <- if (connected) "Connected" else "Disconnected"
+  status_text <- if (connected) "Connected" else "Disconnected"
   cat("  Status:          ", status_symbol, " ", status_text, "\n\n")
 
   if (!connected) {
@@ -828,34 +854,54 @@ S7::method(report, SemsqlConn) <- function(object) {
 
   cat("Database Statistics:\n")
   cat(strrep("-", 40), "\n")
-  tryCatch({
-    n <- dbGetQuery(object@con, "SELECT COUNT(*) AS n FROM rdfs_label_statement")$n
-    cat("  Labeled terms:   ", format(n, big.mark = ","), "\n")
-  }, error = function(e) cat("  Labeled terms:    (unavailable)\n"))
-  tryCatch({
-    n <- dbGetQuery(object@con, "SELECT COUNT(*) AS n FROM edge")$n
-    cat("  Direct edges:    ", format(n, big.mark = ","), "\n")
-  }, error = function(e) cat("  Direct edges:     (unavailable)\n"))
-  tryCatch({
-    n <- dbGetQuery(object@con, "SELECT COUNT(*) AS n FROM entailed_edge")$n
-    cat("  Entailed edges:  ", format(n, big.mark = ","), "\n")
-  }, error = function(e) cat("  Entailed edges:   (unavailable)\n"))
-  tryCatch({
-    n <- dbGetQuery(object@con,
-      "SELECT COUNT(*) AS n FROM has_text_definition_statement")$n
-    cat("  Definitions:     ", format(n, big.mark = ","), "\n")
-  }, error = function(e) cat("  Definitions:      (unavailable)\n"))
+  tryCatch(
+    {
+      n <- dbGetQuery(object@con, "SELECT COUNT(*) AS n FROM rdfs_label_statement")$n
+      cat("  Labeled terms:   ", format(n, big.mark = ","), "\n")
+    },
+    error = function(e) cat("  Labeled terms:    (unavailable)\n")
+  )
+  tryCatch(
+    {
+      n <- dbGetQuery(object@con, "SELECT COUNT(*) AS n FROM edge")$n
+      cat("  Direct edges:    ", format(n, big.mark = ","), "\n")
+    },
+    error = function(e) cat("  Direct edges:     (unavailable)\n")
+  )
+  tryCatch(
+    {
+      n <- dbGetQuery(object@con, "SELECT COUNT(*) AS n FROM entailed_edge")$n
+      cat("  Entailed edges:  ", format(n, big.mark = ","), "\n")
+    },
+    error = function(e) cat("  Entailed edges:   (unavailable)\n")
+  )
+  tryCatch(
+    {
+      n <- dbGetQuery(
+        object@con,
+        "SELECT COUNT(*) AS n FROM has_text_definition_statement"
+      )$n
+      cat("  Definitions:     ", format(n, big.mark = ","), "\n")
+    },
+    error = function(e) cat("  Definitions:      (unavailable)\n")
+  )
 
   cat("\n")
   cat("Terms by Prefix (top 5):\n")
   cat(strrep("-", 40), "\n")
-  tryCatch({
-    top <- head(count_by_prefix(object), 5)
-    for (i in seq_len(nrow(top)))
-      cat(sprintf("  %-16s %s\n",
-                  paste0(top$prefix[i], ":"),
-                  format(top$n[i], big.mark = ",")))
-  }, error = function(e) cat("  (unavailable)\n"))
+  tryCatch(
+    {
+      top <- head(count_by_prefix(object), 5)
+      for (i in seq_len(nrow(top))) {
+        cat(sprintf(
+          "  %-16s %s\n",
+          paste0(top$prefix[i], ":"),
+          format(top$n[i], big.mark = ",")
+        ))
+      }
+    },
+    error = function(e) cat("  (unavailable)\n")
+  )
 
   cat("\n")
   cat("Key Tables Available:\n")
@@ -901,16 +947,17 @@ S7::method(report, SemsqlConn) <- function(object) {
 #' goref <- semsql_connect(ontology = "go")
 #' # apoptotic process (GO:0006915) ancestors via is-a and part-of
 #' anc <- get_ancestors(goref, "GO:0006915",
-#'   predicates = c(PREDICATES$subclass_of, PREDICATES$part_of))
+#'   predicates = c(PREDICATES$subclass_of, PREDICATES$part_of)
+#' )
 #' head(anc)
 #' disconnect(goref)
 #' @export
 PREDICATES <- list(
-  subclass_of      = "rdfs:subClassOf",
-  part_of          = "BFO:0000050",
-  has_part         = "BFO:0000051",
-  develops_from    = "RO:0002202",
-  located_in       = "RO:0001025",
+  subclass_of = "rdfs:subClassOf",
+  part_of = "BFO:0000050",
+  has_part = "BFO:0000051",
+  develops_from = "RO:0002202",
+  located_in = "RO:0001025",
   has_characteristic = "RO:0000053"
 )
 
@@ -927,13 +974,14 @@ PREDICATES <- list(
 #' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
-#' get_ancestors_partonomy(goref, "GO:0005739")  # mitochondrion
+#' get_ancestors_partonomy(goref, "GO:0005739") # mitochondrion
 #' disconnect(goref)
 #' @export
 get_ancestors_partonomy <- function(conn, term_id, include_self = FALSE) {
   get_ancestors(conn, term_id,
-                predicates = c(PREDICATES$subclass_of, PREDICATES$part_of),
-                include_self = include_self)
+    predicates = c(PREDICATES$subclass_of, PREDICATES$part_of),
+    include_self = include_self
+  )
 }
 
 #' Get descendants traversing both is-a and has-part relationships
@@ -949,13 +997,14 @@ get_ancestors_partonomy <- function(conn, term_id, include_self = FALSE) {
 #' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
-#' get_descendants_partonomy(goref, "GO:0005634")  # nucleus sub-components
+#' get_descendants_partonomy(goref, "GO:0005634") # nucleus sub-components
 #' disconnect(goref)
 #' @export
 get_descendants_partonomy <- function(conn, term_id, include_self = FALSE) {
   get_descendants(conn, term_id,
-                  predicates = c(PREDICATES$subclass_of, PREDICATES$has_part),
-                  include_self = include_self)
+    predicates = c(PREDICATES$subclass_of, PREDICATES$has_part),
+    include_self = include_self
+  )
 }
 
 #' Execute code with an automatically managed SemsqlConn
@@ -983,4 +1032,3 @@ with_connection <- function(db_path, expr) {
   env$conn <- conn
   eval(substitute(expr), envir = env)
 }
-

@@ -22,9 +22,11 @@ graphNEL instance (invisibly)
 high-level use of graph/Rgraphviz for rendering ontology relations
 }
 \examples{
-clcon = retrieve_semsql_conn("cl")
-cl = semsql_to_oi(clcon)
-cl3k = c("CL:0000492", "CL:0001054", "CL:0000236", "CL:0000625",
-   "CL:0000576", "CL:0000623", "CL:0000451", "CL:0000556")
+clcon <- retrieve_semsql_conn("cl")
+cl <- semsql_to_oi(clcon)
+cl3k <- c(
+  "CL:0000492", "CL:0001054", "CL:0000236", "CL:0000625",
+  "CL:0000576", "CL:0000623", "CL:0000451", "CL:0000556"
+)
 onto_plot2(cl, cl3k)
 }

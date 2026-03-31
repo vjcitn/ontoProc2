@@ -21,7 +21,8 @@ and related functions.
 goref <- semsql_connect(ontology = "go")
 # apoptotic process (GO:0006915) ancestors via is-a and part-of
 anc <- get_ancestors(goref, "GO:0006915",
-  predicates = c(PREDICATES$subclass_of, PREDICATES$part_of))
+  predicates = c(PREDICATES$subclass_of, PREDICATES$part_of)
+)
 head(anc)
 disconnect(goref)
 }

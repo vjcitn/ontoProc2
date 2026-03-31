@@ -1,4 +1,3 @@
-
 #' return a SQLite connection (read only) to an INCAtools Semantic SQL ontology
 #' @import BiocFileCache
 #' @import RSQLite
@@ -13,51 +12,52 @@
 #' helps avoid confusion between pcl.db and cl.db, for example.
 #' @examples
 #' # first time will involve a download and decompression
-#' aionto = retrieve_semsql_conn("aio")
+#' aionto <- retrieve_semsql_conn("aio")
 #' head(DBI::dbListTables(aionto))
-#' dplyr::tbl(aionto, "class_node") |> head() 
+#' dplyr::tbl(aionto, "class_node") |> head()
 #' @export
-retrieve_semsql_conn = function(ontology = "efo", 
-     cache=BiocFileCache::BiocFileCache(), cacheid=NULL, ...) {
-#
-# this function checks for cached version of ontology database
-# and if present, returns SQLite connection to it.  otherwise
-# it caches and then recurses
-#
+retrieve_semsql_conn <- function(ontology = "efo",
+                                 cache = BiocFileCache::BiocFileCache(), cacheid = NULL, ...) {
+  #
+  # this function checks for cached version of ontology database
+  # and if present, returns SQLite connection to it.  otherwise
+  # it caches and then recurses
+  #
   if (!is.null(cacheid)) {
-   cached_path = bfcinfo(cache,cacheid)$rpath
-   return(dbConnect(SQLite(), cached_path, SQLITE_RO))
-   }
-  #rname = paste0("^", ontology, "_bbop_ontoproc2")  # ?
-  rname = paste0(ontology, "_bbop_ontoproc2")
-  bbop_info = BiocFileCache::bfcquery(cache, rname)
-  ind = grep(paste0("^", rname), bbop_info$rname) 
-  if (length(ind)>0) {
-    if (length(ind)>1) {
-       message(sprintf("multiple cache entries found matching request %s", rname))
-       message("please be more specific, by supplying cache id as 'BFCnnn'.")
-       message("see ", sprintf("%s in cache\n", paste(bbop_info$rid, collapse=", ")))
-       stop("cannot proceed with ambiguous ontology spec")
-       }
-    cached_path = bbop_info[ind, "rpath"]$rpath  # ind is length 1
+    cached_path <- bfcinfo(cache, cacheid)$rpath
     return(dbConnect(SQLite(), cached_path, SQLITE_RO))
+  }
+  # rname = paste0("^", ontology, "_bbop_ontoproc2")  # ?
+  rname <- paste0(ontology, "_bbop_ontoproc2")
+  bbop_info <- BiocFileCache::bfcquery(cache, rname)
+  ind <- grep(paste0("^", rname), bbop_info$rname)
+  if (length(ind) > 0) {
+    if (length(ind) > 1) {
+      message(sprintf("multiple cache entries found matching request %s", rname))
+      message("please be more specific, by supplying cache id as 'BFCnnn'.")
+      message("see ", sprintf("%s in cache\n", paste(bbop_info$rid, collapse = ", ")))
+      stop("cannot proceed with ambiguous ontology spec")
     }
-  else {  
-    addr = semsql_url(ontology)
-    zdbname = basename(addr)
-    dbname = sub(".gz$", "", zdbname)
-    tf = basename(tempfile())
-    td = file.path("~", tf)
+    cached_path <- bbop_info[ind, "rpath"]$rpath # ind is length 1
+    return(dbConnect(SQLite(), cached_path, SQLITE_RO))
+  } else {
+    addr <- semsql_url(ontology)
+    zdbname <- basename(addr)
+    dbname <- sub(".gz$", "", zdbname)
+    tf <- basename(tempfile())
+    td <- file.path("~", tf)
     dir.create(td)
-    ztmploc = paste0(td, "/", zdbname)
-    tmploc = paste0(td, "/", dbname)
-    on.exit(unlink(td, recursive=TRUE))
+    ztmploc <- paste0(td, "/", zdbname)
+    tmploc <- paste0(td, "/", dbname)
+    on.exit(unlink(td, recursive = TRUE))
     download.file(addr, file.path(td, zdbname), ...)
     gunzip(ztmploc) # file now at tmploc
-    addv = BiocFileCache::bfcadd(cache, rname=rname,
-     rtype="local", fpath=tmploc, action="move")
-    id = bfcquery(cache, basename(addv))$rid
-    if (!isTRUE(substr(id,1,3)=="BFC")) stop("cache action failed") # avoid possibly infinite Recall
-    Recall(ontology=ontology, cache=cache, cacheid=id)
-    }
+    addv <- BiocFileCache::bfcadd(cache,
+      rname = rname,
+      rtype = "local", fpath = tmploc, action = "move"
+    )
+    id <- bfcquery(cache, basename(addv))$rid
+    if (!isTRUE(substr(id, 1, 3) == "BFC")) stop("cache action failed") # avoid possibly infinite Recall
+    Recall(ontology = ontology, cache = cache, cacheid = id)
   }
+}

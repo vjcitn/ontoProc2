@@ -32,7 +32,7 @@ helps avoid confusion between pcl.db and cl.db, for example.
 }
 \examples{
 # first time will involve a download and decompression
-aionto = retrieve_semsql_conn("aio")
+aionto <- retrieve_semsql_conn("aio")
 head(DBI::dbListTables(aionto))
-dplyr::tbl(aionto, "class_node") |> head() 
+dplyr::tbl(aionto, "class_node") |> head()
 }

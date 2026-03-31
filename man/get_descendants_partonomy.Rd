@@ -23,6 +23,6 @@ Convenience wrapper around \code{\link{get_descendants}} that follows both
 }
 \examples{
 goref <- semsql_connect(ontology = "go")
-get_descendants_partonomy(goref, "GO:0005634")  # nucleus sub-components
+get_descendants_partonomy(goref, "GO:0005634") # nucleus sub-components
 disconnect(goref)
 }
