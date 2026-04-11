@@ -4,13 +4,15 @@
 \alias{disconnect}
 \title{Disconnect a SemsqlConn from its database}
 \usage{
-disconnect(x, ...)
+disconnect(x, quiet = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 
 \item{quiet}{logical(1) if TRUE suppresses the disconnection message
 (default FALSE).}
+
+\item{...}{not used}
 }
 \value{
 The \code{SemsqlConn} object invisibly.

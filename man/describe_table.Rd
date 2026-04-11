@@ -4,12 +4,14 @@
 \alias{describe_table}
 \title{Describe the columns of a table in a SemsqlConn database}
 \usage{
-describe_table(x, ...)
+describe_table(x, table_name, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 
 \item{table_name}{character(1) name of the table.}
+
+\item{...}{not used}
 }
 \value{
 data.frame with PRAGMA table_info output (columns: cid, name, type,

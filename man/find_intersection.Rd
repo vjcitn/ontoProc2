@@ -4,7 +4,7 @@
 \alias{find_intersection}
 \title{Find terms that are descendants of a superclass and have a given restriction}
 \usage{
-find_intersection(x, ...)
+find_intersection(x, superclass_id, relation_property, related_to_id, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
@@ -14,6 +14,8 @@ find_intersection(x, ...)
 \item{relation_property}{character(1) property CURIE for the restriction.}
 
 \item{related_to_id}{character(1) filler CURIE for the restriction.}
+
+\item{...}{not used}
 }
 \value{
 data.frame with columns \code{id} and \code{label}.

@@ -29,7 +29,7 @@ cached database.}
 \item{cache}{a \code{BiocFileCache} instance used when \code{ontology} is
 supplied. Defaults to \code{BiocFileCache::BiocFileCache()}.}
 
-\item{\dots}{passed to \code{\link{retrieve_semsql_conn}} and ultimately
+\item{...}{passed to \code{\link{retrieve_semsql_conn}} and ultimately
 to \code{\link[utils]{download.file}}.}
 }
 \value{
@@ -39,6 +39,9 @@ A \code{\link{SemsqlConn}} object.
 Opens a connection to a SemanticSQL SQLite database, either by supplying
 a direct file path or by referencing a short ontology name that is
 retrieved and cached via \code{BiocFileCache}.
+}
+\note{
+The connection has flag `SQLITE_RO` for read-only access.
 }
 \examples{
 # by ontology short name (downloads if not cached)

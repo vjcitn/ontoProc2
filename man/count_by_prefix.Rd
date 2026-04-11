@@ -8,6 +8,8 @@ count_by_prefix(x, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
+
+\item{...}{not used.}
 }
 \value{
 data.frame with columns \code{prefix} and \code{n}, ordered by

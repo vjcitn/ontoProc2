@@ -8,6 +8,8 @@ list_tables(x, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
+
+\item{...}{not used}
 }
 \value{
 character vector of table names.
