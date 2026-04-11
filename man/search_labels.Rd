@@ -4,7 +4,7 @@
 \alias{search_labels}
 \title{Search term labels in a SemsqlConn database}
 \usage{
-search_labels(x, ...)
+search_labels(x, pattern, limit = 20L)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}

@@ -4,12 +4,14 @@
 \alias{get_term_info}
 \title{Retrieve a summary of information about a term}
 \usage{
-get_term_info(x, ...)
+get_term_info(x, term_id, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 
 \item{term_id}{character(1) CURIE.}
+
+\item{...}{not used}
 }
 \value{
 list with elements \code{id}, \code{label}, \code{definition},

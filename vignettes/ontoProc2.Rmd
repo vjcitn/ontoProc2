@@ -35,7 +35,7 @@ string is "go".
 
 ```{r doini, message=FALSE}
 library(ontoProc2)
-goss = semsql_connect(ontology="go")
+goss <- semsql_connect(ontology = "go")
 goss
 ```
 ## Make a report
@@ -52,7 +52,7 @@ tables available:
 ```{r lktbs}
 library(dplyr)
 library(DBI)
-allt = dbListTables(goss@con)
+allt <- dbListTables(goss@con)
 length(allt)
 head(allt)
 ```
@@ -64,13 +64,18 @@ Individual tables are readily accessible.
 ```{r lkti,message=FALSE}
 library(DT)
 tbl(goss@con, "statements")
-tbl(goss@con, "statements") |> head(20) |> as.data.frame() |> datatable()
+tbl(goss@con, "statements") |>
+  head(20) |>
+  as.data.frame() |>
+  datatable()
 ```
 
 To investigate the ontology, searching through RDF labels is a natural approach.
 
 ```{r dosrc}
-search_labels(goss, "apoptosis") |> head() |> datatable()
+search_labels(goss, "apoptosis") |>
+  head() |>
+  datatable()
 ```
 
 Additional filtering could be useful here to focus on GO terms.  The `_riog...`
@@ -79,7 +84,10 @@ vignettes to be added in the future.
 
 Let's improve the query:
 ```{r dosrc2}
-search_labels(goss, "apoptosis") |> filter(grepl("^GO:", subject)) |> head() |> datatable()
+search_labels(goss, "apoptosis") |>
+  filter(grepl("^GO:", subject)) |>
+  head() |>
+  datatable()
 ```
 Clearly it will be valuable to filter away obsolete terms.  We will investigate
 the use of edge tables to accomplish this in a future vignette.
@@ -92,8 +100,8 @@ Daniel Greene and colleagues provides very convenient ontology handling function
 We can transform the SQLite data to this format.  We'll illustrate with cell ontology.
 
 ```{r lkoi, cache=TRUE}
-clss = semsql_connect(ontology="cl")
-cloi = semsql_to_oi(clss@con)
+clss <- semsql_connect(ontology = "cl")
+cloi <- semsql_to_oi(clss@con)
 cloi
 ```
 
@@ -131,9 +139,11 @@ a fixed length numerical identifier with
 a prefix indicating the source ontology in which the ontologic concept is based.
 
 ```{r doentr}
-if (!is_connected(clss)) clss = reconnect(clss)
-entcurie = search_labels(clss, "enteric neuron") |> 
-  filter(grepl("^CL", subject)) |> dplyr::select(subject) |> unlist()
+if (!is_connected(clss)) clss <- reconnect(clss)
+entcurie <- search_labels(clss, "enteric neuron") |>
+  filter(grepl("^CL", subject)) |>
+  dplyr::select(subject) |>
+  unlist()
 entcurie
 get_direct_edges(clss, entcurie)
 ```
@@ -161,25 +171,31 @@ CURIEs for relations and anatomical structures, thus working
 with the relational ontology (RO) and UBERON.
 
 ```{r getmore}
-ub = semsql_connect(ontology="uberon")
-ro = semsql_connect(ontology="ro")
+ub <- semsql_connect(ontology = "uberon")
+ro <- semsql_connect(ontology = "ro")
 ```
 
 First question: What's the CURIE for "forebrain" in UBERON?
 ```{r lkub}
-fbcur = search_labels(ub, "forebrain", limit=1000) |> filter(label=="forebrain") |>
-  select(subject) |> unlist()
+fbcur <- search_labels(ub, "forebrain", limit = 1000) |>
+  filter(label == "forebrain") |>
+  select(subject) |>
+  unlist()
 fbcur
 ```
 Second question: What's the CURIE for "has soma location" in RO?
 ```{r lkro}
-loccur = search_labels(ro, "has soma location") |> select(subject) |> unlist()
+loccur <- search_labels(ro, "has soma location") |>
+  select(subject) |>
+  unlist()
 loccur
 ```
 What's the CURIE for "neuron"?
 ```{r lkcurn}
-ncur = search_labels(clss, "neuron", limit=1000) |> filter(label=="neuron") |>
-  select(subject) |> unlist()
+ncur <- search_labels(clss, "neuron", limit = 1000) |>
+  filter(label == "neuron") |>
+  select(subject) |>
+  unlist()
 ncur
 ```
 
@@ -187,22 +203,32 @@ Now we use three steps to obtain the solution.
 
 First, enumerate all cell types that are located in forebrain.
 ```{r infb}
-clinfb = tbl(clss@con, "entailed_edge") |> filter(predicate == loccur, object == fbcur) |> 
-         select(subject) |> collect() |> unlist() 
+clinfb <- tbl(clss@con, "entailed_edge") |>
+  filter(predicate == loccur, object == fbcur) |>
+  select(subject) |>
+  collect() |>
+  unlist()
 length(clinfb)
 ```
 
 Second, filter these to those identified as 'subclassOf' "neuron".
 ```{r isne}
-clisneur = tbl(clss@con, "entailed_edge") |> filter(predicate == "rdfs:subClassOf", object==ncur) |> 
-         filter(subject %in% clinfb) |> select(subject) |> collect() |> unlist() 
+clisneur <- tbl(clss@con, "entailed_edge") |>
+  filter(predicate == "rdfs:subClassOf", object == ncur) |>
+  filter(subject %in% clinfb) |>
+  select(subject) |>
+  collect() |>
+  unlist()
 length(clisneur)
 ```
 
 Finally, get the labels.
 ```{r doint}
-tbl(clss@con, "rdfs_label_statement") |> filter(subject %in% clisneur) |> 
-         select(subject, value) |> collect() |> DT::datatable()
+tbl(clss@con, "rdfs_label_statement") |>
+  filter(subject %in% clisneur) |>
+  select(subject, value) |>
+  collect() |>
+  DT::datatable()
 ```
 
 # Session information

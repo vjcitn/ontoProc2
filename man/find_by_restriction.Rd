@@ -4,7 +4,13 @@
 \alias{find_by_restriction}
 \title{Find terms that have a given OWL someValuesFrom restriction}
 \usage{
-find_by_restriction(x, ...)
+find_by_restriction(
+  x,
+  property,
+  filler,
+  include_filler_descendants = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
@@ -16,6 +22,8 @@ find_by_restriction(x, ...)
 
 \item{include_filler_descendants}{logical(1) if TRUE also match subclasses
 of \code{filler} (default \code{FALSE}).}
+
+\item{...}{not used}
 }
 \value{
 data.frame with columns \code{id} and \code{label}.

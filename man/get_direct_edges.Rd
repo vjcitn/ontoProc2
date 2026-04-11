@@ -4,7 +4,7 @@
 \alias{get_direct_edges}
 \title{Get direct edges in the ontology graph for a term}
 \usage{
-get_direct_edges(x, ...)
+get_direct_edges(x, term_id, direction = "outgoing", ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
@@ -13,6 +13,8 @@ get_direct_edges(x, ...)
 
 \item{direction}{character(1) one of \code{"outgoing"}, \code{"incoming"},
 \code{"both"}.}
+
+\item{...}{not used}
 }
 \value{
 data.frame with columns \code{subject}, \code{subject_label},

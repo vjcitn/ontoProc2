@@ -1,3 +1,12 @@
+#* checking Rd \usage sections ... WARNING
+#Undocumented arguments in Rd file 'SemsqlConn.Rd'
+#  ‘con’ ‘db_path’ ‘ontology_prefix’
+#
+#Undocumented arguments in Rd file 'search_labels.Rd'
+#  ‘...’
+#Documented arguments not in \usage in Rd file 'search_labels.Rd':
+#  ‘pattern’ ‘limit’
+
 # =============================================================================
 # SemanticSQL R Interface - S7 Class Implementation
 # =============================================================================
@@ -18,6 +27,9 @@
 #'     e.g. \code{"CL"} for the Cell Ontology}
 #' }
 #' @import S7
+#' @param con DBI connection object
+#' @param db_path character path to SQLite database file
+#' @param ontology_prefix character, e.g., 'CL' for cell ontology
 #' @return wrapped connection
 #' @export
 SemsqlConn <- new_class(
@@ -62,8 +74,9 @@ S4_register(SemsqlConn)
 #'   cached database.
 #' @param cache a \code{BiocFileCache} instance used when \code{ontology} is
 #'   supplied. Defaults to \code{BiocFileCache::BiocFileCache()}.
-#' @param \dots passed to \code{\link{retrieve_semsql_conn}} and ultimately
+#' @param ... passed to \code{\link{retrieve_semsql_conn}} and ultimately
 #'   to \code{\link[utils]{download.file}}.
+#' @note The connection has flag `SQLITE_RO` for read-only access.
 #' @return A \code{\link{SemsqlConn}} object.
 #' @examples
 #' # by ontology short name (downloads if not cached)
@@ -85,7 +98,7 @@ semsql_connect <- function(db_path = NULL, ontology_prefix = NULL,
     stop("Database file not found: ", db_path)
   }
 
-  con <- dbConnect(RSQLite::SQLite(), db_path)
+  con <- dbConnect(RSQLite::SQLite(), db_path, flags=SQLITE_RO)
 
   if (is.null(ontology_prefix)) {
     prefix_query <- "
@@ -120,16 +133,18 @@ semsql_connect <- function(db_path = NULL, ontology_prefix = NULL,
 #' @param x A \code{SemsqlConn} object.
 #' @param quiet logical(1) if TRUE suppresses the disconnection message
 #'   (default FALSE).
+#' @param ... not used
 #' @return The \code{SemsqlConn} object invisibly.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' disconnect(goref)
 #' @export
-disconnect <- new_generic("disconnect", "x")
+disconnect <- new_generic("disconnect", "x", function(x, quiet=FALSE, ...) S7_dispatch())
 
 #' Test whether a SemsqlConn has a valid open connection
 #'
 #' @param x A \code{SemsqlConn} object.
+#' @param ... not used
 #' @return logical(1).
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -142,6 +157,7 @@ is_connected <- new_generic("is_connected", "x")
 #' List tables in a SemsqlConn database
 #'
 #' @param x A \code{SemsqlConn} object.
+#' @param ... not used
 #' @return character vector of table names.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -154,6 +170,7 @@ list_tables <- new_generic("list_tables", "x")
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param table_name character(1) name of the table.
+#' @param ... not used
 #' @return data.frame with PRAGMA table_info output (columns: cid, name, type,
 #'   notnull, dflt_value, pk).
 #' @examples
@@ -161,18 +178,21 @@ list_tables <- new_generic("list_tables", "x")
 #' describe_table(goref, "rdfs_label_statement")
 #' disconnect(goref)
 #' @export
-describe_table <- new_generic("describe_table", "x")
+describe_table <- new_generic("describe_table", "x",
+  function(x, table_name, ...) S7_dispatch())
 
 #' Retrieve the ontology prefix from a SemsqlConn
 #'
 #' @param x A \code{SemsqlConn} object.
+#' @param ... not used
 #' @return character(1) the primary ontology prefix (e.g. \code{"GO"}).
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_prefix(goref)
 #' disconnect(goref)
 #' @export
-get_prefix <- new_generic("get_prefix", "x")
+get_prefix <- new_generic("get_prefix", "x",
+  function(x, ...) S7_dispatch())
 
 #' Search term labels in a SemsqlConn database
 #'
@@ -186,31 +206,36 @@ get_prefix <- new_generic("get_prefix", "x")
 #' search_labels(goref, "apoptosis")
 #' disconnect(goref)
 #' @export
-search_labels <- new_generic("search_labels", "x")
+search_labels <- new_generic("search_labels", "x",
+  function(x, pattern, limit=20L) S7_dispatch())
 
 #' Get the rdfs:label for a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE, e.g. \code{"GO:0006915"}.
+#' @param ... not used
 #' @return character(1) label, or \code{NA_character_} if not found.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_label(goref, "GO:0006915") # "apoptotic process"
 #' disconnect(goref)
 #' @export
-get_label <- new_generic("get_label", "x")
+get_label <- new_generic("get_label", "x",
+  function(x, term_id, ...) S7_dispatch())
 
 #' Get the text definition for a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
 #' @return character(1) definition text, or \code{NA_character_} if not found.
+#' @param ... not used
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_definition(goref, "GO:0006915")
 #' disconnect(goref)
 #' @export
-get_definition <- new_generic("get_definition", "x")
+get_definition <- new_generic("get_definition", "x",
+   function(x, term_id, ...) S7_dispatch())
 
 #' Get synonyms for a term
 #'
@@ -218,6 +243,7 @@ get_definition <- new_generic("get_definition", "x")
 #' @param term_id character(1) CURIE.
 #' @param type character(1) synonym scope: one of \code{"all"},
 #'   \code{"exact"}, \code{"broad"}, \code{"narrow"}, \code{"related"}.
+#' @param ... not used
 #' @return data.frame with columns \code{subject}, \code{predicate},
 #'   \code{synonym}.
 #' @examples
@@ -226,12 +252,14 @@ get_definition <- new_generic("get_definition", "x")
 #' get_synonyms(goref, "GO:0006915", type = "exact")
 #' disconnect(goref)
 #' @export
-get_synonyms <- new_generic("get_synonyms", "x")
+get_synonyms <- new_generic("get_synonyms", "x",
+  function(x, term_id, type=c("all", "exact", "broad", "narrow", "related"), ...) S7_dispatch())
 
 #' Retrieve a summary of information about a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
+#' @param ... not used
 #' @return list with elements \code{id}, \code{label}, \code{definition},
 #'   \code{synonyms}, \code{superclasses}, \code{subclasses}.
 #' @examples
@@ -241,7 +269,8 @@ get_synonyms <- new_generic("get_synonyms", "x")
 #' info$superclasses
 #' disconnect(goref)
 #' @export
-get_term_info <- new_generic("get_term_info", "x")
+get_term_info <- new_generic("get_term_info", "x",
+  function(x, term_id, ...) S7_dispatch())
 
 #' Get direct edges in the ontology graph for a term
 #'
@@ -249,6 +278,7 @@ get_term_info <- new_generic("get_term_info", "x")
 #' @param term_id character(1) CURIE.
 #' @param direction character(1) one of \code{"outgoing"}, \code{"incoming"},
 #'   \code{"both"}.
+#' @param ... not used
 #' @return data.frame with columns \code{subject}, \code{subject_label},
 #'   \code{predicate}, \code{predicate_label}, \code{object},
 #'   \code{object_label}.
@@ -258,12 +288,14 @@ get_term_info <- new_generic("get_term_info", "x")
 #' get_direct_edges(goref, "GO:0006915", direction = "both")
 #' disconnect(goref)
 #' @export
-get_direct_edges <- new_generic("get_direct_edges", "x")
+get_direct_edges <- new_generic("get_direct_edges", "x",
+   function(x, term_id, direction="outgoing", ...) S7_dispatch())
 
 #' Get direct subclasses of a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
+#' @param ... not used
 #' @return data.frame with columns \code{id} and \code{label}, ordered by
 #'   label.
 #' @examples
@@ -272,12 +304,14 @@ get_direct_edges <- new_generic("get_direct_edges", "x")
 #' get_direct_subclasses(goref, "GO:0006915")
 #' disconnect(goref)
 #' @export
-get_direct_subclasses <- new_generic("get_direct_subclasses", "x")
+get_direct_subclasses <- new_generic("get_direct_subclasses", "x",
+   function(x, term_id, ...) S7_dispatch())
 
 #' Get direct superclasses of a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
+#' @param ... not used
 #' @return data.frame with columns \code{id} and \code{label}, ordered by
 #'   label.
 #' @examples
@@ -285,7 +319,8 @@ get_direct_subclasses <- new_generic("get_direct_subclasses", "x")
 #' get_direct_superclasses(goref, "GO:0006915")
 #' disconnect(goref)
 #' @export
-get_direct_superclasses <- new_generic("get_direct_superclasses", "x")
+get_direct_superclasses <- new_generic("get_direct_superclasses", "x",
+   function(x, term_id, ...) S7_dispatch())
 
 #' Get all ancestors of a term via entailed edges
 #'
@@ -296,13 +331,15 @@ get_direct_superclasses <- new_generic("get_direct_superclasses", "x")
 #'   common values.
 #' @param include_self logical(1) whether to include the term itself
 #'   (default \code{FALSE}).
+#' @param ... not used
 #' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_ancestors(goref, "GO:0006915")
 #' disconnect(goref)
 #' @export
-get_ancestors <- new_generic("get_ancestors", "x")
+get_ancestors <- new_generic("get_ancestors", "x",
+   function(x, term_id, predicates="rdfs:subClassOf", include_self=FALSE, ...) S7_dispatch())
 
 #' Get all descendants of a term via entailed edges
 #'
@@ -312,18 +349,21 @@ get_ancestors <- new_generic("get_ancestors", "x")
 #'   Defaults to \code{"rdfs:subClassOf"}.
 #' @param include_self logical(1) whether to include the term itself
 #'   (default \code{FALSE}).
+#' @param ... not used
 #' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_descendants(goref, "GO:0006915")
 #' disconnect(goref)
 #' @export
-get_descendants <- new_generic("get_descendants", "x")
+get_descendants <- new_generic("get_descendants", "x",
+   function(x, term_id, predicates="rdfs:subClassOf", include_self=FALSE, ...) S7_dispatch())
 
 #' Get OWL someValuesFrom restrictions for a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
+#' @param ... not used
 #' @return data.frame with columns \code{restriction_id}, \code{property},
 #'   \code{property_label}, \code{filler}, \code{filler_label}.
 #' @examples
@@ -332,7 +372,8 @@ get_descendants <- new_generic("get_descendants", "x")
 #' get_restrictions(goref, "GO:0005739")
 #' disconnect(goref)
 #' @export
-get_restrictions <- new_generic("get_restrictions", "x")
+get_restrictions <- new_generic("get_restrictions", "x",
+  function(x, term_id, ...) S7_dispatch())
 
 #' Find terms that have a given OWL someValuesFrom restriction
 #'
@@ -342,6 +383,7 @@ get_restrictions <- new_generic("get_restrictions", "x")
 #' @param filler character(1) filler class CURIE.
 #' @param include_filler_descendants logical(1) if TRUE also match subclasses
 #'   of \code{filler} (default \code{FALSE}).
+#' @param ... not used
 #' @return data.frame with columns \code{id} and \code{label}.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -349,14 +391,16 @@ get_restrictions <- new_generic("get_restrictions", "x")
 #' find_by_restriction(goref, "BFO:0000050", "GO:0005634")
 #' disconnect(goref)
 #' @export
-find_by_restriction <- new_generic("find_by_restriction", "x")
-
+find_by_restriction <- new_generic("find_by_restriction", "x",
+  function(x, property, filler, include_filler_descendants=FALSE, ...) S7_dispatch())
+# 
 #' Find terms that are descendants of a superclass and have a given restriction
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param superclass_id character(1) CURIE of the superclass.
 #' @param relation_property character(1) property CURIE for the restriction.
 #' @param related_to_id character(1) filler CURIE for the restriction.
+#' @param ... not used
 #' @return data.frame with columns \code{id} and \code{label}.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -364,25 +408,27 @@ find_by_restriction <- new_generic("find_by_restriction", "x")
 #' find_intersection(goref, "GO:0005575", "BFO:0000050", "GO:0005634")
 #' disconnect(goref)
 #' @export
-find_intersection <- new_generic("find_intersection", "x")
-
+ find_intersection <- new_generic("find_intersection", "x",
+     function(x, superclass_id, relation_property, related_to_id, ...) S7_dispatch())
+ 
 #' Count the number of descendants of a term
-#'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
 #' @param predicate character(1) predicate to traverse
 #'   (default \code{"rdfs:subClassOf"}).
+#' @param ... not used
 #' @return integer(1).
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' count_descendants(goref, "GO:0006915") # all apoptosis subtypes
 #' disconnect(goref)
 #' @export
-count_descendants <- new_generic("count_descendants", "x")
+ count_descendants <- new_generic("count_descendants", "x", 
+    function(x, term_id, predicate = "rdfs:subClassOf", ...) S7_dispatch())
 
 #' Count labeled terms grouped by CURIE prefix
-#'
 #' @param x A \code{SemsqlConn} object.
+#' @param ... not used.
 #' @return data.frame with columns \code{prefix} and \code{n}, ordered by
 #'   \code{n} descending.
 #' @examples
@@ -390,12 +436,14 @@ count_descendants <- new_generic("count_descendants", "x")
 #' count_by_prefix(goref)
 #' disconnect(goref)
 #' @export
-count_by_prefix <- new_generic("count_by_prefix", "x")
+count_by_prefix <- new_generic("count_by_prefix", "x", function(x, ...) S7_dispatch())
+
 
 #' Run an arbitrary SQL query against a SemsqlConn database
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param sql character(1) SQL query string.
+#' @param ... not used
 #' @return data.frame with query results.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -405,7 +453,8 @@ count_by_prefix <- new_generic("count_by_prefix", "x")
 #' )
 #' disconnect(goref)
 #' @export
-run_query <- new_generic("run_query", "x")
+run_query <- new_generic("run_query", "x", function(x, sql, ...)
+   S7_dispatch())
 
 #' Display a detailed report of a SemsqlConn object
 #'
@@ -416,6 +465,7 @@ run_query <- new_generic("run_query", "x")
 #' than \code{print()}, intended for interactive exploration.
 #'
 #' @param object A \code{SemsqlConn} object.
+#' @param ... not used
 #' @return The \code{SemsqlConn} object invisibly.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -432,6 +482,7 @@ report <- new_generic("report", "object")
 #' in place due to S7 value semantics.
 #'
 #' @param x A \code{SemsqlConn} object.
+#' @param ... not used
 #' @return A new \code{SemsqlConn} object with an active connection.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -464,7 +515,11 @@ method(list_tables, SemsqlConn) <- function(x) {
   dbListTables(x@con)
 }
 
+# constructing SQL query via sprintf here is OK because the 
+# inserted entity is validated
 method(describe_table, SemsqlConn) <- function(x, table_name) {
+  valid_tables <- dbListTables(x@con)
+  if (!(table_name %in% valid_tables)) stop("Unknown table: ", table_name)
   query <- sprintf("PRAGMA table_info(%s)", table_name)
   dbGetQuery(x@con, query)
 }
@@ -492,42 +547,35 @@ method(reconnect, SemsqlConn) <- function(x) {
 # BASIC QUERY METHODS
 # =============================================================================
 
+
+# LESS VULNERABLE BECAUSE DRIVER HANDLES TYPING, NO INJECTION SURFACE
 method(search_labels, SemsqlConn) <- function(x, pattern, limit = 20L) {
-  query <- sprintf("
-    SELECT subject, value AS label
-    FROM rdfs_label_statement
-    WHERE value LIKE '%%%s%%'
-    LIMIT %d
-  ", pattern, limit)
-  dbGetQuery(x@con, query)
+  dbGetQuery(x@con,
+    "SELECT subject, value AS label FROM rdfs_label_statement
+      WHERE value LIKE ? LIMIT ?", param = list(paste0("%", pattern, "%"), as.integer(limit)))
 }
 
+
 method(get_label, SemsqlConn) <- function(x, term_id) {
-  query <- sprintf("
-    SELECT subject, value AS label
-    FROM rdfs_label_statement
-    WHERE subject = '%s'
-  ", term_id)
-  result <- dbGetQuery(x@con, query)
-  if (nrow(result) == 0) {
-    return(NA_character_)
-  }
-  result$label[1]
+    dbGetQuery(x@con, "SELECT subject, value AS label
+         FROM rdfs_label_statement
+         WHERE subject = ?",
+         param = list(term_id)
+         )
 }
 
 method(get_definition, SemsqlConn) <- function(x, term_id) {
-  query <- sprintf("
-    SELECT subject, value AS definition
+  query <- "SELECT subject, value AS definition
     FROM has_text_definition_statement
-    WHERE subject = '%s'
-  ", term_id)
-  result <- dbGetQuery(x@con, query)
+    WHERE subject = ?"
+  result <- dbGetQuery(x@con, query, param=list(term_id))
   if (nrow(result) == 0) {
     return(NA_character_)
   }
   result$definition[1]
 }
 
+# here it is safe to use sprintf to build query
 method(get_synonyms, SemsqlConn) <- function(
   x, term_id,
   type = c("all", "exact", "broad", "narrow", "related")
@@ -540,13 +588,13 @@ method(get_synonyms, SemsqlConn) <- function(
     narrow   = "has_narrow_synonym_statement",
     related  = "has_related_synonym_statement"
   )
-  query <- sprintf("
-    SELECT subject, predicate, value AS synonym
-    FROM %s
-    WHERE subject = '%s'
-  ", view_name, term_id)
-  dbGetQuery(x@con, query)
+  sql <- sprintf(
+    "SELECT subject, predicate, value AS synonym FROM %s WHERE subject = ?",
+    view_name
+  )
+  dbGetQuery(x@con, sql, params = list(term_id))
 }
+
 
 method(get_term_info, SemsqlConn) <- function(x, term_id) {
   list(
@@ -563,18 +611,11 @@ method(get_term_info, SemsqlConn) <- function(x, term_id) {
 # EDGE QUERY METHODS
 # =============================================================================
 
-method(get_direct_edges, SemsqlConn) <- function(
-  x, term_id,
-  direction = c("outgoing", "incoming", "both")
-) {
-  direction <- match.arg(direction)
-  where_clause <- switch(direction,
-    outgoing = sprintf("e.subject = '%s'", term_id),
-    incoming = sprintf("e.object = '%s'", term_id),
-    both     = sprintf("e.subject = '%s' OR e.object = '%s'", term_id, term_id)
-  )
-  query <- sprintf("
-    SELECT
+method(get_direct_edges, SemsqlConn) <- function(x, term_id, 
+   direction="outgoing") {
+ 
+  stopifnot(direction %in% c("outgoing", "incoming", "both"))
+  query.init <- "SELECT
       e.subject,
       sl.value AS subject_label,
       e.predicate,
@@ -585,37 +626,46 @@ method(get_direct_edges, SemsqlConn) <- function(
     LEFT JOIN rdfs_label_statement sl ON e.subject = sl.subject
     LEFT JOIN rdfs_label_statement pl ON e.predicate = pl.subject
     LEFT JOIN rdfs_label_statement ol ON e.object = ol.subject
-    WHERE %s
-  ", where_clause)
-  dbGetQuery(x@con, query)
+    WHERE"
+  if (direction == "outgoing") {
+       query.fin <- "e.subject = ?"
+       query = paste(query.init, query.fin)
+       return(dbGetQuery(x@con, query, param=list(term_id)))
+       }
+  else if (direction == "incoming") {
+       query.fin <- "e.object = ?"
+       query = paste(query.init, query.fin)
+       return(dbGetQuery(x@con, query, param=list(term_id)))
+       }
+  else if (direction == "both") {
+       query.fin <- "e.subject = ? OR e.object = ?"
+       query = paste(query.init, query.fin)
+       return(dbGetQuery(x@con, query, param=list(term_id, term_id)))
+       }
 }
 
 method(get_direct_subclasses, SemsqlConn) <- function(x, term_id) {
-  query <- sprintf("
-    SELECT
+  query <- "SELECT
       e.subject AS id,
       l.value AS label
     FROM edge e
     LEFT JOIN rdfs_label_statement l ON e.subject = l.subject
-    WHERE e.object = '%s'
+    WHERE e.object = ?
       AND e.predicate = 'rdfs:subClassOf'
-    ORDER BY l.value
-  ", term_id)
-  dbGetQuery(x@con, query)
+    ORDER BY l.value"
+  dbGetQuery(x@con, query, param=list(term_id))
 }
 
 method(get_direct_superclasses, SemsqlConn) <- function(x, term_id) {
-  query <- sprintf("
-    SELECT
+  query <- "SELECT
       e.object AS id,
       l.value AS label
     FROM edge e
     LEFT JOIN rdfs_label_statement l ON e.object = l.subject
-    WHERE e.subject = '%s'
+    WHERE e.subject = ?
       AND e.predicate = 'rdfs:subClassOf'
-    ORDER BY l.value
-  ", term_id)
-  dbGetQuery(x@con, query)
+    ORDER BY l.value"
+  dbGetQuery(x@con, query, param=list(term_id))
 }
 
 # =============================================================================
@@ -626,42 +676,50 @@ method(get_ancestors, SemsqlConn) <- function(
   x, term_id,
   predicates = "rdfs:subClassOf", include_self = FALSE
 ) {
-  pred_list <- paste0("'", predicates, "'", collapse = ", ")
-  query <- sprintf("
+  # One ? per predicate — built from length, not from values (safe)
+  placeholders <- paste(rep("?", length(predicates)), collapse = ", ")
+
+  sql <- sprintf("
     SELECT
       ee.object AS id,
       l.value AS label,
       ee.predicate
     FROM entailed_edge ee
     LEFT JOIN rdfs_label_statement l ON ee.object = l.subject
-    WHERE ee.subject = '%s'
+    WHERE ee.subject = ?
       AND ee.predicate IN (%s)
     ORDER BY l.value
-  ", term_id, pred_list)
-  result <- dbGetQuery(x@con, query)
+  ", placeholders)
+
+  # Positional order: term_id fills the first ?, predicates fill the rest
+  result <- dbGetQuery(x@con, sql, param = c(list(term_id), as.list(predicates)))
+
   if (!include_self && nrow(result) > 0) {
     result <- result[result$id != term_id, , drop = FALSE]
   }
   result
 }
 
+
+
+
 method(get_descendants, SemsqlConn) <- function(
   x, term_id,
   predicates = "rdfs:subClassOf", include_self = FALSE
 ) {
-  pred_list <- paste0("'", predicates, "'", collapse = ", ")
-  query <- sprintf("
-    SELECT
+  placeholders <- paste(rep("?", length(predicates)), collapse = ", ")
+
+#  pred_list <- paste0("'", predicates, "'", collapse = ", ")
+  query <- sprintf("SELECT
       ee.subject AS id,
       l.value AS label,
       ee.predicate
     FROM entailed_edge ee
     LEFT JOIN rdfs_label_statement l ON ee.subject = l.subject
-    WHERE ee.object = '%s'
+    WHERE ee.object = ?
       AND ee.predicate IN (%s)
-    ORDER BY l.value
-  ", term_id, pred_list)
-  result <- dbGetQuery(x@con, query)
+    ORDER BY l.value", placeholders)
+  result <- dbGetQuery(x@con, query, param=c(list(term_id), as.list(predicates)))
   if (!include_self && nrow(result) > 0) {
     result <- result[result$id != term_id, , drop = FALSE]
   }
@@ -673,8 +731,7 @@ method(get_descendants, SemsqlConn) <- function(
 # =============================================================================
 
 method(get_restrictions, SemsqlConn) <- function(x, term_id) {
-  query <- sprintf("
-    SELECT
+  query <- "SELECT
       svf.id AS restriction_id,
       svf.on_property AS property,
       pl.value AS property_label,
@@ -684,47 +741,41 @@ method(get_restrictions, SemsqlConn) <- function(x, term_id) {
     LEFT JOIN rdfs_label_statement pl ON svf.on_property = pl.subject
     LEFT JOIN rdfs_label_statement fl ON svf.filler = fl.subject
     WHERE svf.id IN (
-      SELECT object FROM rdfs_subclass_of_statement WHERE subject = '%s'
-    )
-  ", term_id)
-  dbGetQuery(x@con, query)
+      SELECT object FROM rdfs_subclass_of_statement WHERE subject = ?)"
+  dbGetQuery(x@con, query, list(term_id))
 }
 
 method(find_by_restriction, SemsqlConn) <- function(
   x, property, filler,
-  include_filler_descendants = FALSE
-) {
+  include_filler_descendants = FALSE) {
   if (include_filler_descendants) {
-    query <- sprintf("
-      SELECT DISTINCT
+    query <- "SELECT DISTINCT
         sc.subject AS id,
         cl.value AS label
       FROM rdfs_subclass_of_statement sc
       JOIN owl_some_values_from svf ON sc.object = svf.id
       LEFT JOIN rdfs_label_statement cl ON sc.subject = cl.subject
-      WHERE svf.on_property = '%s'
+      WHERE svf.on_property = ?
         AND svf.filler IN (
           SELECT subject FROM entailed_edge
-          WHERE object = '%s' AND predicate = 'rdfs:subClassOf'
-          UNION SELECT '%s'
+          WHERE object = ? AND predicate = 'rdfs:subClassOf'
+          UNION SELECT ?
         )
-      ORDER BY cl.value
-    ", property, filler, filler)
-  } else {
-    query <- sprintf("
-      SELECT DISTINCT
+      ORDER BY cl.value"
+      return(dbGetQuery(x@con, query, param=list(property, filler, filler)))
+    } else {
+    query <- "SELECT DISTINCT
         sc.subject AS id,
         cl.value AS label
       FROM rdfs_subclass_of_statement sc
       JOIN owl_some_values_from svf ON sc.object = svf.id
       LEFT JOIN rdfs_label_statement cl ON sc.subject = cl.subject
-      WHERE svf.on_property = '%s'
-        AND svf.filler = '%s'
-      ORDER BY cl.value
-    ", property, filler)
-  }
-  dbGetQuery(x@con, query)
-}
+      WHERE svf.on_property = ?
+        AND svf.filler = ?
+      ORDER BY cl.value"
+     return(dbGetQuery(x@con, query, param=list(property, filler)))
+    }
+ }
 
 # =============================================================================
 # COMPLEX QUERY METHODS
@@ -734,20 +785,19 @@ method(find_intersection, SemsqlConn) <- function(
   x, superclass_id,
   relation_property, related_to_id
 ) {
-  query <- sprintf("
-    WITH descendants AS (
+  query <- "WITH descendants AS (
       SELECT subject FROM entailed_edge
-      WHERE object = '%s' AND predicate = 'rdfs:subClassOf'
+      WHERE object = ?  AND predicate = 'rdfs:subClassOf'
     ),
     related AS (
       SELECT sc.subject
       FROM rdfs_subclass_of_statement sc
       JOIN owl_some_values_from svf ON sc.object = svf.id
-      WHERE svf.on_property = '%s'
+      WHERE svf.on_property = ?
         AND svf.filler IN (
           SELECT subject FROM entailed_edge
-          WHERE object = '%s' AND predicate = 'rdfs:subClassOf'
-          UNION SELECT '%s'
+          WHERE object = ? AND predicate = 'rdfs:subClassOf'
+          UNION SELECT ?
         )
     )
     SELECT
@@ -756,9 +806,8 @@ method(find_intersection, SemsqlConn) <- function(
     FROM descendants d
     JOIN related r ON d.subject = r.subject
     LEFT JOIN rdfs_label_statement l ON d.subject = l.subject
-    ORDER BY l.value
-  ", superclass_id, relation_property, related_to_id, related_to_id)
-  dbGetQuery(x@con, query)
+    ORDER BY l.value"
+  dbGetQuery(x@con, query, param=list(superclass_id, relation_property, related_to_id, related_to_id))
 }
 
 # =============================================================================
@@ -769,13 +818,11 @@ method(count_descendants, SemsqlConn) <- function(
   x, term_id,
   predicate = "rdfs:subClassOf"
 ) {
-  query <- sprintf("
-    SELECT COUNT(DISTINCT subject) AS n
+  query <- "SELECT COUNT(DISTINCT subject) AS n
     FROM entailed_edge
-    WHERE object = '%s'
-      AND predicate = '%s'
-  ", term_id, predicate)
-  dbGetQuery(x@con, query)$n[1]
+    WHERE object = ?
+      AND predicate = ?"
+  dbGetQuery(x@con, query, param=list(term_id, predicate))$n[1]
 }
 
 method(count_by_prefix, SemsqlConn) <- function(x) {

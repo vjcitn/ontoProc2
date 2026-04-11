@@ -4,7 +4,13 @@
 \alias{get_descendants}
 \title{Get all descendants of a term via entailed edges}
 \usage{
-get_descendants(x, ...)
+get_descendants(
+  x,
+  term_id,
+  predicates = "rdfs:subClassOf",
+  include_self = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
@@ -16,6 +22,8 @@ Defaults to \code{"rdfs:subClassOf"}.}
 
 \item{include_self}{logical(1) whether to include the term itself
 (default \code{FALSE}).}
+
+\item{...}{not used}
 }
 \value{
 data.frame with columns \code{id}, \code{label}, \code{predicate}.

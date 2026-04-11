@@ -27,9 +27,9 @@ some tables and "statements".
 library(ontoProc2)
 library(DBI)
 library(dplyr)
-ubss = semsql_connect(ontology="uberon")
+ubss <- semsql_connect(ontology = "uberon")
 report(ubss)
-ubcon = ubss@con
+ubcon <- ubss@con
 head(dbListTables(ubcon))
 tbl(ubcon, "statements")
 ```
@@ -40,7 +40,7 @@ CRAN's ontologyIndex package provides a familiar representation that
 simplifies visualization.
 
 ```{r doconv, cache=FALSE}
-uboi = semsql_to_oi(ubcon)
+uboi <- semsql_to_oi(ubcon)
 uboi
 uboi$name[10364:10370]
 ```
@@ -48,7 +48,7 @@ uboi$name[10364:10370]
 A sense of the variety of ontological cross-references
 present can be given by tabling the tag prefixes.
 ```{r lktags}
-prefs = gsub(":.*", "", names(uboi$name))
+prefs <- gsub(":.*", "", names(uboi$name))
 table(prefs)
 ```
 
@@ -57,9 +57,13 @@ a view of is-a relations (presumably developed from
 rdfs:subClassOf predicates).  We've chosen as
 terminal tags the tags for heart, kidney, and cortex of kidney.
 ```{r doplot, fig.width=10}
-onto_plot2(uboi, 
-  unlist(uboi$ancestors[c("UBERON:0002189", 
-     "UBERON:0002113", "UBERON:0000948")]))
+onto_plot2(
+  uboi,
+  unlist(uboi$ancestors[c(
+    "UBERON:0002189",
+    "UBERON:0002113", "UBERON:0000948"
+  )])
+)
 ```
 
 # EFO and NCI thesaurus
@@ -71,10 +75,11 @@ We'll use the entailed edges table in EFO to find all statements
 that have 'heart' (UBERON:0000948) as object.
 
 ```{r lkncit}
-eforef = semsql_connect(ontology="efo")  # 240 MB
-#nciref = semsql_connect("ncit")  # > 500MB, block
-htab = tbl(eforef@con, "entailed_edge") |> 
-  filter(object == "UBERON:0000948") |> as.data.frame() 
+eforef <- semsql_connect(ontology = "efo") # 240 MB
+# nciref = semsql_connect("ncit")  # > 500MB, block
+htab <- tbl(eforef@con, "entailed_edge") |>
+  filter(object == "UBERON:0000948") |>
+  as.data.frame()
 head(htab)
 ```
 
@@ -96,9 +101,9 @@ in heart, we have
 ```{r lkdec}
 library(dplyr)
 library(DT)
-hdis = ncit_map[ unlist(htab |> dplyr::filter(predicate == "EFO:0000784") 
-   |> dplyr::select(subject)) ]
-datatable(data.frame(tag=names(hdis), value=as.character(hdis)))
+hdis <- ncit_map[unlist(htab |> dplyr::filter(predicate == "EFO:0000784")
+  |> dplyr::select(subject))]
+datatable(data.frame(tag = names(hdis), value = as.character(hdis)))
 ```
 
 # Session information

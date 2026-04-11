@@ -4,12 +4,14 @@
 \alias{get_definition}
 \title{Get the text definition for a term}
 \usage{
-get_definition(x, ...)
+get_definition(x, term_id, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 
 \item{term_id}{character(1) CURIE.}
+
+\item{...}{not used}
 }
 \value{
 character(1) definition text, or \code{NA_character_} if not found.

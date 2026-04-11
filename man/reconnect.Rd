@@ -8,6 +8,8 @@ reconnect(x, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
+
+\item{...}{not used}
 }
 \value{
 A new \code{SemsqlConn} object with an active connection.

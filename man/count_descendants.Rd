@@ -4,7 +4,7 @@
 \alias{count_descendants}
 \title{Count the number of descendants of a term}
 \usage{
-count_descendants(x, ...)
+count_descendants(x, term_id, predicate = "rdfs:subClassOf", ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
@@ -13,6 +13,8 @@ count_descendants(x, ...)
 
 \item{predicate}{character(1) predicate to traverse
 (default \code{"rdfs:subClassOf"}).}
+
+\item{...}{not used}
 }
 \value{
 integer(1).

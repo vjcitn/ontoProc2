@@ -8,6 +8,8 @@ report(object, ...)
 }
 \arguments{
 \item{object}{A \code{SemsqlConn} object.}
+
+\item{...}{not used}
 }
 \value{
 The \code{SemsqlConn} object invisibly.

@@ -4,7 +4,13 @@
 \alias{get_ancestors}
 \title{Get all ancestors of a term via entailed edges}
 \usage{
-get_ancestors(x, ...)
+get_ancestors(
+  x,
+  term_id,
+  predicates = "rdfs:subClassOf",
+  include_self = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
@@ -17,6 +23,8 @@ common values.}
 
 \item{include_self}{logical(1) whether to include the term itself
 (default \code{FALSE}).}
+
+\item{...}{not used}
 }
 \value{
 data.frame with columns \code{id}, \code{label}, \code{predicate}.

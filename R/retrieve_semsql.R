@@ -3,6 +3,7 @@
 #' @import RSQLite
 #' @importFrom R.utils gunzip
 #' @import DBI
+#' @importFrom utils download.file
 #' @param ontology character(1) short string prefixing .db.gz in the INCAtools collection
 #' @param cache a BiocFileCache instance, defaulting to BiocFileCache::BiocFileCache()
 #' @param cacheid character(1) or NULL; if non-null, the associated SQLite resource will be used from cache

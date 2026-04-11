@@ -1,4 +1,5 @@
 #' a named vector with values rdfs labels in NCI thesaurus, and names the corresponding formal ontology tags
+#' @importFrom utils data
 #' @docType data
 #' @format named character vector
 #' @usage

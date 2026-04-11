@@ -18,5 +18,7 @@ produce a table with list of proteins from protein ontology
 identified as present on cell membranes for input cell type CURIEs
 }
 \examples{
+\donttest{
 get_present_pmp(c("CL:0000091", "CL:0000926"))
+}
 }

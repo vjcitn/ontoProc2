@@ -8,6 +8,8 @@ is_connected(x, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
+
+\item{...}{not used}
 }
 \value{
 logical(1).
