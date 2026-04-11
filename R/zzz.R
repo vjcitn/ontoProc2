@@ -1,5 +1,6 @@
 utils::globalVariables(c("predicate", "subject", "value"))
 
+# print does not seem to export unless defined here
 .onLoad <- function(libname, pkgname) {
   S7::method(print, SemsqlConn) <- function(x) {
     if (!is_connected(x)) {

@@ -4,7 +4,12 @@
 \alias{get_synonyms}
 \title{Get synonyms for a term}
 \usage{
-get_synonyms(x, ...)
+get_synonyms(
+  x,
+  term_id,
+  type = c("all", "exact", "broad", "narrow", "related"),
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
@@ -13,6 +18,8 @@ get_synonyms(x, ...)
 
 \item{type}{character(1) synonym scope: one of \code{"all"},
 \code{"exact"}, \code{"broad"}, \code{"narrow"}, \code{"related"}.}
+
+\item{...}{not used}
 }
 \value{
 data.frame with columns \code{subject}, \code{predicate},

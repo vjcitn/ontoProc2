@@ -4,12 +4,14 @@
 \alias{run_query}
 \title{Run an arbitrary SQL query against a SemsqlConn database}
 \usage{
-run_query(x, ...)
+run_query(x, sql, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 
 \item{sql}{character(1) SQL query string.}
+
+\item{...}{not used}
 }
 \value{
 data.frame with query results.

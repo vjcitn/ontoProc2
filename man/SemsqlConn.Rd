@@ -6,6 +6,13 @@
 \usage{
 SemsqlConn(con = NULL, db_path = character(0), ontology_prefix = character(0))
 }
+\arguments{
+\item{con}{DBI connection object}
+
+\item{db_path}{character path to SQLite database file}
+
+\item{ontology_prefix}{character, e.g., 'CL' for cell ontology}
+}
 \value{
 wrapped connection
 }

@@ -1,6 +1,7 @@
 # this file was taken from ontoProc
 
 #' obtain graphNEL from ontology_plot instance of ontologyPlot
+#' @importFrom methods new as
 #' @import graph
 #' @import Rgraphviz
 #' @importFrom ontologyPlot onto_plot

@@ -4,12 +4,14 @@
 \alias{get_label}
 \title{Get the rdfs:label for a term}
 \usage{
-get_label(x, ...)
+get_label(x, term_id, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 
 \item{term_id}{character(1) CURIE, e.g. \code{"GO:0006915"}.}
+
+\item{...}{not used}
 }
 \value{
 character(1) label, or \code{NA_character_} if not found.

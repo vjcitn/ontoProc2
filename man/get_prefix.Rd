@@ -8,6 +8,8 @@ get_prefix(x, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
+
+\item{...}{not used}
 }
 \value{
 character(1) the primary ontology prefix (e.g. \code{"GO"}).

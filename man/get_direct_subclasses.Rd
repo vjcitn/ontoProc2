@@ -4,12 +4,14 @@
 \alias{get_direct_subclasses}
 \title{Get direct subclasses of a term}
 \usage{
-get_direct_subclasses(x, ...)
+get_direct_subclasses(x, term_id, ...)
 }
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
 
 \item{term_id}{character(1) CURIE.}
+
+\item{...}{not used}
 }
 \value{
 data.frame with columns \code{id} and \code{label}, ordered by

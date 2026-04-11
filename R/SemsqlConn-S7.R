@@ -1,3 +1,12 @@
+#* checking Rd \usage sections ... WARNING
+#Undocumented arguments in Rd file 'SemsqlConn.Rd'
+#  ‘con’ ‘db_path’ ‘ontology_prefix’
+#
+#Undocumented arguments in Rd file 'search_labels.Rd'
+#  ‘...’
+#Documented arguments not in \usage in Rd file 'search_labels.Rd':
+#  ‘pattern’ ‘limit’
+
 # =============================================================================
 # SemanticSQL R Interface - S7 Class Implementation
 # =============================================================================
@@ -18,6 +27,9 @@
 #'     e.g. \code{"CL"} for the Cell Ontology}
 #' }
 #' @import S7
+#' @param con DBI connection object
+#' @param db_path character path to SQLite database file
+#' @param ontology_prefix character, e.g., 'CL' for cell ontology
 #' @return wrapped connection
 #' @export
 SemsqlConn <- new_class(
@@ -172,13 +184,15 @@ describe_table <- new_generic("describe_table", "x",
 #' Retrieve the ontology prefix from a SemsqlConn
 #'
 #' @param x A \code{SemsqlConn} object.
+#' @param ... not used
 #' @return character(1) the primary ontology prefix (e.g. \code{"GO"}).
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_prefix(goref)
 #' disconnect(goref)
 #' @export
-get_prefix <- new_generic("get_prefix", "x")
+get_prefix <- new_generic("get_prefix", "x",
+  function(x, ...) S7_dispatch())
 
 #' Search term labels in a SemsqlConn database
 #'
@@ -192,19 +206,22 @@ get_prefix <- new_generic("get_prefix", "x")
 #' search_labels(goref, "apoptosis")
 #' disconnect(goref)
 #' @export
-search_labels <- new_generic("search_labels", "x")
+search_labels <- new_generic("search_labels", "x",
+  function(x, pattern, limit=20L) S7_dispatch())
 
 #' Get the rdfs:label for a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE, e.g. \code{"GO:0006915"}.
+#' @param ... not used
 #' @return character(1) label, or \code{NA_character_} if not found.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_label(goref, "GO:0006915") # "apoptotic process"
 #' disconnect(goref)
 #' @export
-get_label <- new_generic("get_label", "x")
+get_label <- new_generic("get_label", "x",
+  function(x, term_id, ...) S7_dispatch())
 
 #' Get the text definition for a term
 #'
@@ -226,6 +243,7 @@ get_definition <- new_generic("get_definition", "x",
 #' @param term_id character(1) CURIE.
 #' @param type character(1) synonym scope: one of \code{"all"},
 #'   \code{"exact"}, \code{"broad"}, \code{"narrow"}, \code{"related"}.
+#' @param ... not used
 #' @return data.frame with columns \code{subject}, \code{predicate},
 #'   \code{synonym}.
 #' @examples
@@ -234,12 +252,14 @@ get_definition <- new_generic("get_definition", "x",
 #' get_synonyms(goref, "GO:0006915", type = "exact")
 #' disconnect(goref)
 #' @export
-get_synonyms <- new_generic("get_synonyms", "x")
+get_synonyms <- new_generic("get_synonyms", "x",
+  function(x, term_id, type=c("all", "exact", "broad", "narrow", "related"), ...) S7_dispatch())
 
 #' Retrieve a summary of information about a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
+#' @param ... not used
 #' @return list with elements \code{id}, \code{label}, \code{definition},
 #'   \code{synonyms}, \code{superclasses}, \code{subclasses}.
 #' @examples
@@ -249,7 +269,8 @@ get_synonyms <- new_generic("get_synonyms", "x")
 #' info$superclasses
 #' disconnect(goref)
 #' @export
-get_term_info <- new_generic("get_term_info", "x")
+get_term_info <- new_generic("get_term_info", "x",
+  function(x, term_id, ...) S7_dispatch())
 
 #' Get direct edges in the ontology graph for a term
 #'
@@ -274,6 +295,7 @@ get_direct_edges <- new_generic("get_direct_edges", "x",
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
+#' @param ... not used
 #' @return data.frame with columns \code{id} and \code{label}, ordered by
 #'   label.
 #' @examples
@@ -282,12 +304,14 @@ get_direct_edges <- new_generic("get_direct_edges", "x",
 #' get_direct_subclasses(goref, "GO:0006915")
 #' disconnect(goref)
 #' @export
-get_direct_subclasses <- new_generic("get_direct_subclasses", "x")
+get_direct_subclasses <- new_generic("get_direct_subclasses", "x",
+   function(x, term_id, ...) S7_dispatch())
 
 #' Get direct superclasses of a term
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
+#' @param ... not used
 #' @return data.frame with columns \code{id} and \code{label}, ordered by
 #'   label.
 #' @examples
@@ -295,7 +319,8 @@ get_direct_subclasses <- new_generic("get_direct_subclasses", "x")
 #' get_direct_superclasses(goref, "GO:0006915")
 #' disconnect(goref)
 #' @export
-get_direct_superclasses <- new_generic("get_direct_superclasses", "x")
+get_direct_superclasses <- new_generic("get_direct_superclasses", "x",
+   function(x, term_id, ...) S7_dispatch())
 
 #' Get all ancestors of a term via entailed edges
 #'
@@ -338,6 +363,7 @@ get_descendants <- new_generic("get_descendants", "x",
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param term_id character(1) CURIE.
+#' @param ... not used
 #' @return data.frame with columns \code{restriction_id}, \code{property},
 #'   \code{property_label}, \code{filler}, \code{filler_label}.
 #' @examples
@@ -346,7 +372,8 @@ get_descendants <- new_generic("get_descendants", "x",
 #' get_restrictions(goref, "GO:0005739")
 #' disconnect(goref)
 #' @export
-get_restrictions <- new_generic("get_restrictions", "x")
+get_restrictions <- new_generic("get_restrictions", "x",
+  function(x, term_id, ...) S7_dispatch())
 
 #' Find terms that have a given OWL someValuesFrom restriction
 #'
@@ -416,6 +443,7 @@ count_by_prefix <- new_generic("count_by_prefix", "x", function(x, ...) S7_dispa
 #'
 #' @param x A \code{SemsqlConn} object.
 #' @param sql character(1) SQL query string.
+#' @param ... not used
 #' @return data.frame with query results.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -425,7 +453,8 @@ count_by_prefix <- new_generic("count_by_prefix", "x", function(x, ...) S7_dispa
 #' )
 #' disconnect(goref)
 #' @export
-run_query <- new_generic("run_query", "x")
+run_query <- new_generic("run_query", "x", function(x, sql, ...)
+   S7_dispatch())
 
 #' Display a detailed report of a SemsqlConn object
 #'
@@ -436,6 +465,7 @@ run_query <- new_generic("run_query", "x")
 #' than \code{print()}, intended for interactive exploration.
 #'
 #' @param object A \code{SemsqlConn} object.
+#' @param ... not used
 #' @return The \code{SemsqlConn} object invisibly.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -452,6 +482,7 @@ report <- new_generic("report", "object")
 #' in place due to S7 value semantics.
 #'
 #' @param x A \code{SemsqlConn} object.
+#' @param ... not used
 #' @return A new \code{SemsqlConn} object with an active connection.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
