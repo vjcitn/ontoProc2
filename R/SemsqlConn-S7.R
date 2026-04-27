@@ -289,7 +289,7 @@ get_term_info <- new_generic("get_term_info", "x",
 #' disconnect(goref)
 #' @export
 get_direct_edges <- new_generic("get_direct_edges", "x",
-   function(x, term_id, direction="outgoing", ...) S7_dispatch())
+   function(x, term_id, direction=c("outgoing", "incoming", "both"), ...) S7_dispatch())
 
 #' Get direct subclasses of a term
 #'
@@ -612,9 +612,8 @@ method(get_term_info, SemsqlConn) <- function(x, term_id) {
 # =============================================================================
 
 method(get_direct_edges, SemsqlConn) <- function(x, term_id, 
-   direction="outgoing") {
- 
-  stopifnot(direction %in% c("outgoing", "incoming", "both"))
+   direction=c("outgoing", "incoming", "both")) {
+  direction <- match.arg(direction)
   query.init <- "SELECT
       e.subject,
       sl.value AS subject_label,
