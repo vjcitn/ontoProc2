@@ -24,7 +24,7 @@ cells_with_pmp <- function(curies) {
   mappr <- dplyr::tbl(pr@con, "rdfs_label_statement") |>
     dplyr::select(subject, value) |>
     as.data.frame() |>
-    dplyr::filter(grepl("^PR:", subject)) |>
+    dplyr::filter(startsWith(subject, "PR:")) |>
     dplyr::mutate(prtag = subject)
   ans <- dplyr::left_join(cl4pmp, mappr, by = "prtag") |> dplyr::select(prtag, value, cl)
   ans$celltype <- tag2cn[ans$cl]

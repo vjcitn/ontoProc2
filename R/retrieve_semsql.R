@@ -31,7 +31,7 @@ retrieve_semsql_conn <- function(ontology = "efo",
   # rname = paste0("^", ontology, "_bbop_ontoproc2")  # ?
   rname <- paste0(ontology, "_bbop_ontoproc2")
   bbop_info <- BiocFileCache::bfcquery(cache, rname)
-  ind <- grep(paste0("^", rname), bbop_info$rname)
+  ind <- which(startsWith(bbop_info$rname, rname))
   if (length(ind) > 0) {
     if (length(ind) > 1) {
       message(sprintf("multiple cache entries found matching request %s", rname))
@@ -58,7 +58,7 @@ retrieve_semsql_conn <- function(ontology = "efo",
       rtype = "local", fpath = tmploc, action = "move"
     )
     id <- bfcquery(cache, basename(addv))$rid
-    if (!isTRUE(substr(id, 1, 3) == "BFC")) stop("cache action failed") # avoid possibly infinite Recall
+    if (!isTRUE(startsWith(id, "BFC"))) stop("cache action failed") # avoid possibly infinite Recall
     Recall(ontology = ontology, cache = cache, cacheid = id)
   }
 }
