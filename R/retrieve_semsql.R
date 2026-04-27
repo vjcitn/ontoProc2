@@ -48,8 +48,8 @@ retrieve_semsql_conn <- function(ontology = "efo",
     tf <- basename(tempfile())
     td <- file.path("~", tf)
     dir.create(td)
-    ztmploc <- paste0(td, "/", zdbname)
-    tmploc <- paste0(td, "/", dbname)
+    ztmploc <- file.path(td, zdbname)
+    tmploc <- file.path(td, dbname)
     on.exit(unlink(td, recursive = TRUE))
     download.file(addr, file.path(td, zdbname), ...)
     gunzip(ztmploc) # file now at tmploc
