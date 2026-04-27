@@ -1,12 +1,3 @@
-#* checking Rd \usage sections ... WARNING
-#Undocumented arguments in Rd file 'SemsqlConn.Rd'
-#  ‘con’ ‘db_path’ ‘ontology_prefix’
-#
-#Undocumented arguments in Rd file 'search_labels.Rd'
-#  ‘...’
-#Documented arguments not in \usage in Rd file 'search_labels.Rd':
-#  ‘pattern’ ‘limit’
-
 # =============================================================================
 # SemanticSQL R Interface - S7 Class Implementation
 # =============================================================================
