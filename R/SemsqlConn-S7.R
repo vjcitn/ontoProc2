@@ -465,14 +465,16 @@ run_query <- new_generic("run_query", "x", function(x, sql, ...)
 #' than \code{print()}, intended for interactive exploration.
 #'
 #' @param object A \code{SemsqlConn} object.
-#' @param ... not used
+#' @param ... additional arguments (currently unused)
 #' @return The \code{SemsqlConn} object invisibly.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' report(goref)
 #' disconnect(goref)
 #' @export
-report <- new_generic("report", "object")
+report <- S7::new_generic("report", "object", function(object, ...) {
+  S7::S7_dispatch()
+})
 
 #' Reconnect a SemsqlConn to its database
 #'
@@ -575,18 +577,32 @@ method(get_definition, SemsqlConn) <- function(x, term_id) {
   result$definition[1]
 }
 
-# here it is safe to use sprintf to build query
 method(get_synonyms, SemsqlConn) <- function(
-  x, term_id,
-  type = c("all", "exact", "broad", "narrow", "related")
-) {
+    x, term_id, type = c("all", "exact", "broad", "narrow", "related")) {
+
   type <- match.arg(type)
+
+  if (type == "all") {
+    # Bypass the has_oio_synonym_statement view — DuckDB cannot parse
+    # its UNION definition when reading semsql SQLite attachments.
+    # Query statements directly instead.
+    sql <- "SELECT subject, predicate, value AS synonym
+            FROM statements
+            WHERE subject = ?
+              AND predicate IN (
+                'oio:hasExactSynonym',
+                'oio:hasRelatedSynonym',
+                'oio:hasNarrowSynonym',
+                'oio:hasBroadSynonym'
+              )"
+    return(dbGetQuery(x@con, sql, params = list(term_id)))
+  }
+
   view_name <- switch(type,
-    all      = "has_oio_synonym_statement",
-    exact    = "has_exact_synonym_statement",
-    broad    = "has_broad_synonym_statement",
-    narrow   = "has_narrow_synonym_statement",
-    related  = "has_related_synonym_statement"
+    exact   = "has_exact_synonym_statement",
+    broad   = "has_broad_synonym_statement",
+    narrow  = "has_narrow_synonym_statement",
+    related = "has_related_synonym_statement"
   )
   sql <- sprintf(
     "SELECT subject, predicate, value AS synonym FROM %s WHERE subject = ?",
@@ -594,6 +610,7 @@ method(get_synonyms, SemsqlConn) <- function(
   )
   dbGetQuery(x@con, sql, params = list(term_id))
 }
+
 
 
 method(get_term_info, SemsqlConn) <- function(x, term_id) {
@@ -842,12 +859,6 @@ method(count_by_prefix, SemsqlConn) <- function(x) {
 # PRINT / REPORT METHODS
 # =============================================================================
 
-#' setup print
-#' @name print
-#' @rdname print
-#' @return print action
-#' @export
-new_generic("print", "x")
 
 #' Show method for SemsqlConn.
 #' Concise one-line summary displayed when a \code{SemsqlConn} object is
@@ -855,8 +866,9 @@ new_generic("print", "x")
 #' @name print
 #' @rdname print
 #' @param x A \code{SemsqlConn} object.
+#' @param ... not used
 #' @export
-S7::method(print, SemsqlConn) <- function(x) {
+S7::method(print, SemsqlConn) <- function(x, ...) {
   if (!is_connected(x)) {
     stop("SemsqlConn object is disconnected; reconnect with semsql_connect()")
   }
@@ -874,11 +886,9 @@ S7::method(print, SemsqlConn) <- function(x) {
 }
 
 
-#' longer display
-#' @name report
 #' @rdname report
 #' @export
-S7::method(report, SemsqlConn) <- function(object) {
+S7::method(report, SemsqlConn) <- function(object, ...) {
   cat("\n")
   cat(strrep("=", 60), "\n")
   cat("SemsqlConn Object\n")

@@ -2,16 +2,19 @@
 % Please edit documentation in R/SemsqlConn-S7.R
 \name{print}
 \alias{print}
-\title{setup print}
+\title{Show method for SemsqlConn.
+Concise one-line summary displayed when a \code{SemsqlConn} object is
+auto-printed at the R prompt.}
+\usage{
+## S7 method for class <ontoProc2::SemsqlConn>
+print(x, ...)
+}
 \arguments{
 \item{x}{A \code{SemsqlConn} object.}
-}
-\value{
-print action
+
+\item{...}{not used}
 }
 \description{
-setup print
-
 Show method for SemsqlConn.
 Concise one-line summary displayed when a \code{SemsqlConn} object is
 auto-printed at the R prompt.

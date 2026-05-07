@@ -2,14 +2,18 @@
 % Please edit documentation in R/SemsqlConn-S7.R
 \name{report}
 \alias{report}
+\alias{report,ontoProc2::SemsqlConn-method}
 \title{Display a detailed report of a SemsqlConn object}
 \usage{
+report(object, ...)
+
+## S7 method for class <ontoProc2::SemsqlConn>
 report(object, ...)
 }
 \arguments{
 \item{object}{A \code{SemsqlConn} object.}
 
-\item{...}{not used}
+\item{...}{additional arguments (currently unused)}
 }
 \value{
 The \code{SemsqlConn} object invisibly.

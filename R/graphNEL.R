@@ -19,7 +19,7 @@
 #' )
 #' p3k <- ontologyPlot::onto_plot(cl, cl3k)
 #' gnel <- make_graphNEL_from_ontology_plot(p3k)
-#' gnel <- improveNodes(gnel, cl)
+#' gnel <- improve_nodes(gnel, cl)
 #' graph::graph.par(list(nodes = list(shape = "plaintext", cex = .8)))
 #' gnel <- Rgraphviz::layoutGraph(gnel)
 #' Rgraphviz::renderGraph(gnel)
@@ -51,10 +51,10 @@ make_graphNEL_from_ontology_plot <- function(x) {
 #' p3k <- ontologyPlot::onto_plot(cl, cl3k)
 #' gnel <- make_graphNEL_from_ontology_plot(p3k)
 #' head(graph::nodes(gnel)) # before improving
-#' gnel <- improveNodes(gnel, cl)
+#' gnel <- improve_nodes(gnel, cl)
 #' head(graph::nodes(gnel))
 #' @export
-improveNodes <- function(g, ont) {
+improve_nodes <- function(g, ont) {
   nn <- paste(sub(" ", "\n", ont$name[nodes(g)]), "\n", nodes(g), sep = "")
   nodes(g) <- nn
   g
@@ -78,7 +78,7 @@ improveNodes <- function(g, ont) {
 onto_plot2 <- function(ont, terms2use, cex = .8, ...) {
   pl <- ontologyPlot::onto_plot(ont, terms2use, ...)
   gnel <- make_graphNEL_from_ontology_plot(pl)
-  gnel <- improveNodes(gnel, ont)
+  gnel <- improve_nodes(gnel, ont)
   graph.par(list(nodes = list(shape = "plaintext", cex = cex)))
   gnel <- layoutGraph(gnel)
   renderGraph(gnel)

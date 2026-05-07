@@ -27,7 +27,7 @@ cl3k <- c(
 )
 p3k <- ontologyPlot::onto_plot(cl, cl3k)
 gnel <- make_graphNEL_from_ontology_plot(p3k)
-gnel <- improveNodes(gnel, cl)
+gnel <- improve_nodes(gnel, cl)
 graph::graph.par(list(nodes = list(shape = "plaintext", cex = .8)))
 gnel <- Rgraphviz::layoutGraph(gnel)
 Rgraphviz::renderGraph(gnel)
