@@ -1,11 +1,3 @@
-#* checking Rd \usage sections ... WARNING
-#Undocumented arguments in Rd file 'SemsqlConn.Rd'
-#  ‘con’ ‘db_path’ ‘ontology_prefix’
-#
-#Undocumented arguments in Rd file 'search_labels.Rd'
-#  ‘...’
-#Documented arguments not in \usage in Rd file 'search_labels.Rd':
-#  ‘pattern’ ‘limit’
 
 # =============================================================================
 # SemanticSQL R Interface - S7 Class Implementation
@@ -289,7 +281,7 @@ get_term_info <- new_generic("get_term_info", "x",
 #' disconnect(goref)
 #' @export
 get_direct_edges <- new_generic("get_direct_edges", "x",
-   function(x, term_id, direction="outgoing", ...) S7_dispatch())
+   function(x, term_id, direction=c("outgoing", "incoming", "both"), ...) S7_dispatch())
 
 #' Get direct subclasses of a term
 #'
@@ -629,9 +621,9 @@ method(get_term_info, SemsqlConn) <- function(x, term_id) {
 # =============================================================================
 
 method(get_direct_edges, SemsqlConn) <- function(x, term_id, 
-   direction="outgoing") {
+   direction=c("outgoing", "incoming", "both")) {
  
-  stopifnot(direction %in% c("outgoing", "incoming", "both"))
+  direction = match.arg(direction)
   query.init <- "SELECT
       e.subject,
       sl.value AS subject_label,

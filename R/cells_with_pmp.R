@@ -18,7 +18,7 @@ cells_with_pmp <- function(curies) {
   cl4pmp <- dplyr::tbl(cl@con, "entailed_edge") |>
     dplyr::filter(object %in% curies, predicate == "RO:0002104") |>
     as.data.frame() |>
-    dplyr::filter(grepl("PR:", object)) |>
+    dplyr::filter(startsWith(subject, "PR:")) |>
     dplyr::select(subject, object) |>
     dplyr::mutate(cl = subject, prtag = object)
   mappr <- dplyr::tbl(pr@con, "rdfs_label_statement") |>
