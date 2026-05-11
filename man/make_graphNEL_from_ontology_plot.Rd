@@ -16,7 +16,6 @@ instance of S4 graphNEL class
 obtain graphNEL from ontology_plot instance of ontologyPlot
 }
 \examples{
-\donttest{
 requireNamespace("Rgraphviz")
 requireNamespace("graph")
 clcon <- retrieve_semsql_conn("cl")
@@ -31,5 +30,4 @@ gnel <- improve_nodes(gnel, cl)
 graph::graph.par(list(nodes = list(shape = "plaintext", cex = .8)))
 gnel <- Rgraphviz::layoutGraph(gnel)
 Rgraphviz::renderGraph(gnel)
-}
 }

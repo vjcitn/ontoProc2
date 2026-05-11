@@ -15,7 +15,7 @@ get_term_info(x, term_id, ...)
 }
 \value{
 list with elements \code{id}, \code{label}, \code{definition},
-  \code{synonyms}, \code{superclasses}, \code{subclasses}.
+\code{synonyms}, \code{superclasses}, \code{subclasses}.
 }
 \description{
 Retrieve a summary of information about a term

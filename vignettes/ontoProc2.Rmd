@@ -20,8 +20,26 @@ The ontoProc2 package has two aims:
 
 - to give convenient
 access to the ontologies that are transformed to "semantic
-SQL" in the [INCAtools semantic sql project](https://github.com/INCATools/semantic-sql);
+SQL" in the [INCAtools semantic SQL project](https://github.com/INCATools/semantic-sql);
 - to simplify operations that have been available in [ontoProc](https://git.bioconductor.org/packages/ontoProc), which will be deprecated in 2027.
+
+This package is a "second generation" approach to ontology management
+and processing for Bioconductor.  The ontoProc package was introduced in
+2018 and had a number of experimental
+approaches to interface design and content caching.  This package
+streamlines the identification and management of diverse ontologies
+by specifically leveraging semantic SQL concepts.
+
+Specifically, the call `ontoProc::getOnto('cellOnto')` would produce
+an `ontologyIndex` instance.  To work with Cell Ontology with ontoProc2,
+use `semsql_connect(ontology="cl")`.  The abbreviated notation for ontologies follows
+that of the Open Biological and Biomedical Ontologies ([OBO](https://github.com/OBOFoundry/)) Foundry.
+
+# Installation
+
+Prior to the release of Bioconductor 3.24, use `BiocManager::install("vjcitn/ontoProc2")`.
+
+For Bioconductor 3.24 and subsequent versions, use `BiocManager::install("ontoProc2")`.
 
 # Acquiring ontologies
 

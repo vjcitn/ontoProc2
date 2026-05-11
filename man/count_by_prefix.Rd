@@ -13,7 +13,7 @@ count_by_prefix(x, ...)
 }
 \value{
 data.frame with columns \code{prefix} and \code{n}, ordered by
-  \code{n} descending.
+\code{n} descending.
 }
 \description{
 Count labeled terms grouped by CURIE prefix

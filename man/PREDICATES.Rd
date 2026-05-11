@@ -5,15 +5,15 @@
 \title{Standard predicate CURIEs used in OBO ontologies}
 \format{
 A named list with elements \code{subclass_of}, \code{part_of},
-  \code{has_part}, \code{develops_from}, \code{located_in},
-  \code{has_characteristic}.
+\code{has_part}, \code{develops_from}, \code{located_in},
+\code{has_characteristic}.
 }
 \usage{
 PREDICATES
 }
 \description{
 A named list of commonly used predicate CURIEs in OBO-format ontologies,
-for use with \code{\link{get_ancestors}}, \code{\link{get_descendants}},
+for use with \code{\link[=get_ancestors]{get_ancestors()}}, \code{\link[=get_descendants]{get_descendants()}},
 and related functions.
 }
 \examples{

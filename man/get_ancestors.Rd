@@ -18,7 +18,7 @@ get_ancestors(
 \item{term_id}{character(1) CURIE.}
 
 \item{predicates}{character vector of predicate CURIEs to follow.
-Defaults to \code{"rdfs:subClassOf"}. See \code{\link{PREDICATES}} for
+Defaults to \code{"rdfs:subClassOf"}. See \code{\link[=PREDICATES]{PREDICATES()}} for
 common values.}
 
 \item{include_self}{logical(1) whether to include the term itself

@@ -15,7 +15,7 @@ describe_table(x, table_name, ...)
 }
 \value{
 data.frame with PRAGMA table_info output (columns: cid, name, type,
-  notnull, dflt_value, pk).
+notnull, dflt_value, pk).
 }
 \description{
 Describe the columns of a table in a SemsqlConn database

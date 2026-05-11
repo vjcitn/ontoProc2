@@ -56,7 +56,7 @@ retrieve_semsql_conn <- function(ontology = "efo",
     gunzip(ztmploc) # file now at tmploc
     addv <- BiocFileCache::bfcadd(cache,
       rname = rname,
-      rtype = "local", fpath = tmploc, action = "move"
+      rtype = "local", fpath = tmploc, action = "copy"
     )
     id <- bfcquery(cache, basename(addv))$rid
     if (!isTRUE(startsWith(id, "BFC"))) stop("cache action failed") # avoid possibly infinite Recall

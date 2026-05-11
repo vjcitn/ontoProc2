@@ -15,7 +15,7 @@ get_direct_superclasses(x, term_id, ...)
 }
 \value{
 data.frame with columns \code{id} and \code{label}, ordered by
-  label.
+label.
 }
 \description{
 Get direct superclasses of a term

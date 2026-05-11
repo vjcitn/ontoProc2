@@ -23,8 +23,8 @@ get_direct_edges(
 }
 \value{
 data.frame with columns \code{subject}, \code{subject_label},
-  \code{predicate}, \code{predicate_label}, \code{object},
-  \code{object_label}.
+\code{predicate}, \code{predicate_label}, \code{object},
+\code{object_label}.
 }
 \description{
 Get direct edges in the ontology graph for a term

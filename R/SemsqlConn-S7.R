@@ -16,7 +16,7 @@
 #'   \item{con}{The DBI connection object (SQLiteConnection)}
 #'   \item{db_path}{character(1) path to the SQLite database file}
 #'   \item{ontology_prefix}{character(1) primary ontology prefix,
-#'     e.g. \code{"CL"} for the Cell Ontology}
+#'     e.g. `"CL"` for the Cell Ontology}
 #' }
 #' @import S7
 #' @param con DBI connection object
@@ -52,24 +52,24 @@ S4_register(SemsqlConn)
 #' @description
 #' Opens a connection to a SemanticSQL SQLite database, either by supplying
 #' a direct file path or by referencing a short ontology name that is
-#' retrieved and cached via \code{BiocFileCache}.
+#' retrieved and cached via `BiocFileCache`.
 #'
 #' @param db_path character(1) or NULL. Path to an existing SQLite database
-#'   file. Either \code{db_path} or \code{ontology} must be supplied.
+#'   file. Either `db_path` or `ontology` must be supplied.
 #' @param ontology_prefix character(1) or NULL. Primary CURIE prefix for the
-#'   ontology (e.g. \code{"CL"}). If NULL and \code{ontology} is supplied,
-#'   defaults to \code{toupper(ontology)}; otherwise auto-detected from the
+#'   ontology (e.g. `"CL"`). If NULL and `ontology` is supplied,
+#'   defaults to `toupper(ontology)`; otherwise auto-detected from the
 #'   database.
 #' @param ontology character(1) or NULL. Short name of an INCAtools ontology
-#'   (e.g. \code{"cl"}, \code{"go"}). If supplied,
-#'   \code{\link{retrieve_semsql_conn}} is called to locate or download the
+#'   (e.g. `"cl"`, `"go"`). If supplied,
+#'   [retrieve_semsql_conn()] is called to locate or download the
 #'   cached database.
-#' @param cache a \code{BiocFileCache} instance used when \code{ontology} is
-#'   supplied. Defaults to \code{BiocFileCache::BiocFileCache()}.
-#' @param ... passed to \code{\link{retrieve_semsql_conn}} and ultimately
-#'   to \code{\link[utils]{download.file}}.
+#' @param cache a `BiocFileCache` instance used when `ontology` is
+#'   supplied. Defaults to `BiocFileCache::BiocFileCache()`.
+#' @param ... passed to [retrieve_semsql_conn()] and ultimately
+#'   to [utils::download.file()].
 #' @note The connection has flag `SQLITE_RO` for read-only access.
-#' @return A \code{\link{SemsqlConn}} object.
+#' @return A [SemsqlConn()] object.
 #' @examples
 #' # by ontology short name (downloads if not cached)
 #' goref <- semsql_connect(ontology = "go")
@@ -122,20 +122,17 @@ semsql_connect <- function(db_path = NULL, ontology_prefix = NULL,
 
 #' Disconnect a SemsqlConn from its database
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param quiet logical(1) if TRUE suppresses the disconnection message
 #'   (default FALSE).
 #' @param ... not used
-#' @return The \code{SemsqlConn} object invisibly.
-#' @examples
-#' goref <- semsql_connect(ontology = "go")
-#' disconnect(goref)
+#' @return The `SemsqlConn` object invisibly.
 #' @export
 disconnect <- new_generic("disconnect", "x", function(x, quiet=FALSE, ...) S7_dispatch())
 
 #' Test whether a SemsqlConn has a valid open connection
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param ... not used
 #' @return logical(1).
 #' @examples
@@ -148,7 +145,7 @@ is_connected <- new_generic("is_connected", "x")
 
 #' List tables in a SemsqlConn database
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param ... not used
 #' @return character vector of table names.
 #' @examples
@@ -160,7 +157,7 @@ list_tables <- new_generic("list_tables", "x")
 
 #' Describe the columns of a table in a SemsqlConn database
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param table_name character(1) name of the table.
 #' @param ... not used
 #' @return data.frame with PRAGMA table_info output (columns: cid, name, type,
@@ -175,9 +172,9 @@ describe_table <- new_generic("describe_table", "x",
 
 #' Retrieve the ontology prefix from a SemsqlConn
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param ... not used
-#' @return character(1) the primary ontology prefix (e.g. \code{"GO"}).
+#' @return character(1) the primary ontology prefix (e.g. `"GO"`).
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_prefix(goref)
@@ -188,11 +185,11 @@ get_prefix <- new_generic("get_prefix", "x",
 
 #' Search term labels in a SemsqlConn database
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param pattern character(1) substring to match against rdfs:label values
 #'   (SQL LIKE pattern, case-insensitive on most SQLite builds).
 #' @param limit integer(1) maximum number of rows to return (default 20).
-#' @return data.frame with columns \code{subject} and \code{label}.
+#' @return data.frame with columns `subject` and `label`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' search_labels(goref, "apoptosis")
@@ -203,10 +200,10 @@ search_labels <- new_generic("search_labels", "x",
 
 #' Get the rdfs:label for a term
 #'
-#' @param x A \code{SemsqlConn} object.
-#' @param term_id character(1) CURIE, e.g. \code{"GO:0006915"}.
+#' @param x A `SemsqlConn` object.
+#' @param term_id character(1) CURIE, e.g. `"GO:0006915"`.
 #' @param ... not used
-#' @return character(1) label, or \code{NA_character_} if not found.
+#' @return character(1) label, or `NA_character_` if not found.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_label(goref, "GO:0006915") # "apoptotic process"
@@ -217,9 +214,9 @@ get_label <- new_generic("get_label", "x",
 
 #' Get the text definition for a term
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
-#' @return character(1) definition text, or \code{NA_character_} if not found.
+#' @return character(1) definition text, or `NA_character_` if not found.
 #' @param ... not used
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -231,13 +228,13 @@ get_definition <- new_generic("get_definition", "x",
 
 #' Get synonyms for a term
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
-#' @param type character(1) synonym scope: one of \code{"all"},
-#'   \code{"exact"}, \code{"broad"}, \code{"narrow"}, \code{"related"}.
+#' @param type character(1) synonym scope: one of `"all"`,
+#'   `"exact"`, `"broad"`, `"narrow"`, `"related"`.
 #' @param ... not used
-#' @return data.frame with columns \code{subject}, \code{predicate},
-#'   \code{synonym}.
+#' @return data.frame with columns `subject`, `predicate`,
+#'   `synonym`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_synonyms(goref, "GO:0006915")
@@ -249,11 +246,11 @@ get_synonyms <- new_generic("get_synonyms", "x",
 
 #' Retrieve a summary of information about a term
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param ... not used
-#' @return list with elements \code{id}, \code{label}, \code{definition},
-#'   \code{synonyms}, \code{superclasses}, \code{subclasses}.
+#' @return list with elements `id`, `label`, `definition`,
+#'   `synonyms`, `superclasses`, `subclasses`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' info <- get_term_info(goref, "GO:0006915")
@@ -266,14 +263,14 @@ get_term_info <- new_generic("get_term_info", "x",
 
 #' Get direct edges in the ontology graph for a term
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
-#' @param direction character(1) one of \code{"outgoing"}, \code{"incoming"},
-#'   \code{"both"}.
+#' @param direction character(1) one of `"outgoing"`, `"incoming"`,
+#'   `"both"`.
 #' @param ... not used
-#' @return data.frame with columns \code{subject}, \code{subject_label},
-#'   \code{predicate}, \code{predicate_label}, \code{object},
-#'   \code{object_label}.
+#' @return data.frame with columns `subject`, `subject_label`,
+#'   `predicate`, `predicate_label`, `object`,
+#'   `object_label`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_direct_edges(goref, "GO:0006915")
@@ -285,10 +282,10 @@ get_direct_edges <- new_generic("get_direct_edges", "x",
 
 #' Get direct subclasses of a term
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param ... not used
-#' @return data.frame with columns \code{id} and \code{label}, ordered by
+#' @return data.frame with columns `id` and `label`, ordered by
 #'   label.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -301,10 +298,10 @@ get_direct_subclasses <- new_generic("get_direct_subclasses", "x",
 
 #' Get direct superclasses of a term
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param ... not used
-#' @return data.frame with columns \code{id} and \code{label}, ordered by
+#' @return data.frame with columns `id` and `label`, ordered by
 #'   label.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
@@ -316,15 +313,15 @@ get_direct_superclasses <- new_generic("get_direct_superclasses", "x",
 
 #' Get all ancestors of a term via entailed edges
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param predicates character vector of predicate CURIEs to follow.
-#'   Defaults to \code{"rdfs:subClassOf"}. See \code{\link{PREDICATES}} for
+#'   Defaults to `"rdfs:subClassOf"`. See [PREDICATES()] for
 #'   common values.
 #' @param include_self logical(1) whether to include the term itself
-#'   (default \code{FALSE}).
+#'   (default `FALSE`).
 #' @param ... not used
-#' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
+#' @return data.frame with columns `id`, `label`, `predicate`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_ancestors(goref, "GO:0006915")
@@ -335,14 +332,14 @@ get_ancestors <- new_generic("get_ancestors", "x",
 
 #' Get all descendants of a term via entailed edges
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param predicates character vector of predicate CURIEs to follow.
-#'   Defaults to \code{"rdfs:subClassOf"}.
+#'   Defaults to `"rdfs:subClassOf"`.
 #' @param include_self logical(1) whether to include the term itself
-#'   (default \code{FALSE}).
+#'   (default `FALSE`).
 #' @param ... not used
-#' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
+#' @return data.frame with columns `id`, `label`, `predicate`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_descendants(goref, "GO:0006915")
@@ -353,11 +350,11 @@ get_descendants <- new_generic("get_descendants", "x",
 
 #' Get OWL someValuesFrom restrictions for a term
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param ... not used
-#' @return data.frame with columns \code{restriction_id}, \code{property},
-#'   \code{property_label}, \code{filler}, \code{filler_label}.
+#' @return data.frame with columns `restriction_id`, `property`,
+#'   `property_label`, `filler`, `filler_label`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' # mitochondrion (GO:0005739) has part-of restrictions to cell
@@ -369,14 +366,14 @@ get_restrictions <- new_generic("get_restrictions", "x",
 
 #' Find terms that have a given OWL someValuesFrom restriction
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param property character(1) property CURIE
-#'   (e.g. \code{"BFO:0000050"} for part-of).
+#'   (e.g. `"BFO:0000050"` for part-of).
 #' @param filler character(1) filler class CURIE.
 #' @param include_filler_descendants logical(1) if TRUE also match subclasses
-#'   of \code{filler} (default \code{FALSE}).
+#'   of `filler` (default `FALSE`).
 #' @param ... not used
-#' @return data.frame with columns \code{id} and \code{label}.
+#' @return data.frame with columns `id` and `label`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' # cellular components that are part_of nucleus (GO:0005634)
@@ -388,12 +385,12 @@ find_by_restriction <- new_generic("find_by_restriction", "x",
 # 
 #' Find terms that are descendants of a superclass and have a given restriction
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param superclass_id character(1) CURIE of the superclass.
 #' @param relation_property character(1) property CURIE for the restriction.
 #' @param related_to_id character(1) filler CURIE for the restriction.
 #' @param ... not used
-#' @return data.frame with columns \code{id} and \code{label}.
+#' @return data.frame with columns `id` and `label`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' # CC terms (GO:0005575) that are part_of nucleus (GO:0005634)
@@ -404,10 +401,10 @@ find_by_restriction <- new_generic("find_by_restriction", "x",
      function(x, superclass_id, relation_property, related_to_id, ...) S7_dispatch())
  
 #' Count the number of descendants of a term
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param predicate character(1) predicate to traverse
-#'   (default \code{"rdfs:subClassOf"}).
+#'   (default `"rdfs:subClassOf"`).
 #' @param ... not used
 #' @return integer(1).
 #' @examples
@@ -419,10 +416,10 @@ find_by_restriction <- new_generic("find_by_restriction", "x",
     function(x, term_id, predicate = "rdfs:subClassOf", ...) S7_dispatch())
 
 #' Count labeled terms grouped by CURIE prefix
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param ... not used.
-#' @return data.frame with columns \code{prefix} and \code{n}, ordered by
-#'   \code{n} descending.
+#' @return data.frame with columns `prefix` and `n`, ordered by
+#'   `n` descending.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' count_by_prefix(goref)
@@ -433,7 +430,7 @@ count_by_prefix <- new_generic("count_by_prefix", "x", function(x, ...) S7_dispa
 
 #' Run an arbitrary SQL query against a SemsqlConn database
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param sql character(1) SQL query string.
 #' @param ... not used
 #' @return data.frame with query results.
@@ -451,14 +448,14 @@ run_query <- new_generic("run_query", "x", function(x, sql, ...)
 #' Display a detailed report of a SemsqlConn object
 #'
 #' @description
-#' Displays a verbose, formatted representation of a \code{SemsqlConn} object
+#' Displays a verbose, formatted representation of a `SemsqlConn` object
 #' including connection status, database statistics (labeled terms, edges,
 #' definitions), prefix breakdown, and available key tables. More informative
-#' than \code{print()}, intended for interactive exploration.
+#' than `print()`, intended for interactive exploration.
 #'
-#' @param object A \code{SemsqlConn} object.
+#' @param object A `SemsqlConn` object.
 #' @param ... additional arguments (currently unused)
-#' @return The \code{SemsqlConn} object invisibly.
+#' @return The `SemsqlConn` object invisibly.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' report(goref)
@@ -471,13 +468,13 @@ report <- S7::new_generic("report", "object", function(object, ...) {
 #' Reconnect a SemsqlConn to its database
 #'
 #' @description
-#' Attempts to reconnect a disconnected \code{SemsqlConn} object to its
-#' database. Returns a new \code{SemsqlConn}; the original cannot be modified
+#' Attempts to reconnect a disconnected `SemsqlConn` object to its
+#' database. Returns a new `SemsqlConn`; the original cannot be modified
 #' in place due to S7 value semantics.
 #'
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param ... not used
-#' @return A new \code{SemsqlConn} object with an active connection.
+#' @return A new `SemsqlConn` object with an active connection.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' disconnect(goref)
@@ -853,11 +850,11 @@ method(count_by_prefix, SemsqlConn) <- function(x) {
 
 
 #' Show method for SemsqlConn.
-#' Concise one-line summary displayed when a \code{SemsqlConn} object is
+#' Concise one-line summary displayed when a `SemsqlConn` object is
 #' auto-printed at the R prompt.
 #' @name print
 #' @rdname print
-#' @param x A \code{SemsqlConn} object.
+#' @param x A `SemsqlConn` object.
 #' @param ... not used
 #' @export
 S7::method(print, SemsqlConn) <- function(x, ...) {
@@ -986,12 +983,12 @@ S7::method(report, SemsqlConn) <- function(object, ...) {
 #'
 #' @description
 #' A named list of commonly used predicate CURIEs in OBO-format ontologies,
-#' for use with \code{\link{get_ancestors}}, \code{\link{get_descendants}},
+#' for use with [get_ancestors()], [get_descendants()],
 #' and related functions.
 #'
-#' @format A named list with elements \code{subclass_of}, \code{part_of},
-#'   \code{has_part}, \code{develops_from}, \code{located_in},
-#'   \code{has_characteristic}.
+#' @format A named list with elements `subclass_of`, `part_of`,
+#'   `has_part`, `develops_from`, `located_in`,
+#'   `has_characteristic`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' # apoptotic process (GO:0006915) ancestors via is-a and part-of
@@ -1013,14 +1010,14 @@ PREDICATES <- list(
 #' Get ancestors traversing both is-a and part-of relationships
 #'
 #' @description
-#' Convenience wrapper around \code{\link{get_ancestors}} that follows both
-#' \code{rdfs:subClassOf} and \code{BFO:0000050} (part-of) edges.
+#' Convenience wrapper around [get_ancestors()] that follows both
+#' `rdfs:subClassOf` and `BFO:0000050` (part-of) edges.
 #'
-#' @param conn A \code{SemsqlConn} object.
+#' @param conn A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param include_self logical(1) whether to include the term itself
-#'   (default \code{FALSE}).
-#' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
+#'   (default `FALSE`).
+#' @return data.frame with columns `id`, `label`, `predicate`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_ancestors_partonomy(goref, "GO:0005739") # mitochondrion
@@ -1036,14 +1033,14 @@ get_ancestors_partonomy <- function(conn, term_id, include_self = FALSE) {
 #' Get descendants traversing both is-a and has-part relationships
 #'
 #' @description
-#' Convenience wrapper around \code{\link{get_descendants}} that follows both
-#' \code{rdfs:subClassOf} and \code{BFO:0000051} (has-part) edges.
+#' Convenience wrapper around [get_descendants()] that follows both
+#' `rdfs:subClassOf` and `BFO:0000051` (has-part) edges.
 #'
-#' @param conn A \code{SemsqlConn} object.
+#' @param conn A `SemsqlConn` object.
 #' @param term_id character(1) CURIE.
 #' @param include_self logical(1) whether to include the term itself
-#'   (default \code{FALSE}).
-#' @return data.frame with columns \code{id}, \code{label}, \code{predicate}.
+#'   (default `FALSE`).
+#' @return data.frame with columns `id`, `label`, `predicate`.
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' get_descendants_partonomy(goref, "GO:0005634") # nucleus sub-components
@@ -1059,14 +1056,14 @@ get_descendants_partonomy <- function(conn, term_id, include_self = FALSE) {
 #' Execute code with an automatically managed SemsqlConn
 #'
 #' @description
-#' Opens a connection, evaluates an expression with \code{conn} bound to the
-#' open \code{SemsqlConn}, then closes the connection even if an error occurs.
-#' Analogous to Python's context manager (\code{with} statement).
+#' Opens a connection, evaluates an expression with `conn` bound to the
+#' open `SemsqlConn`, then closes the connection even if an error occurs.
+#' Analogous to Python's context manager (`with` statement).
 #'
 #' @param db_path character(1) path to the SQLite database.
-#' @param expr an expression to evaluate; \code{conn} is bound to the open
-#'   \code{SemsqlConn} within this expression.
-#' @return the value of \code{expr}.
+#' @param expr an expression to evaluate; `conn` is bound to the open
+#'   `SemsqlConn` within this expression.
+#' @return the value of `expr`.
 #' @examples
 #' \dontrun{
 #' result <- with_connection("cl.db", {

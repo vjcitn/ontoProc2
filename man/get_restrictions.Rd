@@ -15,7 +15,7 @@ get_restrictions(x, term_id, ...)
 }
 \value{
 data.frame with columns \code{restriction_id}, \code{property},
-  \code{property_label}, \code{filler}, \code{filler_label}.
+\code{property_label}, \code{filler}, \code{filler_label}.
 }
 \description{
 Get OWL someValuesFrom restrictions for a term

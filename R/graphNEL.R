@@ -8,7 +8,6 @@
 #' @param x instance of S3 class ontology_plot
 #' @return instance of S4 graphNEL class
 #' @examples
-#' \donttest{
 #' requireNamespace("Rgraphviz")
 #' requireNamespace("graph")
 #' clcon <- retrieve_semsql_conn("cl")
@@ -23,7 +22,6 @@
 #' graph::graph.par(list(nodes = list(shape = "plaintext", cex = .8)))
 #' gnel <- Rgraphviz::layoutGraph(gnel)
 #' Rgraphviz::renderGraph(gnel)
-#' }
 #' @export
 make_graphNEL_from_ontology_plot <- function(x) {
   ont_graph <- new(

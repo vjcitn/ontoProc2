@@ -20,7 +20,3 @@ The \code{SemsqlConn} object invisibly.
 \description{
 Disconnect a SemsqlConn from its database
 }
-\examples{
-goref <- semsql_connect(ontology = "go")
-disconnect(goref)
-}

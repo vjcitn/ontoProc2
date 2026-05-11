@@ -23,7 +23,7 @@ get_synonyms(
 }
 \value{
 data.frame with columns \code{subject}, \code{predicate},
-  \code{synonym}.
+\code{synonym}.
 }
 \description{
 Get synonyms for a term

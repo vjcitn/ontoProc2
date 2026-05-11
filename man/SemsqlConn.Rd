@@ -24,9 +24,9 @@ relationship queries.
 
 Properties:
 \describe{
-  \item{con}{The DBI connection object (SQLiteConnection)}
-  \item{db_path}{character(1) path to the SQLite database file}
-  \item{ontology_prefix}{character(1) primary ontology prefix,
-    e.g. \code{"CL"} for the Cell Ontology}
+\item{con}{The DBI connection object (SQLiteConnection)}
+\item{db_path}{character(1) path to the SQLite database file}
+\item{ontology_prefix}{character(1) primary ontology prefix,
+e.g. \code{"CL"} for the Cell Ontology}
 }
 }

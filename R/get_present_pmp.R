@@ -3,9 +3,7 @@
 #' @param curies a character vector in format "CL:nnnnnnn"
 #' @return a data.frame with columns cl, celltype, pr, protein
 #' @examples
-#' \donttest{
 #' get_present_pmp(c("CL:0000091", "CL:0000926"))
-#' }
 #' @export
 get_present_pmp <- function(curies) {
   data("tag2cn", package = "ontoProc2")

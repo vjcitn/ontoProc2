@@ -18,7 +18,7 @@ get_ancestors_partonomy(conn, term_id, include_self = FALSE)
 data.frame with columns \code{id}, \code{label}, \code{predicate}.
 }
 \description{
-Convenience wrapper around \code{\link{get_ancestors}} that follows both
+Convenience wrapper around \code{\link[=get_ancestors]{get_ancestors()}} that follows both
 \code{rdfs:subClassOf} and \code{BFO:0000050} (part-of) edges.
 }
 \examples{

@@ -3,9 +3,7 @@
 #' @param curies a character vector in format "PR:nnnnnnnnn"
 #' @return a data.frame with columns cl, celltype, pr, protein
 #' @examples
-#' \donttest{
 #' cells_with_pmp(c("PR:000002064", "PR:000001874"))
-#' }
 #' @export
 cells_with_pmp <- function(curies) {
   data("tag2cn", package = "ontoProc2")
@@ -18,7 +16,7 @@ cells_with_pmp <- function(curies) {
   cl4pmp <- dplyr::tbl(cl@con, "entailed_edge") |>
     dplyr::filter(object %in% curies, predicate == "RO:0002104") |>
     as.data.frame() |>
-    dplyr::filter(startsWith(subject, "PR:")) |>
+    dplyr::filter(startsWith(object, "PR:")) |>
     dplyr::select(subject, object) |>
     dplyr::mutate(cl = subject, prtag = object)
   mappr <- dplyr::tbl(pr@con, "rdfs_label_statement") |>

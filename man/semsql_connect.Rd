@@ -23,17 +23,17 @@ database.}
 
 \item{ontology}{character(1) or NULL. Short name of an INCAtools ontology
 (e.g. \code{"cl"}, \code{"go"}). If supplied,
-\code{\link{retrieve_semsql_conn}} is called to locate or download the
+\code{\link[=retrieve_semsql_conn]{retrieve_semsql_conn()}} is called to locate or download the
 cached database.}
 
 \item{cache}{a \code{BiocFileCache} instance used when \code{ontology} is
 supplied. Defaults to \code{BiocFileCache::BiocFileCache()}.}
 
-\item{...}{passed to \code{\link{retrieve_semsql_conn}} and ultimately
-to \code{\link[utils]{download.file}}.}
+\item{...}{passed to \code{\link[=retrieve_semsql_conn]{retrieve_semsql_conn()}} and ultimately
+to \code{\link[utils:download.file]{utils::download.file()}}.}
 }
 \value{
-A \code{\link{SemsqlConn}} object.
+A \code{\link[=SemsqlConn]{SemsqlConn()}} object.
 }
 \description{
 Opens a connection to a SemanticSQL SQLite database, either by supplying
@@ -41,7 +41,7 @@ a direct file path or by referencing a short ontology name that is
 retrieved and cached via \code{BiocFileCache}.
 }
 \note{
-The connection has flag `SQLITE_RO` for read-only access.
+The connection has flag \code{SQLITE_RO} for read-only access.
 }
 \examples{
 # by ontology short name (downloads if not cached)
