@@ -856,6 +856,7 @@ method(count_by_prefix, SemsqlConn) <- function(x) {
 #' @rdname print
 #' @param x A `SemsqlConn` object.
 #' @param ... not used
+#' @return x, invisibly
 #' @export
 S7::method(print, SemsqlConn) <- function(x, ...) {
   if (!is_connected(x)) {
@@ -989,6 +990,7 @@ S7::method(report, SemsqlConn) <- function(object, ...) {
 #' @format A named list with elements `subclass_of`, `part_of`,
 #'   `has_part`, `develops_from`, `located_in`,
 #'   `has_characteristic`.
+#' @return a named list
 #' @examples
 #' goref <- semsql_connect(ontology = "go")
 #' # apoptotic process (GO:0006915) ancestors via is-a and part-of

@@ -11,6 +11,9 @@ A named list with elements \code{subclass_of}, \code{part_of},
 \usage{
 PREDICATES
 }
+\value{
+a named list
+}
 \description{
 A named list of commonly used predicate CURIEs in OBO-format ontologies,
 for use with \code{\link[=get_ancestors]{get_ancestors()}}, \code{\link[=get_descendants]{get_descendants()}},

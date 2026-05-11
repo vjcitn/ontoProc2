@@ -14,6 +14,9 @@ print(x, ...)
 
 \item{...}{not used}
 }
+\value{
+x, invisibly
+}
 \description{
 Show method for SemsqlConn.
 Concise one-line summary displayed when a \code{SemsqlConn} object is
