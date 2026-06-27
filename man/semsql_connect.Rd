@@ -9,6 +9,7 @@ semsql_connect(
   ontology_prefix = NULL,
   ontology = NULL,
   cache = BiocFileCache::BiocFileCache(),
+  validate = TRUE,
   ...
 )
 }
@@ -29,6 +30,10 @@ cached database.}
 \item{cache}{a \code{BiocFileCache} instance used when \code{ontology} is
 supplied. Defaults to \code{BiocFileCache::BiocFileCache()}.}
 
+\item{validate}{logical(1) if TRUE (the default value) the ontology code
+is checked against available Semantic SQL resources at INCAtools.  Set to
+FALSE if using off line.}
+
 \item{...}{passed to \code{\link[=retrieve_semsql_conn]{retrieve_semsql_conn()}} and ultimately
 to \code{\link[utils:download.file]{utils::download.file()}}.}
 }
@@ -41,7 +46,10 @@ a direct file path or by referencing a short ontology name that is
 retrieved and cached via \code{BiocFileCache}.
 }
 \note{
-The connection has flag \code{SQLITE_RO} for read-only access.
+The connection has flag \code{SQLITE_RO} for read-only access.  There will
+be an attempt to validate the \code{ontology} tag that is supplied, against all
+available Semantic SQL resources available at INCAtools bucket.  Function fails
+if a match cannot be made, which in general requires network access.
 }
 \examples{
 # by ontology short name (downloads if not cached)

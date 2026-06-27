@@ -66,9 +66,15 @@ S4_register(SemsqlConn)
 #'   cached database.
 #' @param cache a `BiocFileCache` instance used when `ontology` is
 #'   supplied. Defaults to `BiocFileCache::BiocFileCache()`.
+#' @param validate logical(1) if TRUE (the default value) the ontology code
+#' is checked against available Semantic SQL resources at INCAtools.  Set to
+#' FALSE if using off line.
 #' @param ... passed to [retrieve_semsql_conn()] and ultimately
 #'   to [utils::download.file()].
-#' @note The connection has flag `SQLITE_RO` for read-only access.
+#' @note The connection has flag `SQLITE_RO` for read-only access.  There will
+#' be an attempt to validate the `ontology` tag that is supplied, against all
+#' available Semantic SQL resources available at INCAtools bucket.  Function fails
+#' if a match cannot be made, which in general requires network access.
 #' @return A [SemsqlConn()] object.
 #' @examples
 #' # by ontology short name (downloads if not cached)
@@ -78,8 +84,15 @@ S4_register(SemsqlConn)
 #' @export
 semsql_connect <- function(db_path = NULL, ontology_prefix = NULL,
                            ontology = NULL,
-                           cache = BiocFileCache::BiocFileCache(), ...) {
+                           cache = BiocFileCache::BiocFileCache(), validate = TRUE, ...) {
   if (!is.null(ontology)) {
+    if (validate) {
+      candidates = suppressMessages({bbop_sqlite_db_gz(bfc=cache)})
+      prefs = gsub(".db.gz", "", candidates)
+      if (!(ontology %in% prefs)) stop(sprintf("Ontology code '%s' not found as a prefix to .db.gz\n", ontology),
+          "  in the output of bbop_sqlite_db_gz().  Please check\n",
+          "  results of bbop_sqlite_db_gz() for a valid ontology code.\n")
+      }
     raw_con <- retrieve_semsql_conn(ontology, cache = cache, ...)
     db_path <- raw_con@dbname
     dbDisconnect(raw_con)

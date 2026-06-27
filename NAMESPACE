@@ -2,6 +2,7 @@
 
 export(PREDICATES)
 export(SemsqlConn)
+export(bbop_sqlite_db_gz)
 export(cells_with_pmp)
 export(count_by_prefix)
 export(count_descendants)
