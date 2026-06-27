@@ -24,7 +24,7 @@ Encoding: UTF-8
 Depends: R (>= 4.5.0)
 Imports: RSQLite, DBI, BiocFileCache, R.utils, dplyr,
 	ontologyIndex, ontologyPlot, graph, Rgraphviz,
-	methods, S7, utils
+	methods, S7, utils, httr2, xml2, digest
 Suggests: knitr, testthat, BiocStyle, DT, GO.db,
 	AnnotationDbi, stringr
 VignetteBuilder: knitr

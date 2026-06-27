@@ -1,0 +1,32 @@
+# R build artifacts
+*.Rhistory
+*.RData
+*.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# pkgdown output (deployed to gh-pages via GHA)
+docs/
+
+# vignette build artifacts
+vignettes/*.html
+vignettes/*_cache/
+vignettes/figure/
+
+# R CMD check artifacts
+*.tar.gz
+*.Rcheck/
+
+# Legacy / scratch
+oldrb
+testthat.R
+inst/app/
+inst/scripts/
+inst/unionCheck/
+
+# Vignette auxiliary scripts and history (Rmd files are the source)
+vignettes/*.R
+vignettes/*.hist.txt
+
+# OS
+.DS_Store
