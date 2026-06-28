@@ -12,6 +12,7 @@
 #' Cache is updated when there is a discrepancy, except there is a guard against
 #' rewriting cache with corrupted or zero-length data at endpoint.  Note this
 #' code was negotiated at length with claude.ai Sonnet 4.6.
+#' @return a character vector
 #' @examples
 #' gzs = bbop_sqlite_db_gz()
 #' head(gzs)

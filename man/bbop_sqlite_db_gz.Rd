@@ -24,6 +24,9 @@ bbop_sqlite_db_gz(
 
 \item{timeout_total}{passed to httr2::req_options seconds parameter}
 }
+\value{
+a character vector
+}
 \description{
 retrieve and cache all filenames of Semantic SQL ontologies available, checking for updated
 content relative to cache via ETag
