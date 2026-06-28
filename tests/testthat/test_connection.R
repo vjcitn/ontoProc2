@@ -1,17 +1,20 @@
 library(ontoProc2)
 
+# verify a simple connect task returns an entity of proper class
 test_that("semsql_connect returns SemsqlConn for cached ontology", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
   expect_true(inherits(conn, "ontoProc2::SemsqlConn"))
 })
 
+# verify that is_connected succeeds
 test_that("is_connected returns TRUE for open connection", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
   expect_true(is_connected(conn))
 })
 
+# verify that is_connected is sensitive to disconnection
 test_that("disconnect closes connection and is_connected returns FALSE", {
   conn <- semsql_connect(ontology = "aio")
   expect_true(is_connected(conn))
@@ -19,6 +22,7 @@ test_that("disconnect closes connection and is_connected returns FALSE", {
   expect_false(is_connected(conn))
 })
 
+# test the reconnect method
 test_that("reconnect restores a disconnected connection", {
   conn <- semsql_connect(ontology = "aio")
   disconnect(conn, quiet = TRUE)
@@ -28,7 +32,9 @@ test_that("reconnect restores a disconnected connection", {
   expect_true(is_connected(conn2))
 })
 
-test_that("reconnect on already-connected object returns it unchanged", {
+# reconnect() on an already-open connection returns a new SemsqlConn object
+# (S7 value semantics mean the original is unchanged); both need disconnecting
+test_that("reconnect on already-connected object returns a connected object", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
   conn2 <- reconnect(conn)
@@ -36,12 +42,20 @@ test_that("reconnect on already-connected object returns it unchanged", {
   disconnect(conn2, quiet = TRUE)
 })
 
+# the prefix concept here is associated with the
+# ontology provider's practice of using upper
+# case for the CURIE prefixes (e.g., CL:0000555 would
+# be a CURIE in cl.db.gz).
+# Note: AIO stores its CURIEs as lowercase "aio:" internally;
+# "AIO" comes from semsql_connect() calling toupper(ontology).
 test_that("get_prefix returns the ontology prefix", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
   expect_equal(get_prefix(conn), "AIO")
 })
 
+# check behavior of list_tables, and verify some assumptions
+# on standard table names
 test_that("list_tables returns a character vector of table names", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
@@ -53,6 +67,8 @@ test_that("list_tables returns a character vector of table names", {
   expect_true("entailed_edge" %in% tbls)
 })
 
+# note that 'PRAGMA table_info(my_table); will list columns, types, nullability, defaults'
+# this is peculiar to SQLite
 test_that("describe_table returns a data.frame with PRAGMA info", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
@@ -62,6 +78,7 @@ test_that("describe_table returns a data.frame with PRAGMA info", {
   expect_true("name" %in% names(info))
 })
 
+# verify that unknown tables can't be described
 test_that("describe_table errors on unknown table", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
@@ -78,7 +95,9 @@ test_that("count_by_prefix returns a data.frame with prefix and n columns", {
   expect_true(any(tolower(df$prefix) == "aio"))
 })
 
-test_that("run_query executes arbitrary SQL and returns data.frame", {
+# run_query passes a caller-supplied SELECT statement to the read-only
+# connection; the SQLITE_RO flag prevents any writes or DDL
+test_that("run_query accepts a SELECT statement and returns a data.frame", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
   result <- run_query(conn, "SELECT subject, value AS label FROM rdfs_label_statement LIMIT 3")
