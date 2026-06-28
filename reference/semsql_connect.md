@@ -75,10 +75,10 @@ access.
 ``` r
 # by ontology short name (downloads if not cached)
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/198344128ff6_go.db
 #> Primary ontology prefix: GO
 goref
 #> <SemsqlConn>  prefix: GO  | labeled terms: 88,849 
 disconnect(goref)
-#> Disconnected from '19c5d28c62_go.db'
+#> Disconnected from '198344128ff6_go.db'
 ```

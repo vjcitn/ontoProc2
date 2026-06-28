@@ -23,12 +23,12 @@ a data.frame with columns cl, celltype, pr, protein
 
 ``` r
 cells_with_pmp(c("PR:000002064", "PR:000001874"))
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5423265f_cl.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19837e958327_cl.db
 #> Primary ontology prefix: CL
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5228fc1b5_pr.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1983718a8966_pr.db
 #> Primary ontology prefix: PR
-#> Disconnected from '19c5423265f_cl.db'
-#> Disconnected from '19c5228fc1b5_pr.db'
+#> Disconnected from '19837e958327_cl.db'
+#> Disconnected from '1983718a8966_pr.db'
 #>           prtag              value         cl
 #> 1  PR:000001874 KLRB1-like protein CL:0000924
 #> 2  PR:000001874 KLRB1-like protein CL:0000922

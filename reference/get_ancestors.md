@@ -47,7 +47,7 @@ data.frame with columns `id`, `label`, `predicate`.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/198344128ff6_go.db
 #> Primary ontology prefix: GO
 get_ancestors(goref, "GO:0006915")
 #>            id                 label       predicate
@@ -58,5 +58,5 @@ get_ancestors(goref, "GO:0006915")
 #> 6 BFO:0000015               process rdfs:subClassOf
 #> 7  GO:0012501 programmed cell death rdfs:subClassOf
 disconnect(goref)
-#> Disconnected from '19c5d28c62_go.db'
+#> Disconnected from '198344128ff6_go.db'
 ```

@@ -96,7 +96,7 @@ tbl(cl@con, "entailed_edge")
 ```
 
     ## # A query:  ?? x 3
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/19c5423265f_cl.db]
+    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/19837e958327_cl.db]
     ##    subject        predicate       object        
     ##    <chr>          <chr>           <chr>         
     ##  1 UBERON:0001772 rdfs:subClassOf UBERON:0001772
@@ -117,7 +117,7 @@ tbl(cl@con, "entailed_edge") |> count()
 ```
 
     ## # A query:  ?? x 1
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/19c5423265f_cl.db]
+    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/19837e958327_cl.db]
     ##         n
     ##     <int>
     ## 1 3009615
@@ -141,14 +141,14 @@ Disconnect databases.
 disconnect(cl)
 ```
 
-    ## Disconnected from '19c5423265f_cl.db'
+    ## Disconnected from '19837e958327_cl.db'
 
 ``` r
 
 disconnect(ro)
 ```
 
-    ## Disconnected from '1c8c6015c6c_ro.db'
+    ## Disconnected from '1c435535d6c8_ro.db'
 
 ## Session information
 

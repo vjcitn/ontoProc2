@@ -34,10 +34,10 @@ integer(1).
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/198344128ff6_go.db
 #> Primary ontology prefix: GO
 count_descendants(goref, "GO:0006915") # all apoptosis subtypes
 #> [1] 72
 disconnect(goref)
-#> Disconnected from '19c5d28c62_go.db'
+#> Disconnected from '198344128ff6_go.db'
 ```
