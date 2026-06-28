@@ -25,7 +25,7 @@ report(ubss)
     ## 
     ## Connection Details:
     ## ---------------------------------------- 
-    ##   Database path:    /home/runner/.cache/R/BiocFileCache/1c7e120ffde9_uberon.db 
+    ##   Database path:    /home/runner/.cache/R/BiocFileCache/1cc41216922f_uberon.db 
     ##   Ontology prefix:  UBERON 
     ##   Status:           ✓   Connected 
     ## 
@@ -75,7 +75,7 @@ tbl(ubcon, "statements")
 ```
 
     ## # A query:  ?? x 8
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/1c7e120ffde9_uberon.db]
+    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/1cc41216922f_uberon.db]
     ##    stanza         subject        predicate  object value datatype language graph
     ##    <chr>          <chr>          <chr>      <chr>  <chr> <chr>    <chr>    <chr>
     ##  1 obo:uberon.owl obo:uberon.owl foaf:home… NA     http… xsd:any… NA       NA   
@@ -201,7 +201,7 @@ have ‘heart’ (UBERON:0000948) as object.
 eforef <- semsql_connect(ontology = "efo") # 240 MB
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1cbf438d38c2_efo.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1d0130f63731_efo.db
 
     ## Primary ontology prefix: EFO
 
@@ -296,7 +296,7 @@ sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] DT_0.34.0         dplyr_1.2.1       DBI_1.3.0         ontoProc2_0.99.24
+    ## [1] DT_0.34.0         dplyr_1.2.1       DBI_1.3.0         ontoProc2_0.99.25
     ## [5] BiocStyle_2.40.0 
     ## 
     ## loaded via a namespace (and not attached):

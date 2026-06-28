@@ -31,7 +31,7 @@ notnull, dflt_value, pk).
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/198344128ff6_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1988cc470f_go.db
 #> Primary ontology prefix: GO
 describe_table(goref, "rdfs_label_statement")
 #>   cid      name type notnull dflt_value pk
@@ -44,5 +44,5 @@ describe_table(goref, "rdfs_label_statement")
 #> 7   6  language TEXT       0         NA  0
 #> 8   7     graph TEXT       0         NA  0
 disconnect(goref)
-#> Disconnected from '198344128ff6_go.db'
+#> Disconnected from '1988cc470f_go.db'
 ```

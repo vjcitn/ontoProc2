@@ -40,7 +40,7 @@ data.frame with columns `subject`, `subject_label`, `predicate`,
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/198344128ff6_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1988cc470f_go.db
 #> Primary ontology prefix: GO
 get_direct_edges(goref, "GO:0006915")
 #>      subject     subject_label       predicate predicate_label          object
@@ -194,5 +194,5 @@ get_direct_edges(goref, "GO:0006915", direction = "both")
 #> 43            apoptotic process
 #> 44            apoptotic process
 disconnect(goref)
-#> Disconnected from '198344128ff6_go.db'
+#> Disconnected from '1988cc470f_go.db'
 ```

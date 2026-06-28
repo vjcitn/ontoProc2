@@ -37,6 +37,10 @@ bbop_sqlite_db_gz(
 
   passed to httr2::req_options seconds parameter
 
+## Value
+
+a character vector
+
 ## Note
 
 There is no real etag discipline for the metadata, so full metadata

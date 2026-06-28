@@ -96,7 +96,7 @@ tbl(cl@con, "entailed_edge")
 ```
 
     ## # A query:  ?? x 3
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/19837e958327_cl.db]
+    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/198852c5606_cl.db]
     ##    subject        predicate       object        
     ##    <chr>          <chr>           <chr>         
     ##  1 UBERON:0001772 rdfs:subClassOf UBERON:0001772
@@ -117,7 +117,7 @@ tbl(cl@con, "entailed_edge") |> count()
 ```
 
     ## # A query:  ?? x 1
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/19837e958327_cl.db]
+    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/198852c5606_cl.db]
     ##         n
     ##     <int>
     ## 1 3009615
@@ -141,14 +141,14 @@ Disconnect databases.
 disconnect(cl)
 ```
 
-    ## Disconnected from '19837e958327_cl.db'
+    ## Disconnected from '198852c5606_cl.db'
 
 ``` r
 
 disconnect(ro)
 ```
 
-    ## Disconnected from '1c435535d6c8_ro.db'
+    ## Disconnected from '1c88141d871b_ro.db'
 
 ## Session information
 
@@ -178,7 +178,7 @@ sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] dplyr_1.2.1       DT_0.34.0         ontoProc2_0.99.24 BiocStyle_2.40.0 
+    ## [1] dplyr_1.2.1       DT_0.34.0         ontoProc2_0.99.25 BiocStyle_2.40.0 
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] xfun_0.59           bslib_0.11.0        httr2_1.2.3        
