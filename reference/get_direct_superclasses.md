@@ -30,11 +30,11 @@ data.frame with columns `id` and `label`, ordered by label.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
 #> Primary ontology prefix: GO
 get_direct_superclasses(goref, "GO:0006915")
 #>           id                 label
 #> 1 GO:0012501 programmed cell death
 disconnect(goref)
-#> Disconnected from '51f25f664001_go.db'
+#> Disconnected from '19c5d28c62_go.db'
 ```

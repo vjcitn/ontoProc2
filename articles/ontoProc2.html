@@ -65,7 +65,7 @@
                         <h4 data-toc-skip class="author">Vincent J.
 Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">June 27, 2026</h4>
+            <h4 data-toc-skip class="date">June 28, 2026</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/ontoProc2/blob/main/vignettes/ontoProc2.Rmd"><code>vignettes/ontoProc2.Rmd</code></a></small>
       <div class="d-none name"><code>ontoProc2.Rmd</code></div>
@@ -133,7 +133,7 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Connection Details:</span></span>
 <span><span class="co">## ---------------------------------------- </span></span>
-<span><span class="co">##   Database path:    /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db </span></span>
+<span><span class="co">##   Database path:    /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db </span></span>
 <span><span class="co">##   Ontology prefix:  GO </span></span>
 <span><span class="co">##   Status:           ✓   Connected </span></span>
 <span><span class="co">## </span></span>
@@ -200,7 +200,7 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT" class="external-link">DT</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">goss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"statements"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A query:  ?? x 8</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/51f25f664001_go.db]</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db]</span></span></span>
 <span><span class="co">##    stanza                 subject predicate object value datatype language graph</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span> obo:go/extensions/go-… obo:go… owl:vers… <span style="color: #BB0000;">NA</span>     2026… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
@@ -251,7 +251,7 @@ ontology handling functions. We can transform the SQLite data to this
 format. We’ll illustrate with cell ontology.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"cl"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f2133945e9_cl.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5423265f_cl.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: CL</span></span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cloi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_to_oi.html">semsql_to_oi</a></span><span class="op">(</span><span class="va">clss</span><span class="op">@</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
@@ -410,11 +410,11 @@ relations and anatomical structures, thus working with the relational
 ontology (RO) and UBERON.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ub</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"uberon"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/54ed66582306_uberon.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1ccc70779f51_uberon.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: UBERON</span></span></code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"ro"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/54b186f9a5f_ro.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1c8c6015c6c_ro.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: RO</span></span></code></pre>
 <p>First question: What’s the CURIE for “forebrain” in UBERON?</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">

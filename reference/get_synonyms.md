@@ -40,7 +40,7 @@ data.frame with columns `subject`, `predicate`, `synonym`.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
 #> Primary ontology prefix: GO
 get_synonyms(goref, "GO:0006915")
 #>       subject             predicate                                 synonym
@@ -66,5 +66,5 @@ get_synonyms(goref, "GO:0006915", type = "exact")
 #> 2 GO:0006915 oio:hasExactSynonym    apoptotic programmed cell death
 #> 3 GO:0006915 oio:hasExactSynonym programmed cell death by apoptosis
 disconnect(goref)
-#> Disconnected from '51f25f664001_go.db'
+#> Disconnected from '19c5d28c62_go.db'
 ```

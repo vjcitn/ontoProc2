@@ -25,7 +25,7 @@ report(ubss)
     ## 
     ## Connection Details:
     ## ---------------------------------------- 
-    ##   Database path:    /home/runner/.cache/R/BiocFileCache/54ed66582306_uberon.db 
+    ##   Database path:    /home/runner/.cache/R/BiocFileCache/1ccc70779f51_uberon.db 
     ##   Ontology prefix:  UBERON 
     ##   Status:           ✓   Connected 
     ## 
@@ -75,7 +75,7 @@ tbl(ubcon, "statements")
 ```
 
     ## # A query:  ?? x 8
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/54ed66582306_uberon.db]
+    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/1ccc70779f51_uberon.db]
     ##    stanza         subject        predicate  object value datatype language graph
     ##    <chr>          <chr>          <chr>      <chr>  <chr> <chr>    <chr>    <chr>
     ##  1 obo:uberon.owl obo:uberon.owl foaf:home… NA     http… xsd:any… NA       NA   
@@ -201,7 +201,7 @@ have ‘heart’ (UBERON:0000948) as object.
 eforef <- semsql_connect(ontology = "efo") # 240 MB
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/552ea9b1784_efo.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1d47e1cb9e3_efo.db
 
     ## Primary ontology prefix: EFO
 

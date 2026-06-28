@@ -26,10 +26,10 @@ character(1) the primary ontology prefix (e.g. `"GO"`).
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
 #> Primary ontology prefix: GO
 get_prefix(goref)
 #> [1] "GO"
 disconnect(goref)
-#> Disconnected from '51f25f664001_go.db'
+#> Disconnected from '19c5d28c62_go.db'
 ```

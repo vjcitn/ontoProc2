@@ -30,7 +30,7 @@ data.frame with query results.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
 #> Primary ontology prefix: GO
 run_query(
   goref,
@@ -43,5 +43,5 @@ run_query(
 #> 4 IAO:0000233 term tracker item
 #> 5 IAO:0000233 term tracker item
 disconnect(goref)
-#> Disconnected from '51f25f664001_go.db'
+#> Disconnected from '19c5d28c62_go.db'
 ```

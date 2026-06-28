@@ -66,7 +66,7 @@ report(goss)
     ## 
     ## Connection Details:
     ## ---------------------------------------- 
-    ##   Database path:    /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db 
+    ##   Database path:    /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db 
     ##   Ontology prefix:  GO 
     ##   Status:           ✓   Connected 
     ## 
@@ -149,7 +149,7 @@ tbl(goss@con, "statements")
 ```
 
     ## # A query:  ?? x 8
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/51f25f664001_go.db]
+    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db]
     ##    stanza                 subject predicate object value datatype language graph
     ##    <chr>                  <chr>   <chr>     <chr>  <chr> <chr>    <chr>    <chr>
     ##  1 obo:go/extensions/go-… obo:go… owl:vers… NA     2026… NA       NA       NA   
@@ -213,7 +213,7 @@ We’ll illustrate with cell ontology.
 clss <- semsql_connect(ontology = "cl")
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f2133945e9_cl.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5423265f_cl.db
 
     ## Primary ontology prefix: CL
 
@@ -408,7 +408,7 @@ ontology (RO) and UBERON.
 ub <- semsql_connect(ontology = "uberon")
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/54ed66582306_uberon.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1ccc70779f51_uberon.db
 
     ## Primary ontology prefix: UBERON
 
@@ -417,7 +417,7 @@ ub <- semsql_connect(ontology = "uberon")
 ro <- semsql_connect(ontology = "ro")
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/54b186f9a5f_ro.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1c8c6015c6c_ro.db
 
     ## Primary ontology prefix: RO
 

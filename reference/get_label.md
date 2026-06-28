@@ -30,11 +30,11 @@ character(1) label, or `NA_character_` if not found.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
 #> Primary ontology prefix: GO
 get_label(goref, "GO:0006915") # "apoptotic process"
 #>      subject             label
 #> 1 GO:0006915 apoptotic process
 disconnect(goref)
-#> Disconnected from '51f25f664001_go.db'
+#> Disconnected from '19c5d28c62_go.db'
 ```

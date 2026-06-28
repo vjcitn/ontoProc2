@@ -25,7 +25,7 @@ a named list
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
 #> Primary ontology prefix: GO
 # apoptotic process (GO:0006915) ancestors via is-a and part-of
 anc <- get_ancestors(goref, "GO:0006915",
@@ -40,5 +40,5 @@ head(anc)
 #> 6 BFO:0000015               process rdfs:subClassOf
 #> 7  GO:0012501 programmed cell death rdfs:subClassOf
 disconnect(goref)
-#> Disconnected from '51f25f664001_go.db'
+#> Disconnected from '19c5d28c62_go.db'
 ```

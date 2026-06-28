@@ -26,7 +26,7 @@ character vector of table names.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51f25f664001_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c5d28c62_go.db
 #> Primary ontology prefix: GO
 list_tables(goref)
 #>   [1] "all_problems"                                  
@@ -130,5 +130,5 @@ list_tables(goref)
 #>  [99] "transitive_edge"                               
 #> [100] "transitive_property_node"                      
 disconnect(goref)
-#> Disconnected from '51f25f664001_go.db'
+#> Disconnected from '19c5d28c62_go.db'
 ```
