@@ -32,19 +32,22 @@ test_that("reconnect restores a disconnected connection", {
   expect_true(is_connected(conn2))
 })
 
-# this claude-generated test seems to need a little more detail
-#test_that("reconnect on already-connected object returns it unchanged", {
-#  conn <- semsql_connect(ontology = "aio")
-#  on.exit(disconnect(conn, quiet = TRUE))
-#  conn2 <- reconnect(conn)
-#  expect_true(is_connected(conn2))
-#  disconnect(conn2, quiet = TRUE)
-#})
+# reconnect() on an already-open connection returns a new SemsqlConn object
+# (S7 value semantics mean the original is unchanged); both need disconnecting
+test_that("reconnect on already-connected object returns a connected object", {
+  conn <- semsql_connect(ontology = "aio")
+  on.exit(disconnect(conn, quiet = TRUE))
+  conn2 <- reconnect(conn)
+  expect_true(is_connected(conn2))
+  disconnect(conn2, quiet = TRUE)
+})
 
 # the prefix concept here is associated with the
 # ontology provider's practice of using upper
 # case for the CURIE prefixes (e.g., CL:0000555 would
-# be a CURIE in cl.db.gz
+# be a CURIE in cl.db.gz).
+# Note: AIO stores its CURIEs as lowercase "aio:" internally;
+# "AIO" comes from semsql_connect() calling toupper(ontology).
 test_that("get_prefix returns the ontology prefix", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
@@ -103,7 +106,6 @@ test_that("run_query accepts a SELECT statement and returns a data.frame", {
   expect_true(all(c("subject", "label") %in% names(result)))
 })
 
-# remaining tests seem self-explanatory -- VC
 test_that("report runs without error on connected object", {
   conn <- semsql_connect(ontology = "aio")
   on.exit(disconnect(conn, quiet = TRUE))
