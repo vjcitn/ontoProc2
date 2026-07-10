@@ -34,9 +34,11 @@ retrieve_semsql_conn <- function(ontology = "efo",
   ind <- which(startsWith(bbop_info$rname, rname))
   if (length(ind) > 0) {
     if (length(ind) > 1) {
-      message(sprintf("multiple cache entries found matching request %s", rname))
-      message("please be more specific, by supplying cache id as 'BFCnnn'.")
-      message("see ", sprintf("%s in cache\n", paste(bbop_info$rid, collapse = ", ")))
+      message(
+        sprintf("multiple cache entries found matching request %s", rname),
+        "please be more specific, by supplying cache id as 'BFCnnn'.",
+        sprintf("see %s in cache\n", paste(bbop_info$rid, collapse = ", "))
+      )
       stop("cannot proceed with ambiguous ontology spec")
     }
     cached_path <- bbop_info[ind, "rpath"]$rpath # ind is length 1
