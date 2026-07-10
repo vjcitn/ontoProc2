@@ -952,13 +952,11 @@ S7::method(report, SemsqlConn) <- function(object, ...) {
   tryCatch(
     {
       top <- head(count_by_prefix(object), 5)
-      for (i in seq_len(nrow(top))) {
-        cat(sprintf(
-          "  %-16s %s\n",
-          paste0(top$prefix[i], ":"),
-          format(top$n[i], big.mark = ",")
-        ))
-      }
+      cat(sprintf(
+        "  %-16s %s",
+        paste0(top$prefix,  ":"),
+        formatC(top$n, big.mark = ",") 
+      ), sep = "\n")
     },
     error = function(e) cat("  (unavailable)\n")
   )
