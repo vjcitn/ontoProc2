@@ -47,13 +47,11 @@ retrieve_semsql_conn <- function(ontology = "efo",
     addr <- semsql_url(ontology)
     zdbname <- basename(addr)
     dbname <- sub(".gz$", "", zdbname)
-    tf <- basename(tempfile())
-    tmpd = tempdir()
-    td <- file.path(tmpd, tf)
+    td <- tempfile()
     dir.create(td)
-    ztmploc = file.path(td, zdbname)
-    tmploc = file.path(td, dbname)
     on.exit(unlink(td, recursive = TRUE))
+    ztmploc <- file.path(td, zdbname)
+    tmploc <- file.path(td, dbname)
     download.file(addr, file.path(td, zdbname), ...)
     gunzip(ztmploc) # file now at tmploc
     addv <- BiocFileCache::bfcadd(cache,
