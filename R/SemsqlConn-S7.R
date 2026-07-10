@@ -88,7 +88,7 @@ semsql_connect <- function(db_path = NULL, ontology_prefix = NULL,
   if (!is.null(ontology)) {
     if (validate) {
       candidates = suppressMessages({bbop_sqlite_db_gz(bfc=cache)})
-      prefs = gsub(".db.gz", "", candidates)
+      prefs = gsub(".db.gz", "", candidates, fixed = TRUE)
       if (!(ontology %in% prefs)) stop(sprintf("Ontology code '%s' not found as a prefix to .db.gz\n", ontology),
           "  in the output of bbop_sqlite_db_gz().  Please check\n",
           "  results of bbop_sqlite_db_gz() for a valid ontology code.\n")
