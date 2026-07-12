@@ -65,7 +65,7 @@
                         <h4 data-toc-skip class="author">Vincent J.
 Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">June 28, 2026</h4>
+            <h4 data-toc-skip class="date">July 12, 2026</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vjcitn/ontoProc2/blob/main/vignettes/uberonpeek.Rmd"><code>vignettes/uberonpeek.Rmd</code></a></small>
       <div class="d-none name"><code>uberonpeek.Rmd</code></div>
@@ -94,7 +94,7 @@ some tables and “statements”.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Connection Details:</span></span>
 <span><span class="co">## ---------------------------------------- </span></span>
-<span><span class="co">##   Database path:    /home/runner/.cache/R/BiocFileCache/1cc41216922f_uberon.db </span></span>
+<span><span class="co">##   Database path:    /home/runner/.cache/R/BiocFileCache/550d2d8c4dd2_uberon.db </span></span>
 <span><span class="co">##   Ontology prefix:  UBERON </span></span>
 <span><span class="co">##   Status:           ✓   Connected </span></span>
 <span><span class="co">## </span></span>
@@ -136,7 +136,7 @@ some tables and “statements”.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">ubcon</span>, <span class="st">"statements"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A query:  ?? x 8</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/1cc41216922f_uberon.db]</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/550d2d8c4dd2_uberon.db]</span></span></span>
 <span><span class="co">##    stanza         subject        predicate  object value datatype language graph</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span> obo:uberon.owl obo:uberon.owl foaf:home… <span style="color: #BB0000;">NA</span>     http… xsd:any… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
@@ -238,7 +238,7 @@ about anatomic locations of diseases.</p>
 have ‘heart’ (UBERON:0000948) as object.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eforef</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"efo"</span><span class="op">)</span> <span class="co"># 240 MB</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1d0130f63731_efo.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/555e52dd7164_efo.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: EFO</span></span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># nciref = semsql_connect("ncit")  # &gt; 500MB, block</span></span>
@@ -318,16 +318,16 @@ in heart, we have</p>
 <span><span class="co">## [5] BiocStyle_2.40.0 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] xfun_0.59           bslib_0.11.0        httr2_1.2.3        </span></span>
+<span><span class="co">##  [1] xfun_0.60           bslib_0.11.0        httr2_1.2.3        </span></span>
 <span><span class="co">##  [4] htmlwidgets_1.6.4   ontologyPlot_1.7    vctrs_0.7.3        </span></span>
 <span><span class="co">##  [7] tools_4.6.1         crosstalk_1.2.2     generics_0.1.4     </span></span>
 <span><span class="co">## [10] stats4_4.6.1        curl_7.1.0          tibble_3.3.1       </span></span>
-<span><span class="co">## [13] RSQLite_3.53.2      blob_1.3.0          pkgconfig_2.0.3    </span></span>
+<span><span class="co">## [13] RSQLite_3.53.3      blob_1.3.0          pkgconfig_2.0.3    </span></span>
 <span><span class="co">## [16] R.oo_1.27.1         dbplyr_2.6.0        S7_0.2.2           </span></span>
 <span><span class="co">## [19] desc_1.4.3          graph_1.90.0        lifecycle_1.0.5    </span></span>
 <span><span class="co">## [22] compiler_4.6.1      textshaping_1.0.5   htmltools_0.5.9    </span></span>
 <span><span class="co">## [25] sass_0.4.10         yaml_2.3.12         pillar_1.11.1      </span></span>
-<span><span class="co">## [28] pkgdown_2.2.0       jquerylib_0.1.4     R.utils_2.13.0     </span></span>
+<span><span class="co">## [28] pkgdown_2.2.1       jquerylib_0.1.4     R.utils_2.13.0     </span></span>
 <span><span class="co">## [31] cachem_1.1.0        tidyselect_1.2.1    digest_0.6.39      </span></span>
 <span><span class="co">## [34] purrr_1.2.2         bookdown_0.47       paintmap_1.0       </span></span>
 <span><span class="co">## [37] fastmap_1.2.0       grid_4.6.1          cli_3.6.6          </span></span>
@@ -336,7 +336,7 @@ in heart, we have</p>
 <span><span class="co">## [46] rmarkdown_2.31      bit_4.6.0           otel_0.2.0         </span></span>
 <span><span class="co">## [49] ragg_1.5.2          R.methodsS3_1.8.2   memoise_2.0.1      </span></span>
 <span><span class="co">## [52] evaluate_1.0.5      knitr_1.51          BiocFileCache_3.2.0</span></span>
-<span><span class="co">## [55] rlang_1.2.0         ontologyIndex_2.12  glue_1.8.1         </span></span>
+<span><span class="co">## [55] rlang_1.3.0         ontologyIndex_2.12  glue_1.8.1         </span></span>
 <span><span class="co">## [58] Rgraphviz_2.56.0    BiocManager_1.30.27 xml2_1.6.0         </span></span>
 <span><span class="co">## [61] BiocGenerics_0.58.1 jsonlite_2.0.0      R6_2.6.1           </span></span>
 <span><span class="co">## [64] systemfonts_1.3.2   fs_2.1.0</span></span></code></pre>
@@ -352,7 +352,7 @@ in heart, we have</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

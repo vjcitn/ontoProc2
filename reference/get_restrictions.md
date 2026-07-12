@@ -31,7 +31,7 @@ data.frame with columns `restriction_id`, `property`, `property_label`,
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1988cc470f_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db
 #> Primary ontology prefix: GO
 # mitochondrion (GO:0005739) has part-of restrictions to cell
 get_restrictions(goref, "GO:0005739")
@@ -40,5 +40,5 @@ get_restrictions(goref, "GO:0005739")
 #> 2 _:riog00106255 BFO:0000050        part of     GO:0005737    cytoplasm
 #> 3 _:riog00106256  RO:0002162       in taxon NCBITaxon:2759    Eukaryota
 disconnect(goref)
-#> Disconnected from '1988cc470f_go.db'
+#> Disconnected from '52084dd590e8_go.db'
 ```

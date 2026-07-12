@@ -45,7 +45,7 @@ data.frame with columns `id` and `label`.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1988cc470f_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db
 #> Primary ontology prefix: GO
 # cellular components that are part_of nucleus (GO:0005634)
 find_by_restriction(goref, "BFO:0000050", "GO:0005634")
@@ -61,5 +61,5 @@ find_by_restriction(goref, "BFO:0000050", "GO:0005634")
 #> 9  GO:0110092               nucleus leading edge
 #> 10 GO:0000943       retrotransposon nucleocapsid
 disconnect(goref)
-#> Disconnected from '1988cc470f_go.db'
+#> Disconnected from '52084dd590e8_go.db'
 ```

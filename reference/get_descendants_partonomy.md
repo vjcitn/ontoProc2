@@ -32,7 +32,7 @@ data.frame with columns `id`, `label`, `predicate`.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1988cc470f_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db
 #> Primary ontology prefix: GO
 get_descendants_partonomy(goref, "GO:0005634") # nucleus sub-components
 #>                 id
@@ -1209,5 +1209,5 @@ get_descendants_partonomy(goref, "GO:0005634") # nucleus sub-components
 #> 390     BFO:0000051
 #> 391     BFO:0000051
 disconnect(goref)
-#> Disconnected from '1988cc470f_go.db'
+#> Disconnected from '52084dd590e8_go.db'
 ```

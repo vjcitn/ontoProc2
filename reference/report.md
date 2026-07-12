@@ -34,7 +34,7 @@ The `SemsqlConn` object invisibly.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1988cc470f_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db
 #> Primary ontology prefix: GO
 report(goref)
 #> 
@@ -44,7 +44,7 @@ report(goref)
 #> 
 #> Connection Details:
 #> ---------------------------------------- 
-#>   Database path:    /home/runner/.cache/R/BiocFileCache/1988cc470f_go.db 
+#>   Database path:    /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db 
 #>   Ontology prefix:  GO 
 #>   Status:           ✓   Connected 
 #> 
@@ -79,5 +79,5 @@ report(goref)
 #> ============================================================ 
 #> 
 disconnect(goref)
-#> Disconnected from '1988cc470f_go.db'
+#> Disconnected from '52084dd590e8_go.db'
 ```

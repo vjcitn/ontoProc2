@@ -96,7 +96,7 @@ tbl(cl@con, "entailed_edge")
 ```
 
     ## # A query:  ?? x 3
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/198852c5606_cl.db]
+    ## # Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/520826b67685_cl.db]
     ##    subject        predicate       object        
     ##    <chr>          <chr>           <chr>         
     ##  1 UBERON:0001772 rdfs:subClassOf UBERON:0001772
@@ -117,7 +117,7 @@ tbl(cl@con, "entailed_edge") |> count()
 ```
 
     ## # A query:  ?? x 1
-    ## # Database: sqlite 3.53.2 [/home/runner/.cache/R/BiocFileCache/198852c5606_cl.db]
+    ## # Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/520826b67685_cl.db]
     ##         n
     ##     <int>
     ## 1 3009615
@@ -141,14 +141,14 @@ Disconnect databases.
 disconnect(cl)
 ```
 
-    ## Disconnected from '198852c5606_cl.db'
+    ## Disconnected from '520826b67685_cl.db'
 
 ``` r
 
 disconnect(ro)
 ```
 
-    ## Disconnected from '1c88141d871b_ro.db'
+    ## Disconnected from '54d23ee22d1e_ro.db'
 
 ## Session information
 
@@ -181,16 +181,16 @@ sessionInfo()
     ## [1] dplyr_1.2.1       DT_0.34.0         ontoProc2_0.99.25 BiocStyle_2.40.0 
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] xfun_0.59           bslib_0.11.0        httr2_1.2.3        
+    ##  [1] xfun_0.60           bslib_0.11.0        httr2_1.2.3        
     ##  [4] htmlwidgets_1.6.4   ontologyPlot_1.7    vctrs_0.7.3        
     ##  [7] tools_4.6.1         crosstalk_1.2.2     generics_0.1.4     
     ## [10] stats4_4.6.1        curl_7.1.0          tibble_3.3.1       
-    ## [13] RSQLite_3.53.2      blob_1.3.0          pkgconfig_2.0.3    
+    ## [13] RSQLite_3.53.3      blob_1.3.0          pkgconfig_2.0.3    
     ## [16] R.oo_1.27.1         dbplyr_2.6.0        S7_0.2.2           
     ## [19] desc_1.4.3          graph_1.90.0        lifecycle_1.0.5    
     ## [22] compiler_4.6.1      textshaping_1.0.5   htmltools_0.5.9    
     ## [25] sass_0.4.10         yaml_2.3.12         pillar_1.11.1      
-    ## [28] pkgdown_2.2.0       jquerylib_0.1.4     R.utils_2.13.0     
+    ## [28] pkgdown_2.2.1       jquerylib_0.1.4     R.utils_2.13.0     
     ## [31] cachem_1.1.0        tidyselect_1.2.1    digest_0.6.39      
     ## [34] purrr_1.2.2         bookdown_0.47       paintmap_1.0       
     ## [37] fastmap_1.2.0       grid_4.6.1          cli_3.6.6          
@@ -199,7 +199,7 @@ sessionInfo()
     ## [46] rmarkdown_2.31      bit_4.6.0           otel_0.2.0         
     ## [49] ragg_1.5.2          R.methodsS3_1.8.2   memoise_2.0.1      
     ## [52] evaluate_1.0.5      knitr_1.51          BiocFileCache_3.2.0
-    ## [55] rlang_1.2.0         ontologyIndex_2.12  glue_1.8.1         
+    ## [55] rlang_1.3.0         ontologyIndex_2.12  glue_1.8.1         
     ## [58] DBI_1.3.0           Rgraphviz_2.56.0    BiocManager_1.30.27
     ## [61] xml2_1.6.0          BiocGenerics_0.58.1 jsonlite_2.0.0     
     ## [64] R6_2.6.1            systemfonts_1.3.2   fs_2.1.0
