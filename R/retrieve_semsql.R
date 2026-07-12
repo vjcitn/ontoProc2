@@ -34,9 +34,11 @@ retrieve_semsql_conn <- function(ontology = "efo",
   ind <- which(startsWith(bbop_info$rname, rname))
   if (length(ind) > 0) {
     if (length(ind) > 1) {
-      message(sprintf("multiple cache entries found matching request %s", rname))
-      message("please be more specific, by supplying cache id as 'BFCnnn'.")
-      message("see ", sprintf("%s in cache\n", paste(bbop_info$rid, collapse = ", ")))
+      message(
+        sprintf("multiple cache entries found matching request %s", rname),
+        "please be more specific, by supplying cache id as 'BFCnnn'.",
+        sprintf("see %s in cache\n", paste(bbop_info$rid, collapse = ", "))
+      )
       stop("cannot proceed with ambiguous ontology spec")
     }
     cached_path <- bbop_info[ind, "rpath"]$rpath # ind is length 1
@@ -45,13 +47,11 @@ retrieve_semsql_conn <- function(ontology = "efo",
     addr <- semsql_url(ontology)
     zdbname <- basename(addr)
     dbname <- sub(".gz$", "", zdbname)
-    tf <- basename(tempfile())
-    tmpd = tempdir()
-    td <- file.path(tmpd, tf)
+    td <- tempfile()
     dir.create(td)
-    ztmploc = file.path(td, zdbname)
-    tmploc = file.path(td, dbname)
     on.exit(unlink(td, recursive = TRUE))
+    ztmploc <- file.path(td, zdbname)
+    tmploc <- file.path(td, dbname)
     download.file(addr, file.path(td, zdbname), ...)
     gunzip(ztmploc) # file now at tmploc
     addv <- BiocFileCache::bfcadd(cache,

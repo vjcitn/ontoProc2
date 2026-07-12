@@ -53,7 +53,7 @@ make_graphNEL_from_ontology_plot <- function(x) {
 #' head(graph::nodes(gnel))
 #' @export
 improve_nodes <- function(g, ont) {
-  nn <- paste(sub(" ", "\n", ont$name[nodes(g)]), "\n", nodes(g), sep = "")
+  nn <- paste0(sub(" ", "\n", ont$name[nodes(g)]), "\n", nodes(g))
   nodes(g) <- nn
   g
 }

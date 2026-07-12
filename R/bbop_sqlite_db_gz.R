@@ -118,6 +118,6 @@ bbop_sqlite_db_gz <- function(
       xml2::xml_text(xml2::xml_find_all(doc, "//*[local-name()='Key']"))
   )
 
-  keys[grepl("\\.db\\.gz$", keys)]
+  keys[endsWith(keys, "db.gz")]
 }
 
