@@ -3,6 +3,7 @@
 #' @param curies a character vector in format "PR:nnnnnnnnn"
 #' @return a data.frame with columns cl, celltype, pr, protein
 #' @examples
+#' # 2064: microsialin, 1874: KLRB1-like protein
 #' cells_with_pmp(c("PR:000002064", "PR:000001874"))
 #' @export
 cells_with_pmp <- function(curies) {
@@ -13,6 +14,7 @@ cells_with_pmp <- function(curies) {
     disconnect(cl)
     disconnect(pr)
   })
+# note: RO:0002104 = 'has plasma membrane part'
   cl4pmp <- dplyr::tbl(cl@con, "entailed_edge") |>
     dplyr::filter(object %in% curies, predicate == "RO:0002104") |>
     as.data.frame() |>

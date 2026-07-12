@@ -18,5 +18,6 @@ produce a table with cells exhibiting given proteins on plasma
 membrane according to CL
 }
 \examples{
+# 2064: microsialin, 1874: KLRB1-like protein
 cells_with_pmp(c("PR:000002064", "PR:000001874"))
 }

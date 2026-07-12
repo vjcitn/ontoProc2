@@ -1,4 +1,3 @@
-`%||%` <- function(a, b) if (!is.null(a) && nzchar(a)) a else b
 
 #' retrieve and cache all filenames of Semantic SQL ontologies available, checking for updated
 #' content relative to cache via ETag
@@ -35,7 +34,8 @@ bbop_sqlite_db_gz <- function(
 
   xml_text <- tryCatch({
     message("Fetching bucket listing...")
-    txt <- httr2::request(url) |>
+    txt <- httr2::request(url) |> httr2::req_user_agent(paste0("ontoProc2/", 
+             utils::packageVersion("ontoProc2"))) |>
       httr2::req_options(connecttimeout = timeout_connect) |>
       httr2::req_timeout(seconds = timeout_total) |>
       httr2::req_perform() |>

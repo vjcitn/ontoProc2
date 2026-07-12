@@ -66,45 +66,33 @@ onto_plot2(
 )
 ```
 
-# EFO and NCI thesaurus
+# Bridging to MONDO for disease terminology
 
-On cursory inspection, the EFO ontology has
-considerable information about anatomic locations of diseases.
+With our knowledge of the tag for "heart", we can
+enumerate formal terms for diseases affecting this organ.
 
-We'll use the entailed edges table in EFO to find all statements
-that have 'heart' (UBERON:0000948) as object.
-
-```{r lkncit}
-eforef <- semsql_connect(ontology = "efo") # 240 MB
-# nciref = semsql_connect("ncit")  # > 500MB, block
-htab <- tbl(eforef@con, "entailed_edge") |>
-  filter(object == "UBERON:0000948") |>
-  as.data.frame()
-head(htab)
+```{r lkmondo}
+mon = semsql_connect(ontology="mondo")
+tbl(mon@con, "entailed_edge") |> 
+   filter(object == "UBERON:0000948") |> 
+   filter(subject %like% "MONDO%") |> 
+   inner_join( tbl(mon@con, "rdfs_label_statement"), by="subject") |> 
+   as.data.frame() |> select(subject, value) |> distinct() |> DT::datatable()
 ```
 
-It is tedious to see these formal tags.  We have
-assembled a simple character vector map that covers
-many tags.
-```{r lkmap}
-data(ncit_map)
-head(ncit_map)
+
+# Bridging to CL for cell type enumeration
+
+```{r docross}
+cl = semsql_connect(ontology="cl")
+tbl(ubcon, "entailed_edge") |> 
+   filter(object == "UBERON:0000948") |> 
+   filter(subject %like% "CL:%") |> 
+   inner_join( tbl(cl@con, "rdfs_label_statement"), by="subject", copy="temp-table") |> 
+   as.data.frame() |> select(subject, value) |> distinct() |> DT::datatable()
 ```
 
-What are the predicates of the heart table above?
-```{r lkpred}
-ncit_map[unique(htab$predicate)]
-```
-To enumerate and decode the terms with disease location (EFO:0000784)
-in heart, we have
-
-```{r lkdec}
-library(dplyr)
-library(DT)
-hdis <- ncit_map[unlist(htab |> dplyr::filter(predicate == "EFO:0000784")
-  |> dplyr::select(subject))]
-datatable(data.frame(tag = names(hdis), value = as.character(hdis)))
-```
+Exercise: create a map from cardiac diseases to associated cardiac cell types.
 
 # Session information
 
