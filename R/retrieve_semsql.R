@@ -28,7 +28,6 @@ retrieve_semsql_conn <- function(ontology = "efo",
     cached_path <- bfcinfo(cache, cacheid)$rpath
     return(dbConnect(SQLite(), cached_path, SQLITE_RO))
   }
-  # rname = paste0("^", ontology, "_bbop_ontoproc2")  # ?
   rname <- paste0(ontology, "_bbop_ontoproc2")
   bbop_info <- BiocFileCache::bfcquery(cache, rname)
   ind <- which(startsWith(bbop_info$rname, rname))
