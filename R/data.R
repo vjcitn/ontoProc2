@@ -1,4 +1,5 @@
 #' a named vector with values rdfs labels in NCI thesaurus, and names the corresponding formal ontology tags
+#' @note creation is detailed in unexported function makeBundledMaps
 #' @importFrom utils data
 #' @docType data
 #' @format named character vector
@@ -6,10 +7,11 @@
 #' data(ncit_map)
 #' @examples
 #' data("ncit_map", package = "ontoProc2")
-#' ncit_map["EFO:1000899"]
+#' head(ncit_map)
 "ncit_map"
 
-#' a named vector with mapping from CURIE to cell type phrase for CL.owl of 2025-12-17
+#' a named vector with mapping from CURIE to cell type phrase for CL.owl
+#' @note creation is detailed in unexported function makeBundledMaps
 #' @docType data
 #' @format names character vector
 #' @usage
@@ -19,7 +21,8 @@
 #' tag2cn[c("CL:0000000", "CL:0000006")]
 "tag2cn"
 
-#' a named vector with mapping from cell type phrase to CURIE for CL.owl of 2025-12-17
+#' a named vector with mapping from cell type phrase to CURIE for CL.owl
+#' @note creation is detailed in unexported function makeBundledMaps
 #' @docType data
 #' @format names character vector
 #' @usage
