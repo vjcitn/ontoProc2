@@ -30,7 +30,7 @@ data.frame with columns `id` and `label`, ordered by label.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c72ffbcde9_go.db
 #> Primary ontology prefix: GO
 # direct children of "apoptotic process" (GO:0006915)
 get_direct_subclasses(goref, "GO:0006915")
@@ -55,5 +55,5 @@ get_direct_subclasses(goref, "GO:0006915")
 #> 18 GO:0051402                                     neuron apoptotic process
 #> 19 GO:1990009                               retinal cell apoptotic process
 disconnect(goref)
-#> Disconnected from '52084dd590e8_go.db'
+#> Disconnected from '19c72ffbcde9_go.db'
 ```

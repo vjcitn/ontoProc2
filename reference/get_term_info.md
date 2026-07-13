@@ -31,7 +31,7 @@ list with elements `id`, `label`, `definition`, `synonyms`,
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c72ffbcde9_go.db
 #> Primary ontology prefix: GO
 info <- get_term_info(goref, "GO:0006915")
 info$label
@@ -41,5 +41,5 @@ info$superclasses
 #>           id                 label
 #> 1 GO:0012501 programmed cell death
 disconnect(goref)
-#> Disconnected from '52084dd590e8_go.db'
+#> Disconnected from '19c72ffbcde9_go.db'
 ```

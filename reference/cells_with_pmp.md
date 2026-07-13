@@ -22,13 +22,14 @@ a data.frame with columns cl, celltype, pr, protein
 ## Examples
 
 ``` r
+# 2064: microsialin, 1874: KLRB1-like protein
 cells_with_pmp(c("PR:000002064", "PR:000001874"))
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/520826b67685_cl.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c7a780bc1_cl.db
 #> Primary ontology prefix: CL
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/520867621f62_pr.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c72c3aefce_pr.db
 #> Primary ontology prefix: PR
-#> Disconnected from '520826b67685_cl.db'
-#> Disconnected from '520867621f62_pr.db'
+#> Disconnected from '19c7a780bc1_cl.db'
+#> Disconnected from '19c72c3aefce_pr.db'
 #>           prtag              value         cl
 #> 1  PR:000001874 KLRB1-like protein CL:0000924
 #> 2  PR:000001874 KLRB1-like protein CL:0000922

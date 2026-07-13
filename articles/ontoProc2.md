@@ -66,7 +66,7 @@ report(goss)
     ## 
     ## Connection Details:
     ## ---------------------------------------- 
-    ##   Database path:    /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db 
+    ##   Database path:    /home/runner/.cache/R/BiocFileCache/19c72ffbcde9_go.db 
     ##   Ontology prefix:  GO 
     ##   Status:           ✓   Connected 
     ## 
@@ -149,7 +149,7 @@ tbl(goss@con, "statements")
 ```
 
     ## # A query:  ?? x 8
-    ## # Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db]
+    ## # Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/19c72ffbcde9_go.db]
     ##    stanza                 subject predicate object value datatype language graph
     ##    <chr>                  <chr>   <chr>     <chr>  <chr> <chr>    <chr>    <chr>
     ##  1 obo:go/extensions/go-… obo:go… owl:vers… NA     2026… NA       NA       NA   
@@ -213,7 +213,7 @@ We’ll illustrate with cell ontology.
 clss <- semsql_connect(ontology = "cl")
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/520826b67685_cl.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c7a780bc1_cl.db
 
     ## Primary ontology prefix: CL
 
@@ -408,7 +408,7 @@ ontology (RO) and UBERON.
 ub <- semsql_connect(ontology = "uberon")
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/550d2d8c4dd2_uberon.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1cc458b15eb1_uberon.db
 
     ## Primary ontology prefix: UBERON
 
@@ -417,7 +417,7 @@ ub <- semsql_connect(ontology = "uberon")
 ro <- semsql_connect(ontology = "ro")
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/54d23ee22d1e_ro.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1c8960098d46_ro.db
 
     ## Primary ontology prefix: RO
 
@@ -533,7 +533,7 @@ sessionInfo()
     ## 
     ## other attached packages:
     ## [1] S7_0.2.2          DT_0.34.0         DBI_1.3.0         dplyr_1.2.1      
-    ## [5] ontoProc2_0.99.25 BiocStyle_2.40.0 
+    ## [5] ontoProc2_0.99.28 BiocStyle_2.40.0 
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] xfun_0.60           bslib_0.11.0        httr2_1.2.3        

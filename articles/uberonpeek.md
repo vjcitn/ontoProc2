@@ -25,7 +25,7 @@ report(ubss)
     ## 
     ## Connection Details:
     ## ---------------------------------------- 
-    ##   Database path:    /home/runner/.cache/R/BiocFileCache/550d2d8c4dd2_uberon.db 
+    ##   Database path:    /home/runner/.cache/R/BiocFileCache/1cc458b15eb1_uberon.db 
     ##   Ontology prefix:  UBERON 
     ##   Status:           ✓   Connected 
     ## 
@@ -75,7 +75,7 @@ tbl(ubcon, "statements")
 ```
 
     ## # A query:  ?? x 8
-    ## # Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/550d2d8c4dd2_uberon.db]
+    ## # Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/1cc458b15eb1_uberon.db]
     ##    stanza         subject        predicate  object value datatype language graph
     ##    <chr>          <chr>          <chr>      <chr>  <chr> <chr>    <chr>    <chr>
     ##  1 obo:uberon.owl obo:uberon.owl foaf:home… NA     http… xsd:any… NA       NA   
@@ -188,85 +188,51 @@ onto_plot2(
 
 ![](uberonpeek_files/figure-html/doplot-1.png)
 
-## EFO and NCI thesaurus
+## Bridging to MONDO for disease terminology
 
-On cursory inspection, the EFO ontology has considerable information
-about anatomic locations of diseases.
-
-We’ll use the entailed edges table in EFO to find all statements that
-have ‘heart’ (UBERON:0000948) as object.
+With our knowledge of the tag for “heart”, we can enumerate formal terms
+for diseases affecting this organ.
 
 ``` r
 
-eforef <- semsql_connect(ontology = "efo") # 240 MB
+mon = semsql_connect(ontology="mondo")
 ```
 
-    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/555e52dd7164_efo.db
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1d3e5ee9e37a_mondo.db
 
-    ## Primary ontology prefix: EFO
+    ## Primary ontology prefix: MONDO
 
 ``` r
 
-# nciref = semsql_connect("ncit")  # > 500MB, block
-htab <- tbl(eforef@con, "entailed_edge") |>
-  filter(object == "UBERON:0000948") |>
-  as.data.frame()
-head(htab)
+tbl(mon@con, "entailed_edge") |> 
+   filter(object == "UBERON:0000948") |> 
+   filter(subject %like% "MONDO%") |> 
+   inner_join( tbl(mon@con, "rdfs_label_statement"), by="subject") |> 
+   as.data.frame() |> select(subject, value) |> distinct() |> DT::datatable()
 ```
 
-    ##          subject       predicate         object
-    ## 1 UBERON:0000948 rdfs:subClassOf UBERON:0000948
-    ## 2    EFO:0009285     IAO:0000136 UBERON:0000948
-    ## 3    EFO:0600032     IAO:0000136 UBERON:0000948
-    ## 4    EFO:0008398     IAO:0000136 UBERON:0000948
-    ## 5    EFO:0009291     IAO:0000136 UBERON:0000948
-    ## 6    EFO:0009290     IAO:0000136 UBERON:0000948
-
-It is tedious to see these formal tags. We have assembled a simple
-character vector map that covers many tags.
+## Bridging to CL for cell type enumeration
 
 ``` r
 
-data(ncit_map)
-head(ncit_map)
+cl = semsql_connect(ontology="cl")
 ```
 
-    ##           IAO:0000112           IAO:0000114           IAO:0000115 
-    ##    "example of usage" "has curation status"          "definition" 
-    ##           IAO:0000116           IAO:0000117           IAO:0000232 
-    ##         "editor note"         "term editor"        "curator note"
+    ## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c7a780bc1_cl.db
 
-What are the predicates of the heart table above?
+    ## Primary ontology prefix: CL
 
 ``` r
 
-ncit_map[unique(htab$predicate)]
+tbl(ubcon, "entailed_edge") |> 
+   filter(object == "UBERON:0000948") |> 
+   filter(subject %like% "CL:%") |> 
+   inner_join( tbl(cl@con, "rdfs_label_statement"), by="subject", copy="temp-table") |> 
+   as.data.frame() |> select(subject, value) |> distinct() |> DT::datatable()
 ```
 
-    ##                            <NA>                     IAO:0000136 
-    ##                              NA                      "is_about" 
-    ##                            <NA>                      RO:0002502 
-    ##                              NA                    "depends on" 
-    ##                     BFO:0000066                      RO:0002131 
-    ##                     "occurs in"                      "overlaps" 
-    ##                      RO:0001025                      RO:0002314 
-    ##                    "located_in"            "inheres in part of" 
-    ##                     BFO:0000050                     EFO:0000784 
-    ##                       "part_of"          "has_disease_location" 
-    ##                      RO:0000052                      RO:0004027 
-    ##                    "inheres_in" "disease has inflammation site"
-
-To enumerate and decode the terms with disease location (EFO:0000784) in
-heart, we have
-
-``` r
-
-library(dplyr)
-library(DT)
-hdis <- ncit_map[unlist(htab |> dplyr::filter(predicate == "EFO:0000784")
-  |> dplyr::select(subject))]
-datatable(data.frame(tag = names(hdis), value = as.character(hdis)))
-```
+Exercise: create a map from cardiac diseases to associated cardiac cell
+types.
 
 ## Session information
 
@@ -296,8 +262,7 @@ sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] DT_0.34.0         dplyr_1.2.1       DBI_1.3.0         ontoProc2_0.99.25
-    ## [5] BiocStyle_2.40.0 
+    ## [1] dplyr_1.2.1       DBI_1.3.0         ontoProc2_0.99.28 BiocStyle_2.40.0 
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] xfun_0.60           bslib_0.11.0        httr2_1.2.3        
@@ -310,15 +275,15 @@ sessionInfo()
     ## [22] compiler_4.6.1      textshaping_1.0.5   htmltools_0.5.9    
     ## [25] sass_0.4.10         yaml_2.3.12         pillar_1.11.1      
     ## [28] pkgdown_2.2.1       jquerylib_0.1.4     R.utils_2.13.0     
-    ## [31] cachem_1.1.0        tidyselect_1.2.1    digest_0.6.39      
-    ## [34] purrr_1.2.2         bookdown_0.47       paintmap_1.0       
-    ## [37] fastmap_1.2.0       grid_4.6.1          cli_3.6.6          
-    ## [40] magrittr_2.0.5      utf8_1.2.6          withr_3.0.3        
-    ## [43] filelock_1.0.3      rappdirs_0.3.4      bit64_4.8.2        
-    ## [46] rmarkdown_2.31      bit_4.6.0           otel_0.2.0         
-    ## [49] ragg_1.5.2          R.methodsS3_1.8.2   memoise_2.0.1      
-    ## [52] evaluate_1.0.5      knitr_1.51          BiocFileCache_3.2.0
-    ## [55] rlang_1.3.0         ontologyIndex_2.12  glue_1.8.1         
-    ## [58] Rgraphviz_2.56.0    BiocManager_1.30.27 xml2_1.6.0         
-    ## [61] BiocGenerics_0.58.1 jsonlite_2.0.0      R6_2.6.1           
-    ## [64] systemfonts_1.3.2   fs_2.1.0
+    ## [31] DT_0.34.0           cachem_1.1.0        tidyselect_1.2.1   
+    ## [34] digest_0.6.39       purrr_1.2.2         bookdown_0.47      
+    ## [37] paintmap_1.0        fastmap_1.2.0       grid_4.6.1         
+    ## [40] cli_3.6.6           magrittr_2.0.5      utf8_1.2.6         
+    ## [43] withr_3.0.3         filelock_1.0.3      rappdirs_0.3.4     
+    ## [46] bit64_4.8.2         rmarkdown_2.31      bit_4.6.0          
+    ## [49] otel_0.2.0          ragg_1.5.2          R.methodsS3_1.8.2  
+    ## [52] memoise_2.0.1       evaluate_1.0.5      knitr_1.51         
+    ## [55] BiocFileCache_3.2.0 rlang_1.3.0         ontologyIndex_2.12 
+    ## [58] glue_1.8.1          Rgraphviz_2.56.0    BiocManager_1.30.27
+    ## [61] xml2_1.6.0          BiocGenerics_0.58.1 jsonlite_2.0.0     
+    ## [64] R6_2.6.1            systemfonts_1.3.2   fs_2.1.0

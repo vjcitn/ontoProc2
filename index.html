@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ontoProc2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.25</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.28</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="ontoproc2">ontoProc2<a class="anchor" aria-label="anchor" href="#ontoproc2"></a>
 </h1></div>
-<p>Revise ontoProc methods to take advantage of INCAtools SemanticSQL representations of ontologies</p>
+<p>This package constitutes a “second generation” approach to management and use of ontologies in Bioconductor.</p>
 <p>The <a href="https://github.com/INCATools/semantic-sql" class="external-link">INCAtools Semantic SQL project</a> (<a href="https://github.com/INCATools/semantic-sql/blob/main/notebooks/SemanticSQL-Tutorial.ipynb" class="external-link">tutorial notebook</a>) identifies an AWS S3 bucket where a large number of ontologies are available.</p>
 <pre><code>%vjc&gt; aws s3 ls s3://bbop-sqlite/ |grep db.gz
 2023-09-02 17:38:48    4268563 ado.db.gz
@@ -77,6 +77,11 @@
 2023-09-02 17:38:55     463088 biovoices.db.gz
 ...</code></pre>
 <p>In this package we will provide tools to retrieve, cache, and make use of these ontologies.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>For Bioconductor versions 3.24 and beyond, use <code>BiocManager::install("ontoProc2")</code>. Otherwise, use <code>BiocManager::install("vjcitn/ontoProc2")</code>.</p>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>

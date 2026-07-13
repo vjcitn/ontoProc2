@@ -1,7 +1,7 @@
 # ontoProc2
 
-Revise ontoProc methods to take advantage of INCAtools SemanticSQL
-representations of ontologies
+This package constitutes a “second generation” approach to management
+and use of ontologies in Bioconductor.
 
 The [INCAtools Semantic SQL
 project](https://github.com/INCATools/semantic-sql) ([tutorial
@@ -30,3 +30,9 @@ available.
 
 In this package we will provide tools to retrieve, cache, and make use
 of these ontologies.
+
+## Installation
+
+For Bioconductor versions 3.24 and beyond, use
+`BiocManager::install("ontoProc2")`. Otherwise, use
+`BiocManager::install("vjcitn/ontoProc2")`.

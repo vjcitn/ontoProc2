@@ -18,6 +18,6 @@ named character vector
 ``` r
 data("ncit_map", package = "ontoProc2")
 ncit_map["EFO:1000899"]
-#>               EFO:1000899 
-#> "diastolic heart failure" 
+#> <NA> 
+#>   NA 
 ```

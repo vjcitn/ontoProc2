@@ -28,13 +28,13 @@ A new `SemsqlConn` object with an active connection.
 
 ``` r
 goref <- semsql_connect(ontology = "go")
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c72ffbcde9_go.db
 #> Primary ontology prefix: GO
 disconnect(goref)
-#> Disconnected from '52084dd590e8_go.db'
+#> Disconnected from '19c72ffbcde9_go.db'
 goref <- reconnect(goref)
-#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/52084dd590e8_go.db
+#> Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c72ffbcde9_go.db
 #> Primary ontology prefix: GO
 disconnect(goref)
-#> Disconnected from '52084dd590e8_go.db'
+#> Disconnected from '19c72ffbcde9_go.db'
 ```
