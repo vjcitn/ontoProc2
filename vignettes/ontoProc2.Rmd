@@ -67,7 +67,7 @@ report(goss)
 
 The back end is SQLite.  We can enumerate the
 tables available:
-```{r lktbs}
+```{r lktbs,message=FALSE}
 library(dplyr)
 library(DBI)
 allt <- dbListTables(goss@con)
