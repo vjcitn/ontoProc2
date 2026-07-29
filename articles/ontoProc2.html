@@ -4,71 +4,97 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ontoProc2 -- leveraging semantic SQL for ontology analysis in Bioconductor • ontoProc2</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="ontoProc2 -- leveraging semantic SQL for ontology analysis in Bioconductor">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="ontoProc2 -- leveraging semantic SQL for ontology analysis in Bioconductor">
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<body>
-    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+<body data-spy="scroll" data-target="#toc">
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <div class="container template-article">
+      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">ontoProc2</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.28</span>
+      </span>
+    </div>
 
-    <a class="navbar-brand me-2" href="../index.html">ontoProc2</a>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+<li>
+  <a href="../articles/ontoProc2.html">Get started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.28</small>
-
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto">
-<li class="active nav-item"><a class="nav-link" href="../articles/ontoProc2.html">Get started</a></li>
-<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/celltoprotein.html">celltoprotein -- connecting Cell and Protein Ontologies</a></li>
-    <li><a class="dropdown-item" href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a></li>
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/celltoprotein.html">celltoprotein -- connecting Cell and Protein Ontologies</a>
+    </li>
+    <li>
+      <a href="../articles/uberonpeek.html">uberonpeek -- a look at UBERON ontology, etc., with ontoProc2</a>
+    </li>
   </ul>
 </li>
       </ul>
-<ul class="navbar-nav">
-<li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
-</form></li>
-<li class="nav-item"><a class="nav-link" href="https://github.com/vjcitn/ontoProc2/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/vjcitn/ontoProc2/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
       </ul>
 </div>
-
-
+<!--/.nav-collapse -->
   </div>
-</nav><div class="container template-article">
+<!--/.container -->
+</div>
+<!--/.navbar -->
 
 
 
-<link href="ontoProc2_files/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+      </header><link href="ontoProc2_files/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="ontoProc2_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="ontoProc2_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="ontoProc2_files/datatables-binding-0.34.0/datatables.js"></script><link href="ontoProc2_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="ontoProc2_files/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="ontoProc2_files/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="ontoProc2_files/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
 <script src="ontoProc2_files/crosstalk-1.2.2/js/crosstalk.min.js"></script><div class="row">
-  <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>ontoProc2 -- leveraging semantic SQL for ontology analysis in Bioconductor</h1>
+  <div class="col-md-9 contents">
+    <div class="page-header toc-ignore">
+      <h1 data-toc-skip>ontoProc2 – leveraging semantic SQL for ontology
+analysis in Bioconductor</h1>
                         <h4 data-toc-skip class="author">Vincent J.
 Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 data-toc-skip class="date">July 13, 2026</h4>
+            <h4 data-toc-skip class="date">July 29, 2026</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/vjcitn/ontoProc2/blob/main/vignettes/ontoProc2.Rmd"><code>vignettes/ontoProc2.Rmd</code></a></small>
-      <div class="d-none name"><code>ontoProc2.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/vjcitn/ontoProc2/blob/main/vignettes/ontoProc2.Rmd" class="external-link"><code>vignettes/ontoProc2.Rmd</code></a></small>
+      <div class="hidden name"><code>ontoProc2.Rmd</code></div>
+
     </div>
 
     
@@ -115,7 +141,7 @@ Biological and Biomedical Ontologies (<a href="https://github.com/OBOFoundry/" c
 a short string that the INCAtools project uses as part of the filename
 for the ontology. For Gene Ontology, the string is “go”.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vjcitn/ontoProc2">ontoProc2</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vjcitn/ontoProc2" class="external-link">ontoProc2</a></span><span class="op">)</span></span>
 <span><span class="va">goss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span>
 <span><span class="va">goss</span></span></code></pre></div>
 <pre><code><span><span class="co">## &lt;SemsqlConn&gt;  prefix: GO  | labeled terms: 88,849</span></span></code></pre>
@@ -133,7 +159,7 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Connection Details:</span></span>
 <span><span class="co">## ---------------------------------------- </span></span>
-<span><span class="co">##   Database path:    /home/runner/.cache/R/BiocFileCache/19c72ffbcde9_go.db </span></span>
+<span><span class="co">##   Database path:    /home/runner/.cache/R/BiocFileCache/51aa7efd341e_go.db </span></span>
 <span><span class="co">##   Ontology prefix:  GO </span></span>
 <span><span class="co">##   Status:           ✓   Connected </span></span>
 <span><span class="co">## </span></span>
@@ -172,21 +198,12 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 </h3>
 <p>The back end is SQLite. We can enumerate the tables available:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     filter, lag</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org" class="external-link">DBI</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org" class="external-link">DBI</a></span><span class="op">)</span></span>
 <span><span class="va">allt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html" class="external-link">dbListTables</a></span><span class="op">(</span><span class="va">goss</span><span class="op">@</span><span class="va">con</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">allt</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 100</span></span></code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">allt</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "all_problems"                    "annotation_property_node"       </span></span>
 <span><span class="co">## [3] "anonymous_class_expression"      "anonymous_expression"           </span></span>
@@ -196,11 +213,11 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <h3 id="use-tidy-methods">Use tidy methods<a class="anchor" aria-label="anchor" href="#use-tidy-methods"></a>
 </h3>
 <p>Individual tables are readily accessible.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT" class="external-link">DT</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">goss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"statements"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A query:  ?? x 8</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/19c72ffbcde9_go.db]</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># Database: sqlite 3.53.3 [/home/runner/.cache/R/BiocFileCache/51aa7efd341e_go.db]</span></span></span>
 <span><span class="co">##    stanza                 subject predicate object value datatype language graph</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span> obo:go/extensions/go-… obo:go… owl:vers… <span style="color: #BB0000;">NA</span>     2026… <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
@@ -214,7 +231,7 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span> obo:go/extensions/go-… obo:go… IAO:0000… GO:00… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span> obo:go/extensions/go-… obo:go… owl:vers… obo:g… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>   </span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ more rows</span></span></span></code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">goss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"statements"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -222,7 +239,7 @@ for the ontology. For Gene Ontology, the string is “go”.</p>
 <div class="datatables html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","IAO:0000111","IAO:0000112","IAO:0000114","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115"],["obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","obo:go/extensions/go-plus.ofn","IAO:0000111","IAO:0000112","IAO:0000114","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115","IAO:0000115"],["owl:versionInfo","oio:hasOBOFormatVersion","oio:default-namespace","dcterms:license","dce:title","dce:description","IAO:0000700","IAO:0000700","IAO:0000700","owl:versionIRI","rdf:type","rdf:type","rdf:type","rdf:type","rdfs:label","rdfs:label","IAO:0000119","IAO:0000117","IAO:0000116","IAO:0000115"],[null,null,null,"cc:by/4.0/",null,null,"GO:0008150","GO:0005575","GO:0003674","obo:go/releases/2026-03-25/extensions/go-plus.ofn","owl:Ontology","owl:AnnotationProperty","owl:AnnotationProperty","owl:AnnotationProperty",null,null,null,null,null,null],["2026-03-25","1.2","gene_ontology",null,"Gene Ontology","The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.",null,null,null,null,null,null,null,null,"definition","definition","GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;","PERSON:Daniel Schober","2012-04-05: \nBarry Smith\n\nThe official OBI definition, explaining the meaning of a class or property: 'Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions'  is terrible.\n\nCan you fix to something like:\n\nA statement of necessary and sufficient conditions explaining the meaning of an expression referring to a class or property.\n\nAlan Ruttenberg\n\nYour proposed definition is a reasonable candidate, except that it is very common that necessary and sufficient conditions are not given. Mostly they are necessary, occasionally they are necessary and sufficient or just sufficient. Often they use terms that are not themselves defined and so they effectively can't be evaluated by those criteria. \n\nOn the specifics of the proposed definition:\n\nWe don't have definitions of 'meaning' or 'expression' or 'property'. For 'reference' in the intended sense I think we use the term 'denotation'. For 'expression', I think we you mean symbol, or identifier. For 'meaning' it differs for class and property. For class we want documentation that let's the intended reader determine whether an entity is instance of the class, or not. For property we want documentation that let's the intended reader determine, given a pair of potential relata, whether the assertion that the relation holds is true. The 'intended reader' part suggests that we also specify who, we expect, would be able to understand the definition, and also generalizes over human and computer reader to include textual and logical definition. \n\nPersonally, I am more comfortable weakening definition to documentation, with instructions as to what is desirable. \n\nWe also have the outstanding issue of how to aim different definitions to different audiences. A clinical audience reading chebi wants a different sort of definition documentation/definition from a chemistry trained audience, and similarly there is a need for a definition that is adequate for an ontologist to work with.","The official definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions."],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,"en",null,"en","en","en","en"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>stanza<\/th>\n      <th>subject<\/th>\n      <th>predicate<\/th>\n      <th>object<\/th>\n      <th>value<\/th>\n      <th>datatype<\/th>\n      <th>language<\/th>\n      <th>graph<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"stanza","targets":1},{"name":"subject","targets":2},{"name":"predicate","targets":3},{"name":"object","targets":4},{"name":"value","targets":5},{"name":"datatype","targets":6},{"name":"language","targets":7},{"name":"graph","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>To investigate the ontology, searching through RDF labels is a
 natural approach.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">goss</span>, <span class="st">"apoptosis"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -231,7 +248,7 @@ natural approach.</p>
 <code>_riog...</code> labels have special roles in RDF inference, and
 this will be addressed in vignettes to be added in the future.</p>
 <p>Let’s improve the query:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">goss</span>, <span class="st">"apoptosis"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^GO:"</span>, <span class="va">subject</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -249,15 +266,15 @@ vignette.</p>
 suite</a> of Daniel Greene and colleagues provides very convenient
 ontology handling functions. We can transform the SQLite data to this
 format. We’ll illustrate with cell ontology.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"cl"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/19c7a780bc1_cl.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/51aa3e7102db_cl.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: CL</span></span></code></pre>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cloi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_to_oi.html">semsql_to_oi</a></span><span class="op">(</span><span class="va">clss</span><span class="op">@</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in ontologyIndex::ontology_index(name = nn, parents = pl): Some parent</span></span>
 <span><span class="co">## terms not found: BFO:0000002, BFO:0000004, SO:0000704 (15 more)</span></span></code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cloi</span></span></code></pre></div>
 <pre><code><span><span class="co">## Ontology with 18603 terms</span></span>
 <span><span class="co">## </span></span>
@@ -281,7 +298,7 @@ format. We’ll illustrate with cell ontology.</p>
 <span><span class="co">##  PR:000001338 - complement receptor type 2</span></span>
 <span><span class="co">##  ... 876 more</span></span></code></pre>
 <p>A convenience function assists with visualizations:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/onto_plot2.html">onto_plot2</a></span><span class="op">(</span><span class="va">cloi</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CL:0000624"</span>, <span class="st">"CL:0000492"</span>, <span class="st">"CL:0000793"</span>, <span class="st">"CL:0000803"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ontoProc2_files/figure-html/dopl-1.png" class="r-plt" alt="" width="700"></p>
 </div>
@@ -296,7 +313,7 @@ jupyter notebook</a>.</p>
 <h3 id="searching-in-label-text">Searching in label text<a class="anchor" aria-label="anchor" href="#searching-in-label-text"></a>
 </h3>
 <p>The code of <code>search_labels</code> is:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rconsortium.github.io/S7/" class="external-link">S7</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rconsortium.github.io/S7/reference/method.html" class="external-link">method</a></span><span class="op">(</span><span class="va">search_labels</span>, <span class="va">SemsqlConn</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## &lt;S7_method&gt; method(search_labels, ontoProc2::SemsqlConn)</span></span>
@@ -321,7 +338,7 @@ neuron” as subject.</p>
 Resource Identifier): a fixed length numerical identifier with a prefix
 indicating the source ontology in which the ontologic concept is
 based.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="../reference/is_connected.html">is_connected</a></span><span class="op">(</span><span class="va">clss</span><span class="op">)</span><span class="op">)</span> <span class="va">clss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reconnect.html">reconnect</a></span><span class="op">(</span><span class="va">clss</span><span class="op">)</span></span>
 <span><span class="va">entcurie</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">clss</span>, <span class="st">"enteric neuron"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^CL"</span>, <span class="va">subject</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -330,7 +347,7 @@ based.</p>
 <span><span class="va">entcurie</span></span></code></pre></div>
 <pre><code><span><span class="co">##      subject </span></span>
 <span><span class="co">## "CL:0007011"</span></span></code></pre>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_direct_edges.html">get_direct_edges</a></span><span class="op">(</span><span class="va">clss</span>, <span class="va">entcurie</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##      subject  subject_label       predicate   predicate_label         object</span></span>
 <span><span class="co">## 1 CL:0007011 enteric neuron     BFO:0000050           part of UBERON:0002005</span></span>
@@ -349,7 +366,7 @@ based.</p>
 <span><span class="co">## 6         neural crest derived neuron</span></span>
 <span><span class="co">## 7                    autonomic neuron</span></span></code></pre>
 <p>Here the underlying code is performing a join:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rconsortium.github.io/S7/reference/method.html" class="external-link">method</a></span><span class="op">(</span><span class="va">get_direct_edges</span>, <span class="va">SemsqlConn</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## &lt;S7_method&gt; method(get_direct_edges, ontoProc2::SemsqlConn)</span></span>
 <span><span class="co">## function (x, term_id, direction = c("outgoing", "incoming", "both")) </span></span>
@@ -381,7 +398,7 @@ based.</p>
 <p>The notebook mentions that the “entailed edges” table includes all
 statements that can be inferred from the application of base axioms of
 the ontology.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_ancestors.html">get_ancestors</a></span><span class="op">(</span><span class="va">clss</span>, <span class="va">entcurie</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                id                            label       predicate</span></span>
 <span><span class="co">## 1     BFO:0000002                             &lt;NA&gt; rdfs:subClassOf</span></span>
@@ -408,16 +425,16 @@ the ontology.</p>
 that are part of the forebrain. This involves identifying CURIEs for
 relations and anatomical structures, thus working with the relational
 ontology (RO) and UBERON.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ub</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"uberon"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1cc458b15eb1_uberon.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/54a0381c0683_uberon.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: UBERON</span></span></code></pre>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/semsql_connect.html">semsql_connect</a></span><span class="op">(</span>ontology <span class="op">=</span> <span class="st">"ro"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/1c8960098d46_ro.db</span></span></code></pre>
+<pre><code><span><span class="co">## Connected to SemanticSQL database: /home/runner/.cache/R/BiocFileCache/54653736b7a_ro.db</span></span></code></pre>
 <pre><code><span><span class="co">## Primary ontology prefix: RO</span></span></code></pre>
 <p>First question: What’s the CURIE for “forebrain” in UBERON?</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fbcur</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">ub</span>, <span class="st">"forebrain"</span>, limit <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">"forebrain"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -426,7 +443,7 @@ ontology (RO) and UBERON.</p>
 <pre><code><span><span class="co">##          subject </span></span>
 <span><span class="co">## "UBERON:0001890"</span></span></code></pre>
 <p>Second question: What’s the CURIE for “has soma location” in RO?</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loccur</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">ro</span>, <span class="st">"has soma location"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -434,7 +451,7 @@ ontology (RO) and UBERON.</p>
 <pre><code><span><span class="co">##      subject </span></span>
 <span><span class="co">## "RO:0002100"</span></span></code></pre>
 <p>What’s the CURIE for “neuron”?</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ncur</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_labels.html">search_labels</a></span><span class="op">(</span><span class="va">clss</span>, <span class="st">"neuron"</span>, limit <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">"neuron"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -444,7 +461,7 @@ ontology (RO) and UBERON.</p>
 <span><span class="co">## "CL:0000540"</span></span></code></pre>
 <p>Now we use three steps to obtain the solution.</p>
 <p>First, enumerate all cell types that are located in forebrain.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clinfb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">clss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"entailed_edge"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">predicate</span> <span class="op">==</span> <span class="va">loccur</span>, <span class="va">object</span> <span class="op">==</span> <span class="va">fbcur</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -454,7 +471,7 @@ ontology (RO) and UBERON.</p>
 <pre><code><span><span class="co">## [1] 186</span></span></code></pre>
 <p>Second, filter these to those identified as ‘subclassOf’
 “neuron”.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">clisneur</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">clss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"entailed_edge"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">predicate</span> <span class="op">==</span> <span class="st">"rdfs:subClassOf"</span>, <span class="va">object</span> <span class="op">==</span> <span class="va">ncur</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">subject</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">clinfb</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -464,7 +481,7 @@ ontology (RO) and UBERON.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">clisneur</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 186</span></span></code></pre>
 <p>Finally, get the labels.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">clss</span><span class="op">@</span><span class="va">con</span>, <span class="st">"rdfs_label_statement"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">subject</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">clisneur</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">subject</span>, <span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -477,7 +494,7 @@ ontology (RO) and UBERON.</p>
 <div class="section level2">
 <h2 id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## R version 4.6.1 (2026-06-24)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
@@ -504,7 +521,7 @@ ontology (RO) and UBERON.</p>
 <span><span class="co">## [5] ontoProc2_0.99.28 BiocStyle_2.40.0 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] xfun_0.60           bslib_0.11.0        httr2_1.2.3        </span></span>
+<span><span class="co">##  [1] xfun_0.60           bslib_0.11.0        httr2_1.3.0        </span></span>
 <span><span class="co">##  [4] htmlwidgets_1.6.4   ontologyPlot_1.7    vctrs_0.7.3        </span></span>
 <span><span class="co">##  [7] tools_4.6.1         crosstalk_1.2.2     generics_0.1.4     </span></span>
 <span><span class="co">## [10] stats4_4.6.1        curl_7.1.0          tibble_3.3.1       </span></span>
@@ -518,31 +535,38 @@ ontology (RO) and UBERON.</p>
 <span><span class="co">## [34] purrr_1.2.2         bookdown_0.47       paintmap_1.0       </span></span>
 <span><span class="co">## [37] fastmap_1.2.0       grid_4.6.1          cli_3.6.6          </span></span>
 <span><span class="co">## [40] magrittr_2.0.5      utf8_1.2.6          withr_3.0.3        </span></span>
-<span><span class="co">## [43] filelock_1.0.3      rappdirs_0.3.4      bit64_4.8.2        </span></span>
-<span><span class="co">## [46] rmarkdown_2.31      bit_4.6.0           otel_0.2.0         </span></span>
-<span><span class="co">## [49] ragg_1.5.2          R.methodsS3_1.8.2   memoise_2.0.1      </span></span>
-<span><span class="co">## [52] evaluate_1.0.5      knitr_1.51          BiocFileCache_3.2.0</span></span>
-<span><span class="co">## [55] rlang_1.3.0         ontologyIndex_2.12  glue_1.8.1         </span></span>
-<span><span class="co">## [58] Rgraphviz_2.56.0    BiocManager_1.30.27 xml2_1.6.0         </span></span>
-<span><span class="co">## [61] BiocGenerics_0.58.1 jsonlite_2.0.0      R6_2.6.1           </span></span>
-<span><span class="co">## [64] systemfonts_1.3.2   fs_2.1.0</span></span></code></pre>
+<span><span class="co">## [43] filelock_1.0.3      bit64_4.8.2         rmarkdown_2.31     </span></span>
+<span><span class="co">## [46] bit_4.6.0           otel_0.2.0          ragg_1.5.2         </span></span>
+<span><span class="co">## [49] R.methodsS3_1.8.2   memoise_2.0.1       evaluate_1.0.5     </span></span>
+<span><span class="co">## [52] knitr_1.51          BiocFileCache_3.2.0 rlang_1.3.0        </span></span>
+<span><span class="co">## [55] ontologyIndex_2.12  glue_1.8.1          Rgraphviz_2.56.0   </span></span>
+<span><span class="co">## [58] BiocManager_1.30.27 xml2_1.6.0          BiocGenerics_0.58.1</span></span>
+<span><span class="co">## [61] jsonlite_2.0.0      R6_2.6.1            systemfonts_1.3.2  </span></span>
+<span><span class="co">## [64] fs_2.1.0</span></span></code></pre>
 </div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
-    </nav></aside>
-</div>
+  </div>
 
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
+      </div>
 
-    <footer><div class="pkgdown-footer-left">
-  <p>Developed by Vincent Carey, NIH NHGRI 2U24HG004059-17.</p>
 </div>
 
-<div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
+
+
+      <footer><div class="copyright">
+  <p></p>
+<p>Developed by Vincent Carey, NIH NHGRI 2U24HG004059-17.</p>
 </div>
 
-    </footer>
+<div class="pkgdown">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
+
+      </footer>
+</div>
+
 
 
 
