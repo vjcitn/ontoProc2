@@ -6,7 +6,7 @@
 content relative to cache via ETag}
 \usage{
 bbop_sqlite_db_gz(
-  url = "https://s3.amazonaws.com/bbop-sqlite",
+  url = "https://semanticsql.berkeleybop.io/",
   bfc = BiocFileCache::BiocFileCache(),
   rname = "bbop_sqlite_listing",
   timeout_connect = 5,
