@@ -51,7 +51,7 @@ retrieve_semsql_conn <- function(ontology = "efo",
     on.exit(unlink(td, recursive = TRUE))
     ztmploc <- file.path(td, zdbname)
     tmploc <- file.path(td, dbname)
-    download.file(addr, file.path(td, zdbname), ...)
+    download.file(addr, file.path(td, zdbname), headers = c("User-Agent" = "ontoProc2"), ...)
     gunzip(ztmploc) # file now at tmploc
     addv <- BiocFileCache::bfcadd(cache,
       rname = rname,

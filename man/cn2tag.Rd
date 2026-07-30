@@ -3,7 +3,7 @@
 \docType{data}
 \name{cn2tag}
 \alias{cn2tag}
-\title{a named vector with mapping from cell type phrase to CURIE for CL.owl of 2025-12-17}
+\title{a named vector with mapping from cell type phrase to CURIE for CL.owl}
 \format{
 names character vector
 }
@@ -11,7 +11,10 @@ names character vector
 data(cn2tag)
 }
 \description{
-a named vector with mapping from cell type phrase to CURIE for CL.owl of 2025-12-17
+a named vector with mapping from cell type phrase to CURIE for CL.owl
+}
+\note{
+creation is detailed in unexported function makeBundledMaps
 }
 \examples{
 data("cn2tag", package = "ontoProc2")

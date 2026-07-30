@@ -1,3 +1,7 @@
+CHANGES IN VERSION 0.99.30
+
+- Address issue 11 concerning new URL for SQLite dbs and User-Agent fields
+
 CHANGES IN VERSION 0.99.0
 -------------------------
 

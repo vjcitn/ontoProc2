@@ -13,8 +13,11 @@ data(ncit_map)
 \description{
 a named vector with values rdfs labels in NCI thesaurus, and names the corresponding formal ontology tags
 }
+\note{
+creation is detailed in unexported function makeBundledMaps
+}
 \examples{
 data("ncit_map", package = "ontoProc2")
-ncit_map["EFO:1000899"]
+head(ncit_map)
 }
 \keyword{datasets}

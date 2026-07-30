@@ -4,7 +4,7 @@ test_that("semsql_url formats URL correctly", {
   url <- semsql_url("cl")
   expect_type(url, "character")
   expect_length(url, 1L)
-  expect_match(url, "^https://s3\\.amazonaws\\.com/bbop-sqlite/cl\\.db\\.gz$")
+  expect_match(url, "^https://semanticsql.berkeleybop.io/cl\\.db\\.gz$")
 })
 
 test_that("semsql_url works for different ontologies", {
