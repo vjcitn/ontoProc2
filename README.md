@@ -3,27 +3,33 @@
 This package constitutes a "second generation" approach to
 management and use of ontologies in Bioconductor.
 
-The [INCAtools Semantic SQL project](https://github.com/INCATools/semantic-sql) ([tutorial notebook](https://github.com/INCATools/semantic-sql/blob/main/notebooks/SemanticSQL-Tutorial.ipynb)) identifies an AWS S3 bucket where a large number of ontologies
+The [INCAtools Semantic SQL project](https://github.com/INCATools/semantic-sql) ([tutorial notebook](https://github.com/INCATools/semantic-sql/blob/main/notebooks/SemanticSQL-Tutorial.ipynb)) identifies 
+a location where a large number of ontologies
 are available.
 
 ```
-%vjc> aws s3 ls s3://bbop-sqlite/ |grep db.gz
-2023-09-02 17:38:48    4268563 ado.db.gz
-2023-09-02 17:38:48   11841154 agro.db.gz
-2023-09-02 17:38:48     301889 aio.db.gz
-2023-09-02 17:38:48   42842146 aism.db.gz
-2023-09-02 17:38:48     294887 amphx.db.gz
-2023-09-02 17:38:48     303328 apo.db.gz
-2023-09-02 17:38:48    3457483 apollo_sv.db.gz
-2023-09-02 17:38:48    7245916 aro.db.gz
-2023-09-02 17:38:48    5939737 bao.db.gz
-2023-09-02 17:38:48     767913 bcio.db.gz
-2023-09-02 17:38:50     552497 bco.db.gz
-2023-09-02 17:38:51 1600927276 bero.db.gz
-2023-09-02 17:38:51     108284 bfo.db.gz
-2023-09-02 17:38:54     575935 biolink.db.gz
-2023-09-02 17:38:55        646 biopax.db.gz
-2023-09-02 17:38:55     463088 biovoices.db.gz
+curl -s https://semanticsql.berkeleybop.io/ \
+>   | xmllint --xpath '//*[local-name()="Key"][substring(text(), string-length(text())-5)=".db.gz"]/text()' - | head -20
+ado.db.gz
+agro.db.gz
+aio.db.gz
+aism.db.gz
+amphx.db.gz
+apo.db.gz
+apollo_sv.db.gz
+aro.db.gz
+asmo.db.gz
+bao.db.gz
+bcio.db.gz
+bco.db.gz
+bero.db.gz
+bervo.db.gz
+bfo.db.gz
+bfo2020.db.gz
+bfo2020_core.db.gz
+bfo2020_notime.db.gz
+bfo2020_time.db.gz
+biolink.db.gz
 ...
 ```
 In this package we will provide tools to retrieve, cache, and make use of these ontologies.

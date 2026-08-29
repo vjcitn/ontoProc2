@@ -45,9 +45,13 @@ import(Rgraphviz)
 import(S7)
 import(graph)
 importFrom(R.utils,gunzip)
-importFrom(methods,as)
-importFrom(methods,new)
+importFrom(methods,
+  as,
+  new
+)
 importFrom(ontologyIndex,ontology_index)
 importFrom(ontologyPlot,onto_plot)
-importFrom(utils,data)
-importFrom(utils,download.file)
+importFrom(utils,
+  data,
+  download.file
+)

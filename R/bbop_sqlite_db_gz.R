@@ -18,7 +18,7 @@
 #' length(gzs)
 #' @export
 bbop_sqlite_db_gz <- function(
-    url = "https://semanticsql.berkeleybop.io/",
+    url             = "https://semanticsql.berkeleybop.io/",
     bfc             = BiocFileCache::BiocFileCache(),
     rname           = "bbop_sqlite_listing",
     timeout_connect = 5,
