@@ -26,9 +26,14 @@ export(get_synonyms)
 export(get_term_info)
 export(improve_nodes)
 export(is_connected)
+export(label_igraph_nodes)
 export(list_tables)
 export(make_graphNEL_from_ontology_plot)
+export(make_igraph_from_ontology_plot)
 export(onto_plot2)
+export(onto_plot2_params)
+export(onto_plot2_stress)
+export(onto_plot2_sugiyama)
 export(reconnect)
 export(report)
 export(retrieve_semsql_conn)
@@ -43,8 +48,16 @@ import(DBI)
 import(RSQLite)
 import(Rgraphviz)
 import(S7)
+import(ggplot2)
+import(ggraph)
 import(graph)
 importFrom(R.utils,gunzip)
+importFrom(graphlayouts,layout_with_stress)
+importFrom(igraph,
+  "V<-",
+  V,
+  graph_from_adjacency_matrix
+)
 importFrom(methods,
   as,
   new
